@@ -1,0 +1,11 @@
+<div class="lg:hidden">
+<%= render 'layouts/top_nav' %>
+    <%= search_form_for @q, html: { class:"bg-gray-300 py-12 px-8 sticky top-0" } do |f| %>
+      <%= f.search_field :town_name_or_name_or_estate_name_cont, class:"text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4", placeholder:"try a town or estate" %>
+      <%= f.submit "search", class:"bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg" %>
+    <% end %>  
+  <div class=" bg-gray-100 p-24">
+    <%= render 'rental', obj:@rentals %>
+  </div>
+<%= render 'layouts/bottom_nav' %>
+</div>

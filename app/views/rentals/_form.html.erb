@@ -1,0 +1,13 @@
+<%= form_for @rental do |f| %>
+  <div class="text-4xl p-4>
+            <%= f.text_field :name, placeholder: "property name", class: "m-4 p-2 rounded-lg" %>
+            <%= f.text_field :price, placeholder: "price per month", class: "m-4 p-2 rounded-lg" %>
+            <div class="grid grid-cols-2 gap-4 my-4">
+                <%= f.number_field :units, placeholder: "units", class: "mx-4 p-2 rounded-lg" %>
+                <%= f.number_field :bedrooms, placeholder: "bedrooms", class: "mx-4 p-2 rounded-lg" %>
+            </div>
+            <%= f.text_field :contacts, placeholder: "agent contacts", class: "m-4 p-2 rounded-lg" %>
+            <%= f.file_field :photo, class: "m-4 p-2 rounded-lg" %>
+        <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+        </div>
+<% end %>

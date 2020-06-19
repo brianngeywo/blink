@@ -1,0 +1,10 @@
+<div class="lg:hidden">
+<%= render "layouts/top_nav" %>
+<%= form_for @town do |f| %>
+  <div class="bg-gray-300 text-4xl p-4">
+    <div class="capitalize font-bold text-6xl">edit town</div>
+        <%= f.text_field :name, placeholder: "town name", class: "m-4 p-2 rounded-lg" %>
+        <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+    </div>
+<% end %>
+</div>

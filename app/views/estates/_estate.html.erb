@@ -1,0 +1,10 @@
+  <% obj.each do |estate| %>
+    <div class="my-12">
+      <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
+        <div class="rounded-b rounded-lg bg-cover bg-center bg-no-repeat w-full h-74"
+          style="background-image: url('../assets/property-3.jpg');">
+        </div>
+        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to estate.name, estate_path(estate) %></div>
+      </div>
+    </div>
+  <% end %>

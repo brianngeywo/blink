@@ -1,0 +1,15 @@
+<div class="lg:hidden">
+<%= render 'layouts/top_nav' %>
+    <div class="bg-cover bg-center bg-no-repeat w-full h-74"
+        style="background-blend-mode: multiply; background: rgba(28, 40, 43, 0.185); background-image: url('../assets/slide-1.jpg');">
+    </div>
+    <div  class="font-bold text-7xl capitalize mx-4"><%= @town.name %></div>
+        <div class="p-6 capitalize text-5xl mx-6">
+        <div class="my-4"><%= link_to 'delete town', town_path, method: :delete %></div>
+        <div class="my-4"><%= link_to 'edit town', edit_town_path %></div>
+    </div>
+    <div class=" bg-gray-100 p-24">
+        <%= render 'estates/estate', obj: @town.estates %>
+    </div>
+  </div>
+</div>

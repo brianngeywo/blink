@@ -1,0 +1,19 @@
+<div class="lg:hidden">
+<%= render 'layouts/top_nav' %>
+    <div class="bg-cover bg-center bg-no-repeat w-full h-74"
+        style="background-blend-mode: multiply; background: rgba(28, 40, 43, 0.185); background-image: url(<%= image_tag @rental.photo.attach(photo) if @rental.photo.attached? %>);">
+    </div>
+    <div  class="font-bold text-7xl capitalize mx-4"><%= @rental.name %></div>
+    <div class="p-6 capitalize text-5xl mx-6">
+        <div class="my-4"><%= link_to @rental.town.name, towns_path(@town) if @rental.town %>, <%= link_to @rental.estate.name, estates_path(@estate) if @rental.estate %> estate</div>
+        <div class="my-4">kshs <%= @rental.price %> per month</div>
+        <div class="my-4"><%= @rental.units %> units</div>
+        <div class="my-4"><%= @rental.bedrooms %> bedrooms</div>
+        <div class="my-4">
+            <div>for more infor and site view</div>
+            <%= @rental.contacts %>
+        </div>
+        <div class="my-4">created by: <%= @rental.user.username if @rental.user %></div>
+        <%= link_to 'edit rental', edit_rental_path %>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+  <% obj.each do |rental| %>
+    <div class="my-12">
+      <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
+        <div class="rounded-b rounded-lg bg-cover bg-center bg-no-repeat w-full h-74"
+          style="background-image: url('../assets/property-3.jpg');">
+        </div>
+        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to rental.name, rental_path(rental) %></div>
+        <div class="h-40">
+          <div class="text-4xl px-6 py-2 capitalize"><i class="fa fa-map-marker-alt text-teal-700"></i>
+            <%= rental.town.name if rental.town %>,<span><%= rental.estate.name if rental.estate %></span></div>
+            <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i><%= rental.bedrooms %> rooms</div>
+            <div class="text-4xl px-6 py-2 capitalize">kshs <%= rental.price %></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
