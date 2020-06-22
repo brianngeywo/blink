@@ -1,4 +1,8 @@
 class RentalsController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def index
     @rentals = Rental.all
     @q = Rental.ransack(params[:q])
@@ -11,26 +15,23 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    @rental.user = User.first
+    @rental.user = current_user
     if @rental.save
       flash[:success] = "rental successfully created"
       redirect_to @rental
     else
       flash[:error] = "Something went wrong"
-      render "new"
+      redirect_to new_rental_path
     end
   end
 
   def show
-    @rental = Rental.find(params[:id])
   end
 
   def edit
-    @rental = Rental.find(params[:id])
   end
 
   def update
-    @rental = Rental.find(params[:id])
     if @rental.update(rental_params)
       flash[:success] = "rental was successfully updated"
       redirect_to @rental
@@ -39,20 +40,31 @@ class RentalsController < ApplicationController
       render "edit"
     end
   end
-def destroy
-  @rental = Rental.find(params[:id])
-  if @rental.destroy
-    flash[:success] = 'Rental was successfully deleted.'
-    redirect_to rentals_url
-  else
-    flash[:error] = 'Something went wrong'
-    redirect_to rentals_url
+
+  def destroy
+    if @rental.destroy
+      flash[:success] = "Rental was successfully deleted."
+      redirect_to rentals_url
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to rentals_url
+    end
   end
-end
 
   private
 
+  def set_user
+    @rental = Rental.find(params[:id])
+  end
+
   def rental_params
     params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :photo)
+  end
+
+  def require_same_user
+    if current_user != @rental.user and !current_user.admin?
+      flash[:danger] = "you must be the owner to perform that action"
+      redirect_to root_path
+    end
   end
 end

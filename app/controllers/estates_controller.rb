@@ -1,4 +1,8 @@
 class EstatesController < ApplicationController
+  before_action :set_estate, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_admin, only: [:new, :edit, :update, :destroy]
+
   def index
     @estates = Estate.all
   end
@@ -19,15 +23,12 @@ class EstatesController < ApplicationController
   end
 
   def show
-    @estate = Estate.find(params[:id])
   end
 
   def edit
-    @estate = Estate.find(params[:id])
   end
 
   def update
-    @estate = Estate.find(params[:id])
     if @estate.update(estate_params)
       flash[:success] = "Object was successfully updated"
       redirect_to @estate
@@ -38,7 +39,6 @@ class EstatesController < ApplicationController
   end
 
   def destroy
-    @estate = Estate.find(params[:id])
     if @estate.destroy
       flash[:success] = "Estate was successfully deleted."
       redirect_to estates_url
@@ -49,6 +49,10 @@ class EstatesController < ApplicationController
   end
 
   private
+
+  def set_estate
+    @estate = Estate.find(params[:id])
+  end
 
   def estate_params
     params.require(:estate).permit(:name, :town_id)

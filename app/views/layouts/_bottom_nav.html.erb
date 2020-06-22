@@ -1,3 +1,12 @@
-  <div class="bg-gray-900 py-4 flex">
+  <div class="bg-gray-900 py-4 flex my-6">
     <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'contact us', pages_contact_path %></div>
+    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'all listing', rentals_path %></div>
+ <% if logged_in? %>
+    <div  class="text-white text-4xl mx-12 capitalize"><%= link_to 'profile', user_path(current_user) %></div>
+    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'logout', logout_path, method: :delete %></div>
+   <% else %>
+    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'login', login_path %></div>
+    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'signup', signup_path %></div>
+ <% end %>
+  
   </div>

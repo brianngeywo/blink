@@ -4,7 +4,11 @@
     <input type="text" class="text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4" placeholder="try a location or price">
     <button class="bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg">search</button>
   </div>
-  <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'add new town', new_town_path %></div>
+  
+  <% if current_user.admin? %>
+    <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'add new town', new_town_path %></div>    
+  <% end %>
+  
   <div class=" bg-gray-100 p-24">
   <% @towns.each do |town| %>
     <div class="my-12">

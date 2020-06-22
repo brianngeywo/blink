@@ -1,22 +1,14 @@
 class PagesController < ApplicationController
-  def index
-  end
-
-  def property
-  end
-
-  def add
-  end
-
   def contact
   end
 
   def home
+    redirect_to rentals_path if logged_in?
   end
 
   def listing
   end
 
-  def edit
+  def finder
   end
 end

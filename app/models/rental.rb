@@ -1,7 +1,7 @@
 class Rental < ActiveRecord::Base
+  belongs_to :user
   belongs_to :town
   belongs_to :estate
-  belongs_to :user
   validates :name, presence: true
   validates :bedrooms, presence: true
   validates :price, presence: true

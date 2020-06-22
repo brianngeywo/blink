@@ -1,5 +1,5 @@
   <div class="flex top-0 bg-gray-900 py-3 text-7xl text-white">
     <div><i class="fa fa-home mx-12"></i></div>
     <div class="font-bold flex-grow hidden">|</div>
-    <div class="text-6xl py-4 mx-12 text-right capitalize text-white font-bold">salama houses</div>
+    <div class="text-6xl py-4 mx-12 text-right capitalize text-white font-bold">salama houses <%= "admin" if logged_in? && current_user.admin? %></div>
   </div>

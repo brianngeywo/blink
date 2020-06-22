@@ -1,0 +1,14 @@
+<%= form_for @user do |f| %>
+    <div class="text-4xl p-4">
+        <div class="grid grid-cols-2 gap-4 my-4">
+            <%= f.label :username, "username", class: "m-4 p-2 rounded-lg" %>
+            <%= f.label :password, "password", class: "m-4 p-2 rounded-lg" %>
+        </div>
+        <div class="grid grid-cols-2 gap-4 my-4">
+            <%= f.text_field :username, placeholder: "enter username", class: "m-4 p-2 rounded-lg" %>
+            <%= f.password_field :password, placeholder: "enter password", class: "m-4 p-2 rounded-lg" %>
+        </div>
+        <br>
+    <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+    </div>
+<% end %>

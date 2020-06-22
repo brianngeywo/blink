@@ -1,4 +1,8 @@
 class TownsController < ApplicationController
+  before_action :set_town, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_admin, only: [:new, :edit, :update, :destroy]
+
   def index
     @towns = Town.all
   end
@@ -8,7 +12,6 @@ class TownsController < ApplicationController
   end
 
   def update
-    @town = Town.find(params[:id])
     if @town.update(town_params)
       flash[:success] = "Town was successfully updated"
       redirect_to @town
@@ -19,7 +22,6 @@ class TownsController < ApplicationController
   end
 
   def show
-    @town = Town.find(params[:id])
   end
 
   def create
@@ -34,11 +36,9 @@ class TownsController < ApplicationController
   end
 
   def edit
-    @town = Town.find(params[:id])
   end
 
   def update
-    @town = Town.find(params[:id])
     if @town.update(town_params)
       flash[:success] = "Town was successfully updated"
       redirect_to @town
@@ -49,7 +49,6 @@ class TownsController < ApplicationController
   end
 
   def destroy
-    @town = Town.find(params[:id])
     if @town.destroy
       flash[:success] = "town was successfully deleted."
       redirect_to towns_url
@@ -61,7 +60,12 @@ class TownsController < ApplicationController
 
   private
 
+  def set_town
+    @town = Town.find(params[:id])
+  end
+
   def town_params
     params.require(:town).permit(:name)
   end
+
 end

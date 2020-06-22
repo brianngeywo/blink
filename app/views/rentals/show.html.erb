@@ -1,7 +1,9 @@
 <div class="lg:hidden">
 <%= render 'layouts/top_nav' %>
-    <div class="bg-cover bg-center bg-no-repeat w-full h-74"
-        style="background-blend-mode: multiply; background: rgba(28, 40, 43, 0.185); background-image: url(<%= image_tag @rental.photo.attach(photo) if @rental.photo.attached? %>);">
+    <div>
+        <% if @rental.photo.attached? %>
+            <%= image_tag @rental.photo, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
+        <% end %>
     </div>
     <div  class="font-bold text-7xl capitalize mx-4"><%= @rental.name %></div>
     <div class="p-6 capitalize text-5xl mx-6">
@@ -14,6 +16,11 @@
             <%= @rental.contacts %>
         </div>
         <div class="my-4">created by: <%= @rental.user.username if @rental.user %></div>
-        <%= link_to 'edit rental', edit_rental_path %>
+       
+       <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+            <%= link_to 'edit rental', edit_rental_path %>
+            <%= link_to 'delete rental', rental_path, method: :delete ,class: "mx-4 text-red-700" %>
+       <% end %>
     </div>
+<%= render 'layouts/bottom_nav' %>
 </div>
