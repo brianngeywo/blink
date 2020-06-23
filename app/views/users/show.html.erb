@@ -1,18 +1,16 @@
 <div class="lg:hidden">
 <%= render 'layouts/top_nav' %>
     <div  class="font-bold text-6xl capitalize mx-4">welcome to <%= @user.username %>'s page</div>
-    <div class="p-6 capitalize text-5xl mx-6">
+    <div class="px-6 capitalize text-5xl mx-6">
         <div  class="font-bold">all rentals by <%= @user.username %></div>
     <%= render 'rentals/rental', obj: @user.rentals %>
     </div> 
-    <% if logged_in? && current_user == @user %>
-    <div class="flex">
-        <div class="font-bold text-3xl capitalize mx-4"><%= link_to 'new town', new_town_path %></div>
-        <div class="font-bold text-3xl capitalize mx-4"><%= link_to 'new estate', new_estate_path %></div>
-        <div class="font-bold text-3xl capitalize mx-4"><%= link_to 'new rental', new_rental_path %></div>
+    <% if logged_in? && current_user == @user || current_user.admin? %>
+    <div class="flex text-5xl font-bold capitalize">
+        <div class="mx-4"><%= link_to 'new rental', new_rental_path %></div>
     </div>
-        <div  class="font-bold text-3xl capitalize mx-4"><%= link_to 'edit your account', edit_user_path(current_user) %></div>
-        <div  class="font-bold text-3xl capitalize mx-4 text-red-700"><%= link_to 'delete your account', user_path, method: :delete, data: { confirm: 'Are you sure you want to delete your account and remove all listings linked to this account?' } %></div>
+        <div  class="font-bold text-5xl capitalize mx-4 my-3"><%= link_to 'edit your account', edit_user_path(current_user) %></div>
+        <button  class="mb-40 rounded-lg font-bold text-5xl bg-red-700 capitalize mx-4 text-white px-6"><%= link_to 'delete your account', user_path, method: :delete, data: { confirm: 'Are you sure you want to delete your account and remove all listings linked to this account?' } %></button>
     <% end %>
 <%= render 'layouts/bottom_nav' %>
 </div>

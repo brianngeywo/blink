@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_admin, only: [:index]
 
   def index
     @users = User.all
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
       flash[:success] = "welcome to salama houses"
       redirect_to @user
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not create your account"
       render "new"
     end
   end
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
       flash[:success] = "successfully updated your account"
       redirect_to @user
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "failed to update your account"
       render "edit"
     end
   end
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
       flash[:success] = "your account has been deleted"
       redirect_to users_url
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not close your account"
       redirect_to @user
     end
   end
@@ -59,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user and !current_user.admin?
+    if current_user != @user
       flash[:danger] = "you must be the owner to perform that action"
       redirect_to root_path
     end

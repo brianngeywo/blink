@@ -16,7 +16,7 @@ class TownsController < ApplicationController
       flash[:success] = "Town was successfully updated"
       redirect_to @town
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "the town was not updated"
       render "edit"
     end
   end
@@ -30,7 +30,7 @@ class TownsController < ApplicationController
       flash[:success] = "Town successfully created"
       redirect_to @town
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not create town"
       render "new"
     end
   end
@@ -43,7 +43,7 @@ class TownsController < ApplicationController
       flash[:success] = "Town was successfully updated"
       redirect_to @town
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not update town"
       render "edit"
     end
   end
@@ -53,7 +53,7 @@ class TownsController < ApplicationController
       flash[:success] = "town was successfully deleted."
       redirect_to towns_url
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "town could not be deleted"
       redirect_to towns_url
     end
   end

@@ -1,7 +1,7 @@
 <%= form_for @rental do |f| %>
 
 <% if @rental.errors.any? %>
-    <% @rental.errors.full_messages.each do %>%
+    <% @rental.errors.full_messages.each do |msg|%>%
         <div><%= msg %></div>
     <% end %>
 <% end %>
@@ -9,15 +9,31 @@
   <div class="text-4xl p-4">
         <div class="capitalize">property name</div>  
             <%= f.text_field :name, placeholder: "property name", class: "m-4 p-2 rounded-lg" %>
+            <div class="flex">
+                <div class="capitalize mr-6 my-4">town:</div>
+                <select name="rental[town_id]">
+                    <% Town.all.each do |town| %>
+                        <option value="<%= town.id %>"><%= town.name %></option>
+                    <% end %>
+                </select>
+            </div>
+            <div class="flex">
+                <div class="capitalize mr-6 my-4">estate:</div>
+                <select name="rental[estate_id]">
+                    <% Estate.all.each do |estate| %>
+                        <option value="<%= estate.id %>"><%= estate.name %></option>
+                    <% end %>
+                </select>
+            </div>
         <div class="capitalize">monthly payment</div>
             <%= f.text_field :price, placeholder: "price per month", class: "m-4 p-2 rounded-lg" %>
         <div class="capitalize">number units</div>
-                <%= f.number_field :units, placeholder: "units", class: "m-4 p-2 rounded-lg" %>
+                <%= f.text_field :units, placeholder: "units", class: "m-4 p-2 rounded-lg" %>
         <div class="capitalize">number of bedrooms</div>
-                <%= f.number_field :bedrooms, placeholder: "bedrooms", class: "m-4 p-2 rounded-lg" %>
+                <%= f.text_field :bedrooms, placeholder: "bedrooms", class: "m-4 p-2 rounded-lg" %>
         <div class="capitalize">contacts</div>
             <%= f.text_field :contacts, placeholder: "agent contacts", class: "m-4 p-2 rounded-lg" %>
-            <%= f.file_field :photo, class: "m-4 p-2 rounded-lg" %>
+            <%= f.file_field :photo %>
             <br>
         <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
         </div>

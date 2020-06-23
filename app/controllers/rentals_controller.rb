@@ -20,7 +20,7 @@ class RentalsController < ApplicationController
       flash[:success] = "rental successfully created"
       redirect_to @rental
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "rental not created"
       redirect_to new_rental_path
     end
   end
@@ -36,7 +36,7 @@ class RentalsController < ApplicationController
       flash[:success] = "rental was successfully updated"
       redirect_to @rental
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not update rental"
       render "edit"
     end
   end
@@ -46,7 +46,7 @@ class RentalsController < ApplicationController
       flash[:success] = "Rental was successfully deleted."
       redirect_to rentals_url
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "could not delete rental"
       redirect_to rentals_url
     end
   end

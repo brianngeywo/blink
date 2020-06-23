@@ -1,12 +1,18 @@
-  <div class="bg-gray-900 py-4 flex my-6">
-    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'contact us', pages_contact_path %></div>
-    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'all listing', rentals_path %></div>
+  <div class="bg-gray-900 py-6 flex fixed bottom-0 uppercase w-full font-semibold">
+     <div class="text-white text-6xl mx-8"><%= link_to 'rentals', rentals_path %></div>
  <% if logged_in? %>
-    <div  class="text-white text-4xl mx-12 capitalize"><%= link_to 'profile', user_path(current_user) %></div>
-    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'logout', logout_path, method: :delete %></div>
+     <div class="text-white text-6xl mx-8"><%= link_to 'estates', estates_path %></div>
+      <%= link_to user_path(current_user), class:"text-white text-6xl mx-6" do %>
+         <i class="fa fa-user-circle"></i>
+      <% end %>
+    <div>
+      <%= link_to logout_path, method: :delete, class:"text-white text-6xl mx-12" do %>
+         <i class="fa fa-sign-out-alt"></i>
+      <% end %>
+    </div>
    <% else %>
-    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'login', login_path %></div>
-    <div class="text-white text-4xl mx-12 capitalize"><%= link_to 'signup', signup_path %></div>
+    <div class="text-white text-6xl mx-8"><%= link_to 'login', login_path %></div>
+    <div class="text-white text-6xl mx-8"><%= link_to 'signup', signup_path %></div>
  <% end %>
   
   </div>

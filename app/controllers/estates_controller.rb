@@ -17,7 +17,7 @@ class EstatesController < ApplicationController
       flash[:success] = "estate successfully created"
       redirect_to @estate
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "estate not create"
       render "new"
     end
   end
@@ -30,10 +30,10 @@ class EstatesController < ApplicationController
 
   def update
     if @estate.update(estate_params)
-      flash[:success] = "Object was successfully updated"
+      flash[:success] = "estate was successfully updated"
       redirect_to @estate
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "estate not updated"
       render "edit"
     end
   end
@@ -43,7 +43,7 @@ class EstatesController < ApplicationController
       flash[:success] = "Estate was successfully deleted."
       redirect_to estates_url
     else
-      flash[:error] = "Something went wrong"
+      flash[:error] = "estate not deleted"
       redirect_to estates_url
     end
   end
