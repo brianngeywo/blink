@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :require_admin, only: [:index]
+  before_action :require_admin, only: [:index, :destroy]
 
   def index
     @users = User.all
+    if !logged_in?
+      redirect_to login_path
+    end
   end
 
   def new
@@ -15,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "welcome to salama houses"
+      flash[:success] = "welcome to salama houses please log in"
       redirect_to @user
     else
       flash[:error] = "could not create your account"
@@ -42,7 +45,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.destroy
       flash[:success] = "your account has been deleted"
-      redirect_to users_url
+      redirect_to root_path
     else
       flash[:error] = "could not close your account"
       redirect_to @user
@@ -60,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def require_same_user
-    if current_user != @user
+    if current_user != @user && !current_user.admin?
       flash[:danger] = "you must be the owner to perform that action"
       redirect_to root_path
     end

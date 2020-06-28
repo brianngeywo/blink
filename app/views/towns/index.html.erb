@@ -12,12 +12,14 @@
   <div class=" bg-gray-100 p-24">
   <% @towns.each do |town| %>
     <div class="my-12">
+    <%= link_to town_path(town) do %>
       <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
         <div class="rounded-b rounded-lg bg-cover bg-center bg-no-repeat w-full h-74"
           style="background-image: url('../assets/property-3.jpg');">
         </div>
-        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to town.name, town_path(town) %></div>
+        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= town.name %></div>
       </div>
+      <% end %>
     </div>
   <% end %>
   </div>

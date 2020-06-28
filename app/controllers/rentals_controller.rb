@@ -58,7 +58,7 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :photo)
+    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :photo )
   end
 
   def require_same_user

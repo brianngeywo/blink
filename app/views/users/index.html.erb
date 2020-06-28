@@ -3,9 +3,11 @@
   <div class="p-24">
     <% @users.each do |user| %>
       <div class="my-12">
+      <%= link_to user_path(user) do %>
         <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
-          <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to user.username, user_path(user) %></div>
+          <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= user.username %></div>
         </div>
+      <% end %>
       </div>
     <% end %>
   </div>

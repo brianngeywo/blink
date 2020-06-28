@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_100835) do
+ActiveRecord::Schema.define(version: 2020_06_25_062649) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2020_06_22_100835) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "town_id"
+    t.string "location"
+    t.integer "rooms"
+    t.integer "rent"
+    t.text "infor"
+    t.string "name"
+    t.string "phone"
+    t.integer "user_id"
   end
 
   create_table "estates", force: :cascade do |t|

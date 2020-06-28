@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :rentals
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   has_secure_password
+  has_many :rentals
+  has_many :bookings
+
   private
 end

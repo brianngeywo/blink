@@ -1,0 +1,11 @@
+  <% obj.each do |booking| %>
+    <div class="my-12">
+    <%= link_to booking_path(booking) do %>
+      <div class="rounded-lg pb-10 bg-teal-700 shadow-b shadow-r shadow-3xl">
+        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.name %></div>
+        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.phone %></div>
+        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.location %></div>
+      </div>
+    <% end %>
+    </div>
+  <% end %>

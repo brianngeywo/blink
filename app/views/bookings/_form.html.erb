@@ -1,0 +1,31 @@
+<%= form_for @booking do |f| %>
+  <div class="bg-gray-300 text-4xl p-4 mb-32 container">
+        <div class="capitalize font-bold text-6xl">find a property in eldoret</div>
+        <div class="capitalize font-bold text-5x text-teal-700">just a minute please!</div>
+        <div class="text-4xl capitalize">for better service please login or create account</div>
+        <div class="text-4xl capitalize">you'll be required to pay ksh 200* as a service fee</div>
+        <div class="text-4xl capitalize">an agent will contact you upon payment confirmation</div>
+        <div class="text-4xl capitalize">be specific on what you want us to search</div>
+        <br>
+        <select name="booking[town_id]">
+            <% Town.all.each do |town| %>
+                <option value="<%= town.id %>"><%= town.name %></option>
+            <% end %>
+        </select>
+        <div class="capitalize">location: </div>
+        <%= f.text_field :location, placeholder: "estate or location", class: "my-6 p-2 rounded-lg" %>
+        <div class="capitalize">number of bedrooms: </div>
+        <%= f.text_field :rooms, placeholder: "number of bedrooms", class: "my-6 p-2 rounded-lg" %>
+        <div class="capitalize">max rental price: </div>
+        <%= f.text_field :rent, placeholder: "rent per month", class: "my-6 p-2 rounded-lg" %>
+        <div class="capitalize">additional information</div>
+        <%= f.text_area :infor, placeholder: "please add any infor theat would be usefull", class: "my-6 p-2 rounded-lg" %>
+            <div class="capitalize font-bold text-6xl">tell us more about you</div>
+            <div class="capitalize">name: </div>
+            <%= f.text_field :name, placeholder: "whats your name?", class: "my-6 p-2 rounded-lg" %>
+            <div class="capitalize">phone number: </div>
+            <%= f.text_field :phone, placeholder: "your phone number", class: "my-6 p-2 rounded-lg" %>
+        <br>
+        <%= f.submit "send", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg text-6xl mx-70" %>
+    </div>
+<% end %>
