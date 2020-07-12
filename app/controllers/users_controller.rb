@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "welcome to salama houses please log in"
-      redirect_to @user
+      redirect_to login_path
     else
       flash[:error] = "could not create your account"
       render "new"
