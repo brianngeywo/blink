@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @users = User.all
     if !logged_in?
       redirect_to login_path
-    end
+    end    
   end
 
   def new

@@ -1,9 +1,183 @@
 <div class="lg:hidden">
-    <div class="bg-cover bg-no-repeat w-full h-screen"
-        style="background-image: url('../assets/login-bg.png');">
-        <div class="text-8xl font-bold text-white text-center px-8 py-4 leading-loose tracking-wider uppercase mx-32 rounded-lg" style="background-blend-mode: multiply; background: rgba(19, 52, 95, 0.288); ">let us <br>
-                <button class="bg-gray-200 p-2 m-2 text-teal-900 font-medium capitalize rounded-lg"><%= link_to 'find a home', new_booking_path %></button>for you in eldoret town
+    <div class="bg-cover bg-no-repeat w-full h-screen" style="background-image: url('../assets/login-bg.png');">
+        <div class="text-8xl font-bold text-white text-center px-8 py-4 leading-loose tracking-wider uppercase mx-32 rounded-lg"
+            style="background-blend-mode: multiply; background: rgba(19, 52, 95, 0.288); ">let us <br>
+            <button
+                class="bg-gray-200 p-2 m-2 text-teal-900 font-medium capitalize rounded-lg"><%= link_to 'find a home', new_booking_path %></button>for
+            you in eldoret town
         </div>
     </div>
-<%= render 'layouts/bottom_nav' %>
+    <%= render 'layouts/bottom_nav' %>
+</div>
+<div class="sm:hidden lg:block">
+    <nav class="bg-white flex flex-row-reverse py-2 px-24 text-sm text-gray-700 font-semibold">
+        <div class="px-4">0798767470</div>
+        <div class="uppercase">call us:</div>
+    </nav>
+    <div class="bg-cover bg-center h-66"
+        style="background-image: url(https://images.unsplash.com/photo-1531877264583-a58acd888a97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
+        <nav class="flex items-center px-24 py-4 mb-16">
+            <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
+            <div class="flex text-base text-white uppercase font-medium">
+                <div
+                    class="mx-4 border-solid border-b-4 border-transparent hover:border-white transform scale-100 duration-500 ease-in-out">
+                    rentals</div>
+                <div
+                    class="mx-4 border-solid border-b-4 border-transparent hover:border-white transform scale-100 duration-500 ease-in-out">
+                    agents</div>
+                <div
+                    class="mx-4 border-solid border-b-4 border-transparent hover:border-white transform scale-100 duration-500 ease-in-out">
+                    towns</div>
+                <div class="px-2">login</div>
+                <div class="">|</div>
+                <div class="px-2">signup</div>
+            </div>
+        </nav>
+        <div class="text-3xl font-semibold capitalize text-white pb-6 font-sans text-center">search eldoret's biggest
+            collection of rentals</div>
+        <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
+            <form action="" class="flex justify-center w-full">
+                <input type="search" class="px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg"
+                    placeholder="try a town or estate">
+                <button class="uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700">search</button>
+            </form>
+        </div>
+    </div>
+    <div class="mt-16">
+        <div class="capitalize text-gray-600 text-2xl font-bold mx-8 mt-20">dream homes</div>
+        <div class="text-2xl pt-4 grid grid-cols-3 px-8 mx-16">
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
+        <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-3xl rounded-lg mx-4 my-8">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+                    alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
+                <div class="px-3 my-2">
+                    <div class="capitalize font-semibold text-lg">eden palace</div>
+                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
+                    <div class="text-blue-700 font-bold">20000 kshs</div>
+                    <div class="flex items-center justify-start text-base text-blue-800">
+                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
+                        <span class="px-2"><i class="fa fa-bath"></i>3</span>
+                        <span class="px-2"><i class="fa fa-house"></i>yes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <nav class="flex bg-green-800 text-white px-24 capitalize w-full py-2 text-lg font-medium items-center">
+            <div class="mx-4">get help</div>
+            <div class="mx-4">talk to us</div>
+            <div class="mx-4">about us</div>
+        </nav>
+        <div class="grid grid-cols-3 py-12 bg-gray-900 text-gray-500 px-24">
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">towns</div>
+                <div>nairobi</div>
+                <div>eldoret</div>
+                <div>kisumu</div>
+            </div>
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">estates</div>
+                <div>hawaii</div>
+                <div>kipkorgot</div>
+                <div>langas</div>
+                <div>westlands</div>
+            </div>
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">blink patners</div>
+                <div>username investments</div>
+                <div>shunami properties</div>
+                <div>username rentals</div>
+            </div>
+        </div>
+    
+    </footer>
 </div>
