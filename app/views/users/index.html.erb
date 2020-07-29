@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-  <%= render 'layouts/top_nav' %>
+  <%= render 'layouts/mobile_nav' %>
   <div class="p-24">
     <% @users.each do |user| %>
     <div class="my-12">
@@ -11,26 +11,12 @@
     </div>
     <% end %>
   </div>
-  <%= render 'layouts/bottom_nav' %>
+  <%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
-  <nav class="flex items-center px-24 py-4 mb-16 bg-white">
-    <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
-    <div class="flex text-base text-teal-800 uppercase font-medium">
-      <div
-        class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-        rentals</div>
-      <div
-        class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-        agents</div>
-      <div
-        class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-        towns</div>
-      <div class="px-2">login</div>
-      <div class="">|</div>
-      <div class="px-2">signup</div>
-    </div>
-  </nav>
+  <div class="bg-white">
+    <%= render 'layouts/desktop_nav' %>
+  </div>
   <div>
     <div class="font-semibold text-gray-600 uppercase text-2xl mx-12">list of real estate agencies</div>
     <div class="mx-56">
@@ -78,4 +64,7 @@
       </div>
     </div>
   </div>
+  <footer>
+    <%= render 'layouts/desktop_footer' %>
+  </footer>
 </div>

@@ -1,8 +1,8 @@
 <div class="lg:hidden">
-    <%= render 'layouts/top_nav' %>
+    <%= render 'layouts/mobile_nav' %>
     <div>
         <% if @rental.photo.attached? %>
-        <%= image_tag @rental.photo, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
+          <%= image_tag @rental.photo, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
         <% end %>
     </div>
     <div class="font-bold text-7xl capitalize mx-4"><%= @rental.name %></div>
@@ -23,47 +23,38 @@
         <%= link_to 'delete rental', rental_path, method: :delete ,class: "btn bg-red-700 mx-4 p-4 rounded-lg font-semibold text-white" %>
         <% end %>
     </div>
-    <%= render 'layouts/bottom_nav' %>
+    <%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
-    <nav class="flex items-center px-24 py-4 bg-white">
-        <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
-        <div class="flex text-base text-teal-800 uppercase font-medium">
-            <div
-                class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                rentals</div>
-            <div
-                class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                agents</div>
-            <div
-                class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                towns</div>
-            <div class="px-2">login</div>
-            <div class="">|</div>
-            <div class="px-2">signup</div>
-        </div>
-    </nav>
+    <div class="bg-white">
+        <%= render 'layouts/desktop_nav' %>
+    </div>
     <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
-        <div>rentals in kenya</div>
-        <div>></div>
-        <div>eldoret</div>
-        <div>></div>
-        <div>kipkorgot</div>
+            <div>rentals in kenya</div>
+            <div>></div>
+            <div>
+                <%= link_to town_path(@rental.town) do %>
+                   <%= @rental.town.name %>
+                <% end %>
+            </div>
+            <div>></div>
+            <div><%= @rental.name %></div>
+        </div>
     </div>
     <div>
         <div class="bg-cover bg-center h-64 items-baseline relative"
             style="background-image: url(https://images.unsplash.com/photo-1556955112-28cde3817b0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);background-color: rgba(0, 0, 0, 0.387);background-blend-mode: multiply;">
-            <div class="text-4xl font-semibold px-16 py-2 text-white uppercase bottom-0 absolute">eden palace</div>
+            <div class="text-4xl font-semibold px-16 py-2 text-white uppercase bottom-0 absolute"><%= @rental.name %></div>
         </div>
         <div class="my-4 mx-6 shadow-xl rounded-lg px-24 py-4 capitalize border-1 border-gray-400">
-            <div class="font-medium text-teal-700 text-3xl uppercase">kes 20000 per month</div>
+            <div class="font-medium text-teal-700 text-3xl uppercase">kes <%= @rental.price %> per month</div>
             <div class="my-3 text-teal-700 font-medium">booking office</div>
             <div class="px-4">
                 <div class="font-normal text-black">10th Floor Fortis Tower</div>
                 <div class="font-normal text-black">Woodvale Grove, Westlands</div>
             </div>
             <div class="my-3 text-teal-700 font-medium">contacts:
-                <div class="font-normal text-black px-4">0798767470</div>
+                <div class="font-normal text-black px-4"><%= @rental.contacts %></div>
             </div>
             <div class="my-3 text-teal-700 font-medium">email:
                 <div class="font-normal normal-case text-black px-4">brianngeywo@gmail.com</div>
@@ -71,59 +62,26 @@
         </div>
         <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400">
             <div class="font-medium text-teal-700 capitalize my-3 text-2xl">description</div>
-            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis tenetur quos exercitationem <span
-                    id="dots"></span> <span id="more">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ullam id
-                    illum, perspiciatis perferendis culpa, pariatur quam optio provident quasi mollitia recusandae
-                    ratione officiis est. Explicabo laborum in nam sapiente. ex. Atque, neque! Deserunt doloribus
-                    officia impedit deleniti neque aliquam,
-                    laboriosam quos officiis ipsum maiores a veritatis! Accusamus?</span></div>
-                    <button onclick="myFunction()" id="myBtn">Read more</button>
-
+            <div> loremloremloremloremloremloremlorem </div>
+            <div> loremloremloremloremloremloremlorem </div>
+            <div> loremloremloremloremloremloremlorem </div>
+            <div> loremloremloremloremloremloremlorem </div>
+            <div> loremloremloremloremloremloremlorem     </div>
         </div>
     </div>
     <div class="mx-6 my-4">
         <div class="uppercase my-2 text-xl font-bold text-gray-600">property faqs</div>
-        <div class="my-2">
-            <div class="text-lg">how many bedrooms does this property have?</div>
-            <div class="text-md text-gray-800 mx-5 normal-case">the property has 2 bedrooms</div>
+        <div class="mx-4">
+            <div class="my-2">
+                <div class="text-lg">how many bedrooms does this property have?</div>
+                <div class="text-md text-gray-800 mx-5 normal-case">the property has <%= @rental.bedrooms %> bedrooms</div>
+            </div>
+            <div class="my-2">does this property have a servants quoters(SQ)?</div>
+            <div class="my-2">how much car space is available?</div>
+            <div class="my-2">how far is this property from eldoret town?</div>
         </div>
-        <div class="my-2">does this property have a servants quoters(SQ)?</div>
-        <div class="my-2">how much car space is available?</div>
-        <div class="my-2">how far is this property from eldoret town?</div>
     </div>
     <footer>
-        <nav class="flex bg-green-800 text-white px-24 capitalize w-full py-2 text-lg font-medium items-center">
-            <div class="mx-4">get help</div>
-            <div class="mx-4">talk to us</div>
-            <div class="mx-4">about us</div>
-        </nav>
-        <div class="grid grid-cols-3 py-12 bg-gray-900 text-gray-500 px-24">
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">towns</div>
-                <div>nairobi</div>
-                <div>eldoret</div>
-                <div>kisumu</div>
-            </div>
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">estates</div>
-                <div>hawaii</div>
-                <div>kipkorgot</div>
-                <div>langas</div>
-                <div>westlands</div>
-            </div>
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">blink patners</div>
-                <div>username investments</div>
-                <div>shunami properties</div>
-                <div>username rentals</div>
-            </div>
-        </div>
-        <nav class="flex bg-white px-24 capitalize w-full py-2 text-md font-medium items-center justify-center">
-            <div class="mx-12">blinkhomes</div>
-            <div class=""><i class="fa fa-phone-alt mx-2"></i>+254798767470</div>
-            <div class="mx-12"><i class="fa fa-home mx-2"></i>eldoret,kipkorgot</div>
-            <div class="mx-12">@blinkhomes <i class="far fa-copyright text-sm"></i>2020</div>
-            <div class="mx-12">follow us on: <i class="fab fa-facebook-square text-blue-600 mx-2"></i></div>
-        </nav>
+        <%= render 'layouts/desktop_footer' %>
     </footer>
 </div>

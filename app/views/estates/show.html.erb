@@ -41,7 +41,7 @@
 
     
     <div class="flex my-2 mx-24 space-x-6 items-center justify-left w-full">
-        <% @estates.each do |estate| %>
+        <% Estate.all.each do |estate| %>
             <%= content_tag(:div, class: '') do %>
                 <%= %>
                 <%= link_to estate.name, estate_path(estate), :class => 'bg-teal-700 text-white capitalize py-2 px-3 rounded-l-full rounded-r-full' -%>
@@ -66,38 +66,6 @@
         </div>
     </div>
     <footer>
-        <nav class="flex bg-green-800 text-white px-24 capitalize w-full py-2 text-lg font-medium items-center">
-            <div class="mx-4">get help</div>
-            <div class="mx-4">talk to us</div>
-            <div class="mx-4">about us</div>
-        </nav>
-        <div class="grid grid-cols-3 py-12 bg-gray-900 text-gray-500 px-24">
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">towns</div>
-                <div>nairobi</div>
-                <div>eldoret</div>
-                <div>kisumu</div>
-            </div>
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">estates</div>
-                <div>hawaii</div>
-                <div>kipkorgot</div>
-                <div>langas</div>
-                <div>westlands</div>
-            </div>
-            <div class="capitalize">
-                <div class="uppercase font-medium my-4">blink patners</div>
-                <div>username investments</div>
-                <div>shunami properties</div>
-                <div>username rentals</div>
-            </div>
-        </div>
-        <nav class="flex bg-white px-24 capitalize w-full py-2 text-md font-medium items-center justify-center">
-            <div class="mx-12">blinkhomes</div>
-            <div class=""><i class="fa fa-phone-alt mx-2"></i>+254798767470</div>
-            <div class="mx-12"><i class="fa fa-home mx-2"></i>eldoret,kipkorgot</div>
-            <div class="mx-12">@blinkhomes <i class="far fa-copyright text-sm"></i>2020</div>
-            <div class="mx-12">follow us on: <i class="fab fa-facebook-square text-blue-600 mx-2"></i></div>
-        </nav>
+        <%= render 'layouts/desktop_footer' %>
     </footer>
 </div>

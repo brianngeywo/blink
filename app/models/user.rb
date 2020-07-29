@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :rentals
   has_many :bookings
+  belongs_to :town
 
   private
 end

@@ -1,0 +1,5 @@
+<% Town.all.each do |town| %>
+    <%= link_to town_path(town), :action => 'show' do %>
+        <div class=""><%= town.name %></div>
+    <% end %>
+<% end %>

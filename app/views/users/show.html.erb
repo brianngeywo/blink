@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-    <%= render 'layouts/top_nav' %>
+    <%= render 'layouts/mobile_nav' %>
     <div class="font-bold text-6xl capitalize mx-4">welcome</div>
     <% if logged_in? && current_user.admin? %>
     <%= link_to 'all bookings', bookings_path , class:"text-5xl font-bold capitalize my-6 p-4 text-teal-700"%>
@@ -19,7 +19,7 @@
     <button
         class="mb-40 rounded-lg font-bold text-5xl bg-red-700 capitalize mx-4 text-white px-6"><%= link_to 'delete your account', user_path, method: :delete, data: { confirm: 'Are you sure you want to delete your account and remove all listings linked to this account?' } %></button>
     <% end %>
-    <%= render 'layouts/bottom_nav' %>
+    <%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
     <nav class="flex items-center px-24 py-4 bg-white">

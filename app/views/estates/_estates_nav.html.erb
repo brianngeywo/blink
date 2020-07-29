@@ -1,0 +1,5 @@
+<% Estate.all.each do |estate| %>
+    <%= link_to estate_path(estate), :action => 'show' do %>
+        <div class=""><%= estate.name %></div>
+    <% end %>
+<% end %>
