@@ -23,6 +23,7 @@ class EstatesController < ApplicationController
   end
 
   def show
+    @estates = Estate.all
   end
 
   def edit

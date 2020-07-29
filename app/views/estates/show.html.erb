@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-<%= render 'layouts/top_nav' %>
+<%= render 'layouts/mobile_nav' %>
     <div  class="px-6 font-bold text-7xl capitalize mx-4"><%= @estate.name %></div>
     <div class="px-4 capitalize text-5xl mx-6">
         <div class="my-3"><%= link_to @estate.town.name, towns_path(@town) if @estate.town %> town</div>
@@ -13,5 +13,91 @@
     <div class="bg-gray-100 p-24 mb-16">
         <%= render 'rentals/rental', obj: @estate.rentals %>
     </div>
-<%= render 'layouts/bottom_nav' %>
+<%= render 'layouts/mobile_footer' %>
+</div>
+<div class="sm:hidden lg:block">
+<div class="bg-white">
+<%= render 'layouts/desktop_nav' %>
+</div>
+    <div class="">
+        <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
+            <div>rentals in kenya</div>
+            <div>></div>
+            <div>
+                <%= link_to town_path(@estate.town) do %>
+                   <%= @estate.town.name %>
+                <% end %>
+            </div>
+            <div>></div>
+            <div><%= @estate.name %></div>
+        </div>
+        <div class="bg-cover bg-center pt-8 w-full" style="background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+            <div class="text-2xl text-gray-300 my-12 mx-20">
+                <div class="text-4xl text-teal-600 font-semibold capitalize py-4"><%= @estate.name %> estate</div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="flex my-2 mx-24 space-x-6 items-center justify-left w-full">
+        <% @estates.each do |estate| %>
+            <%= content_tag(:div, class: '') do %>
+                <%= %>
+                <%= link_to estate.name, estate_path(estate), :class => 'bg-teal-700 text-white capitalize py-2 px-3 rounded-l-full rounded-r-full' -%>
+            <% end %>
+        <% end %>
+    </div>
+    <div class="flex gap-4 mx-16 p-6">
+        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+            <div class="my-3 text-teal-700">offices:
+                <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                <div class="font-normal text-black">Woodvale Grove, Westlands</div>
+            </div>
+            <div class="my-3 text-teal-700">contacts:
+                <div class="font-normal text-black">0798767470</div>
+            </div>
+            <div class="my-3 text-teal-700">email:
+                <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+            </div>
+        </div>
+        <div class="w-full">
+        <%= render 'rentals/estate_rentals', obj: @estate.rentals %>
+        </div>
+    </div>
+    <footer>
+        <nav class="flex bg-green-800 text-white px-24 capitalize w-full py-2 text-lg font-medium items-center">
+            <div class="mx-4">get help</div>
+            <div class="mx-4">talk to us</div>
+            <div class="mx-4">about us</div>
+        </nav>
+        <div class="grid grid-cols-3 py-12 bg-gray-900 text-gray-500 px-24">
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">towns</div>
+                <div>nairobi</div>
+                <div>eldoret</div>
+                <div>kisumu</div>
+            </div>
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">estates</div>
+                <div>hawaii</div>
+                <div>kipkorgot</div>
+                <div>langas</div>
+                <div>westlands</div>
+            </div>
+            <div class="capitalize">
+                <div class="uppercase font-medium my-4">blink patners</div>
+                <div>username investments</div>
+                <div>shunami properties</div>
+                <div>username rentals</div>
+            </div>
+        </div>
+        <nav class="flex bg-white px-24 capitalize w-full py-2 text-md font-medium items-center justify-center">
+            <div class="mx-12">blinkhomes</div>
+            <div class=""><i class="fa fa-phone-alt mx-2"></i>+254798767470</div>
+            <div class="mx-12"><i class="fa fa-home mx-2"></i>eldoret,kipkorgot</div>
+            <div class="mx-12">@blinkhomes <i class="far fa-copyright text-sm"></i>2020</div>
+            <div class="mx-12">follow us on: <i class="fab fa-facebook-square text-blue-600 mx-2"></i></div>
+        </nav>
+    </footer>
 </div>

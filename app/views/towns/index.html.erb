@@ -5,7 +5,7 @@
     <button class="bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg">search</button>
   </div>
   
-  <% if current_user.admin? %>
+  <% if logged_in? && current_user.admin? %>
     <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'add new town', new_town_path %></div>    
   <% end %>
   
