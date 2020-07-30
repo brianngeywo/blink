@@ -1,11 +1,15 @@
-    <nav class="flex items-center px-24 py-4">
-        <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
-        <div class="flex text-base text-teal-800 uppercase font-medium">
-        <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-        <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
+<nav class="flex items-center px-24 py-4">
+    <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
+    <div class="flex text-base text-teal-800 uppercase font-medium">
+    <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
+    <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
 
-            <div class="px-2">login</div>
+    <% if logged_in? %>
+            <div class="px-2"><%= link_to 'logout', logout_path, method: :delete %></div>
+        <% else %>
+            <div class="px-2"><%= link_to 'login', login_path %></div>
             <div class="">|</div>
-            <div class="px-2">signup</div>
-        </div>
-    </nav>
+            <div class="px-2"><%= link_to 'signup', signup_path %></div>
+    <% end %>
+    </div>
+</nav>

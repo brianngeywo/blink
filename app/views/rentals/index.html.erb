@@ -3,141 +3,68 @@
         <%= search_form_for @q, html: { class: "bg-gray-300 py-12 px-8 sticky top-0" } do |f| %>
             <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4", placeholder: "try a town or estate" %>
                 <%= f.submit "search", class: "bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg" %>
-                    <% end %>
+        <% end %>
                         <div class=" bg-gray-100 p-24 mb-12">
                             <%= render "rental", obj: @rentals %>
                         </div>
                         <%= render "layouts/mobile_footer" %>
 </div>
 <div class="sm:hidden lg:block">
-    <nav class="flex items-center px-24 py-4 bg-white">
-        <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
-        <div class="flex text-base text-teal-800 uppercase font-medium">
-            <div class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                rentals</div>
-            <div class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                agents</div>
-            <div class="mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out">
-                towns</div>
-            <div class="px-2">login</div>
-            <div class="">|</div>
-            <div class="px-2">signup</div>
+    <div class="bg-white">
+        <%= render 'layouts/desktop_nav' %>
+    </div>
+        <div class="bg-cover bg-center h-56"
+        style="background-image: url(https://images.unsplash.com/photo-1531877264583-a58acd888a97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
+        <div class="text-3xl font-semibold capitalize text-white pb-6 font-sans text-center py-6">search eldoret's biggest
+            collection of rentals</div>
+        <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
+            <%= search_form_for @q, html: { class: "flex justify-center w-full" } do |f| %>
+                <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg", placeholder: "try a town or estate" %>
+                    <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
+            <% end %>
         </div>
-    </nav>
-    <div class="">
-        <div class="capitalize text-gray-600 text-2xl font-bold mx-8 mt-12">dream homes</div>
-        <div class="text-2xl pt-4 grid grid-cols-3 px-8 mx-16">
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
+
+    </div>
+    <div class="my-4">
+        <div class="capitalize text-gray-600 text-2xl font-bold mx-8">all cities</div>
+
+        <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6 gap-5 justify-center">
+        
+            <% Town.all.each do |town| %>
+                <%= link_to town_path(town) do %>
+                    <div class="shadow-3xl rounded-lg mx-4 my-8 h-48 w-full bg-cover bg-center" style="background-blend-mode: multiply;background-color:rgba(0, 0, 0, 0.489); background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
+                        <div class="px-3 my-2 w-full">
+                            <div class="capitalize font-semibold text-2xl text-white text-left py-2 px-4"><%= town.name %></div>
+                        </div>
+                    </div>        
+                <% end %>
+            <% end %>
+    
         </div>
     </div>
-    <div class="">
+    <div class="my-4">
         <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
         <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
+
+            <% @rentals.each do |rental| %>
+                <%= link_to rental_path(rental) do %> 
+                    <div class="shadow-3xl rounded-lg mx-4 my-8">
+                        <% if rental.photo.attached? %>
+                            <%= image_tag rental.photo, class:"h-48 w-full rounded-t-lg object-cover object-center" %>
+                        <% end %>
+                        <div class="px-3 my-2">
+                            <div class="capitalize font-semibold text-lg"><%= rental.name %></div>
+                            <div class="capitalize text-gray-900 text-base"><%= rental.town.name %>, <%= rental.estate.name %></div>
+                            <div class="text-gray-600 font-bold"><%= rental.price %> kshs</div>
+                            <div class="flex items-center justify-start text-base text-teal-700 pb-4">
+                                <span class="px-2"><i class="fa fa-bed"></i> <%= rental.bedrooms %></span>
+                                <span class="px-2"><i class="fa fa-bath"></i> 3</span>
+                                <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
+                            </div>
+                        </div>           
                     </div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8">
-                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-48 w-full rounded-t-lg object-cover object-center">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-lg">eden palace</div>
-                    <div class="capitalize text-gray-900 text-base">eldoret, kipkorogot</div>
-                    <div class="text-gray-600 font-bold">20000 kshs</div>
-                    <div class="flex items-center justify-start text-base text-teal-700">
-                        <span class="px-2"><i class="fa fa-bed"></i> 2</span>
-                        <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                        <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="">
-        <div class="capitalize text-gray-600 text-2xl font-bold mx-8">all cities</div>
-        <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6 gap-5 justify-center">
-            <div class="shadow-3xl rounded-lg mx-4 my-8 h-48 w-full bg-cover bg-center" style="background-blend-mode: multiply;background-color:rgba(0, 0, 0, 0.489); background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
-                <div class="px-3 my-2 w-full">
-                    <div class="capitalize font-semibold text-2xl text-white text-center">eldoret</div>
-                </div>
-            </div>
-            <div class="shadow-3xl rounded-lg mx-4 my-8 h-48 w-full bg-cover bg-center" style="background-blend-mode:multiply;background-color:rgba(0, 0, 0, 0.489); background-image: url(https://images.unsplash.com/photo-1521667815225-4d95a3f3a31a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=647&q=80);">
-                <div class="px-3 my-2">
-                    <div class="capitalize font-semibold text-2xl text-white">nairobi</div>
-                </div>
-            </div>
+                <% end %>
+            <% end %>
         </div>
     </div>
     <footer>

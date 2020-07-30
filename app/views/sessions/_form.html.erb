@@ -1,14 +1,16 @@
-<%= form_for(:session, :html => {class: ""}, url: login_path) do |f| %>
-    <div class="text-4xl p-4">
-        <div class="grid grid-cols-2 gap-4 my-4">
-            <%= f.label :username, "username", class: "m-4 p-2 rounded-lg" %>
-            <%= f.label :password, "password", class: "m-4 p-2 rounded-lg" %>
+<%= form_for(:session, :html => {class: "px-6 py-5 rounded-lg border-2 border-gray-700", style:"background-color: rgba(15, 44, 35, 0.619);"}, url: login_path) do |f| %>
+   <div class="text-center font-bold text-2xl uppercase text-gray-200">find rentals in kenya</div>
+        <div class="flex my-6">
+            <div class="mx-4 my-6">
+                <div class="text-white font-medium py-4 capitalize text-center text-lg">username</div>
+                <%= f.text_field :username, placeholder: "enter username", class: "bg-gray-300 text-lg p-2 rounded-lg" %>
+            </div>
+            <div class="mx-4 my-6">
+                <div class="text-white font-medium py-4 capitalize text-center text-lg">password</div>
+                <%= f.password_field :password, placeholder: "enter password", class: "g-gray-300 text-lg p-2 rounded-lg" %>
+            </div>
         </div>
-        <div class="grid grid-cols-2 gap-4 my-4">
-            <%= f.text_field :username, placeholder: "enter username", class: "m-4 p-2 rounded-lg" %>
-            <%= f.password_field :password, placeholder: "enter password", class: "m-4 p-2 rounded-lg" %>
+        <%= f.submit "login", disable_with: "processing...", class: "p-2 bg-teal-700 text-white font-semibold text-center my-4 uppercase rounded-lg w-full" %>
         </div>
-        <br>
-    <%= f.submit "login", disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
-    </div>
 <% end %>
+
