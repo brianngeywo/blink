@@ -33,7 +33,10 @@
                 <%= f.text_field :bedrooms, placeholder: "bedrooms", class: "m-4 p-2 rounded-lg" %>
         <div class="capitalize">contacts</div>
             <%= f.text_field :contacts, placeholder: "agent contacts", class: "m-4 p-2 rounded-lg" %>
-            <%= f.file_field :photo %>
+        <div class="capitalize">cover photo</div>
+            <%= f.file_field :cover_image %>
+        <div class="capitalize">rental photos</div>
+            <%= f.file_field :photos, multiple: true %>
             <br>
         <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
         </div>

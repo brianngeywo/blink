@@ -6,6 +6,7 @@
         <% end %>
                         <div class=" bg-gray-100 p-24 mb-12">
                             <%= render "rental", obj: @rentals %>
+                            
                         </div>
                         <%= render "layouts/mobile_footer" %>
 </div>
@@ -44,13 +45,14 @@
     </div>
     <div class="my-4">
         <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
+
         <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
 
             <% @rentals.each do |rental| %>
                 <%= link_to rental_path(rental) do %> 
                     <div class="shadow-3xl rounded-lg mx-4 my-8">
-                        <% if rental.photo.attached? %>
-                            <%= image_tag rental.photo, class:"h-48 w-full rounded-t-lg object-cover object-center" %>
+                        <% if rental.cover_image.attached? %>
+                            <%= image_tag rental.cover_image, class:"h-48 w-full rounded-t-lg object-cover object-center" %>
                         <% end %>
                         <div class="px-3 my-2">
                             <div class="capitalize font-semibold text-lg"><%= rental.name %></div>

@@ -9,6 +9,15 @@
             <%= f.password_field :password, placeholder: "enter password", class: "m-4 p-2 rounded-lg" %>
         </div>
         <br>
+            <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
+            <% cb.label(class: "text-teal-700"){cb.check_box(class: "check") + cb.text} %>
+        <% end %>
+        <br>
+        <div class="capitalize">cover photo</div>
+            <%= f.file_field :cover_photo %>
+        <div class="capitalize">profile photo</div>
+            <%= f.file_field :profile_picture %>
+            <br>
     <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
     </div>
 <% end %>

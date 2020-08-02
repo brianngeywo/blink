@@ -56,12 +56,19 @@
             <div class="my-3 text-teal-700">email:
                 <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
             </div>
+            <div class="font-semibold normal-case text-teal-700">
+                <% if logged_in? && current_user.admin? %>
+                    <div><%= link_to 'edit town', edit_town_path , class:""%></div>
+                    <div><%= link_to 'all bookings', bookings_path , class:""%></div>
+                    <div><%= link_to 'all users', users_path , class:""%></div>        
+                <% end %>
+            </div>
         </div>
         <div class="w-full">
             <%= render 'rentals/town_rentals', obj: @town.rentals %>
         </div>
     </div>
     <footer>
-<%= render 'layouts/desktop_footer' %>
+        <%= render 'layouts/desktop_footer' %>
     </footer>
 </div>

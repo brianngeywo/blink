@@ -32,7 +32,7 @@ class RentalsController < ApplicationController
   end
 
   def update
-    if @rental.update(rental_params)
+    if @rental.update!(rental_params)
       flash[:success] = "rental was successfully updated"
       redirect_to @rental
     else
@@ -58,7 +58,7 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :photo )
+    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :cover_image, photos: [] )
   end
 
   def require_same_user

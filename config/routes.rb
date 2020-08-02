@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/request", to: "pages#finder"
   get "pages/contact"
   resources :rentals
-  resources :estates
+  resources :estates, except: [:index]
   resources :towns
   get "/signup", to: "users#new"
   resources :users, except: [:new]

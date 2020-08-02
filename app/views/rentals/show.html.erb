@@ -1,84 +1,132 @@
 <div class="lg:hidden">
     <%= render 'layouts/mobile_nav' %>
-    <div>
-        <% if @rental.photo.attached? %>
-          <%= image_tag @rental.photo, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
-        <% end %>
-    </div>
-    <div class="font-bold text-7xl capitalize mx-4"><%= @rental.name %></div>
-    <div class="p-6 capitalize text-5xl mx-6 mb-32">
-        <div class="my-4"><%= link_to @rental.town.name, towns_path(@town) if @rental.town %>,
-            <%= link_to @rental.estate.name, estates_path(@estate) if @rental.estate %> estate</div>
-        <div class="my-4">kshs <%= @rental.price %> per month</div>
-        <div class="my-4"><%= @rental.units %> units</div>
-        <div class="my-4"><%= @rental.bedrooms %> bedrooms</div>
-        <div class="my-4">
-            <div>for more infor and site view</div>
-            <%= @rental.contacts %>
+        <div>
+            <% if @rental.cover_image.attached? %>
+                <%= image_tag @rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
+                    <% end %>
         </div>
-        <div class="my-4">created by: <%= @rental.user.username if @rental.user %></div>
+        <div class="font-bold text-7xl capitalize mx-4">
+            <%= @rental.name %>
+        </div>
+        <div class="p-6 capitalize text-5xl mx-6 mb-32">
+            <div class="my-4">
+                <%= link_to @rental.town.name, towns_path(@town) if @rental.town %>,
+                    <%= link_to @rental.estate.name, estates_path(@estate) if @rental.estate %> estate</div>
+            <div class="my-4">kshs
+                <%= @rental.price %> per month</div>
+            <div class="my-4">
+                <%= @rental.units %> units</div>
+            <div class="my-4">
+                <%= @rental.bedrooms %> bedrooms</div>
+            <div class="my-4">
+                <div>for more infor and site view</div>
+                <%= @rental.contacts %>
+            </div>
+            <div class="my-4">created by:
+                <%= @rental.user.username if @rental.user %>
+            </div>
 
-        <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
-        <%= link_to 'edit rental', edit_rental_path %>
-        <%= link_to 'delete rental', rental_path, method: :delete ,class: "btn bg-red-700 mx-4 p-4 rounded-lg font-semibold text-white" %>
-        <% end %>
-    </div>
-    <%= render 'layouts/mobile_footer' %>
+            <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+                <%= link_to 'edit rental', edit_rental_path %>
+                    <%= link_to 'delete rental', rental_path, method: :delete ,class: "btn bg-red-700 mx-4 p-4 rounded-lg font-semibold text-white" %>
+                        <% end %>
+        </div>
+        <div>
+            <% if @rental.photos.attached? %>
+                <div class="grid grid-cols-3">
+                    <% (0...@rental.photos.count).each do |photo| %>
+                        <div class="my-2 mx-2">
+                            <%= image_tag(@rental.photos[photo], class:"object-cover w-full h-74") %>
+                        </div>
+                        <% end %>
+                </div>
+                <% end %>
+        </div>
+        <%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
     <div class="bg-white">
         <%= render 'layouts/desktop_nav' %>
     </div>
     <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
-            <div>rentals in kenya</div>
-            <div>></div>
-            <div>
-                <%= link_to town_path(@rental.town) do %>
-                   <%= @rental.town.name %>
-                <% end %>
-            </div>
-            <div>></div>
-            <div><%= @rental.name %></div>
+        <div>rentals in kenya</div>
+        <div>></div>
+        <div>
+            <%= link_to town_path(@rental.town) do %>
+                <%= @rental.town.name %>
+                    <% end %>
+        </div>
+        <div>></div>
+        <div>
+            <%= @rental.name %>
         </div>
     </div>
     <div>
-        <div class="bg-cover bg-center h-64 items-baseline relative"
-            style="background-image: url(https://images.unsplash.com/photo-1556955112-28cde3817b0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);background-color: rgba(0, 0, 0, 0.387);background-blend-mode: multiply;">
-            <div class="text-4xl font-semibold px-16 py-2 text-white uppercase bottom-0 absolute"><%= @rental.name %></div>
-        </div>
-        <div class="my-4 mx-6 shadow-xl rounded-lg px-24 py-4 capitalize border-1 border-gray-400">
-            <div class="font-medium text-teal-700 text-3xl uppercase">kes <%= @rental.price %> per month</div>
-            <div class="my-3 text-teal-700 font-medium">booking office</div>
-            <div class="px-4">
-                <div class="font-normal text-black">10th Floor Fortis Tower</div>
-                <div class="font-normal text-black">Woodvale Grove, Westlands</div>
-            </div>
-            <div class="my-3 text-teal-700 font-medium">contacts:
-                <div class="font-normal text-black px-4"><%= @rental.contacts %></div>
-            </div>
-            <div class="my-3 text-teal-700 font-medium">email:
-                <div class="font-normal normal-case text-black px-4">brianngeywo@gmail.com</div>
+        <div class="bg-cover bg-center h-64 items-baseline relative" style="background-image: url(https://images.unsplash.com/photo-1556955112-28cde3817b0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);background-color: rgba(0, 0, 0, 0.387);background-blend-mode: multiply;">
+            <div class="text-4xl font-semibold px-16 py-2 text-white uppercase bottom-0 absolute">
+                <%= @rental.name %>
             </div>
         </div>
-        <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400">
-            <div class="font-medium text-teal-700 capitalize my-3 text-2xl">description</div>
-            <div> loremloremloremloremloremloremlorem </div>
-            <div> loremloremloremloremloremloremlorem </div>
-            <div> loremloremloremloremloremloremlorem </div>
-            <div> loremloremloremloremloremloremlorem </div>
-            <div> loremloremloremloremloremloremlorem     </div>
-        </div>
-    </div>
-    <div class="mx-6 my-4">
-        <div class="uppercase my-2 text-xl font-bold text-gray-600">property faqs</div>
-        <div class="mx-4">
-            <div class="my-2">
-                <div class="text-lg">how many bedrooms does this property have?</div>
-                <div class="text-md text-gray-800 mx-5 normal-case">the property has <%= @rental.bedrooms %> bedrooms</div>
+        <div class="flex gap-4 mx-16 p-6">
+            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+                <div class="my-3 text-teal-700">offices:
+                    <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                    <div class="font-normal text-black">Westlands</div>
+                </div>
+                <div class="my-3 text-teal-700">contacts:
+                    <div class="font-normal text-black">0798767470</div>
+                </div>
+                <div class="my-3 text-teal-700">email:
+                    <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+                </div>
+                <div class="font-semibold normal-case text-teal-700">
+                    <% if logged_in? && (current_user == @user || current_user.admin?) %>
+                        <div class="uppercase">
+                            <%= link_to 'edit rental', edit_rental_path(@rental) %>
+                        </div>
+                        <% end %>
+                </div>
             </div>
-            <div class="my-2">does this property have a servants quoters(SQ)?</div>
-            <div class="my-2">how much car space is available?</div>
-            <div class="my-2">how far is this property from eldoret town?</div>
+            <div class="w-full">
+                <div class="my-4 mx-6 shadow-xl rounded-lg px-24 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                    <div class="font-medium text-teal-700 text-3xl uppercase">kes
+                        <%= @rental.price %> per month</div>
+                    <div class="my-3 text-teal-700 font-medium">booking office</div>
+                    <div class="px-4">
+                        <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                        <div class="font-normal text-black">Woodvale Grove, Westlands</div>
+                    </div>
+                    <div class="my-3 text-teal-700 font-medium">contacts:
+                        <div class="font-normal text-black px-4">
+                            <%= @rental.contacts %>
+                        </div>
+                    </div>
+                    <div class="my-3 text-teal-700 font-medium">email:
+                        <div class="font-normal normal-case text-black px-4">brianngeywo@gmail.com</div>
+                    </div>
+                </div>
+                <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400 bg-gray-200">
+                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">description</div>
+                    <div> loremloremloremloremloremloremlorem </div>
+                    <div> loremloremloremloremloremloremlorem </div>
+                    <div> loremloremloremloremloremloremlorem </div>
+                    <div> loremloremloremloremloremloremlorem </div>
+                    <div> loremloremloremloremloremloremlorem </div>
+                </div>
+                <div class="my-4 mx-6 shadow-xl rounded-lg px-6 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                    <div class="uppercase my-2 text-xl font-bold text-gray-600">property faqs</div>
+                    <div class="mx-4">
+                        <div class="my-2">
+                            <div class="text-lg">how many bedrooms does this property have?</div>
+                            <div class="text-md text-gray-800 mx-5 normal-case">the property has
+                                <%= @rental.bedrooms %> bedrooms</div>
+                        </div>
+                        <div class="my-2">does this property have a servants quoters(SQ)?</div>
+                        <div class="my-2">how much car space is available?</div>
+                        <div class="my-2">how far is this property from eldoret town?</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer>

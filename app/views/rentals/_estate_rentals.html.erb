@@ -1,9 +1,9 @@
 <% obj.each do |rental| %>
     <%= link_to rental_path(rental) do %> 
         <div class="flex shadow-3xl my-8 rounded-lg">
-            <div class="w-1/3" style="background-image: <%= rails_blob_path(rental.photo) %>;">
-              <% if rental.photo.attached? %>
-                  <%= image_tag rental.photo, class:"object-cover object-center h-48 rounded-l-lg w-full" %>
+            <div class="w-1/3">
+              <% if rental.cover_image.attached? %>
+                  <%= image_tag rental.cover_image, class:"object-cover object-center h-48 rounded-l-lg w-full" %>
               <% end %>
             </div>
             <div class="w-2/3 p-5">

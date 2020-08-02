@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-<%= render "layouts/top_nav" %>
+<%= render "layouts/mobile_nav" %>
 <%= form_for @town do |f| %>
   <div class="bg-gray-300 text-4xl p-4">
     <div class="capitalize font-bold text-6xl">add new town</div>
@@ -7,5 +7,50 @@
         <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
     </div>
 <% end %>
-<%= render 'layouts/bottom_nav' %>
+<%= render 'layouts/mobile_footer' %>
+</div>
+<div class="sm:hidden lg:block">
+    <div class="bg-white">
+        <%= render 'layouts/desktop_nav' %>
+    </div>
+    <div class="">
+        <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
+            <div>rentals in kenya</div>
+            <div>></div>
+            <div><%= @town.name %></div>
+        </div>
+        <div class="bg-cover bg-center pt-8 w-full" style="background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+            <div class="text-2xl text-gray-300 my-12 mx-20">
+                <div class="text-4xl text-teal-600 font-semibold capitalize py-4">add new town</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex space-x-4 mx-16 p-6">
+        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+            <div class="my-3 text-teal-700">offices:
+                <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                <div class="font-normal text-black">Woodvale Grove, Westlands</div>
+            </div>
+            <div class="my-3 text-teal-700">contacts:
+                <div class="font-normal text-black">0798767470</div>
+            </div>
+            <div class="my-3 text-teal-700">email:
+                <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+            </div>
+        </div>
+        <div class="w-full">
+          <div class="bg-gray-300 text-lg p-4">
+            <div class="capitalize font-bold text-2xl">add new town</div>
+            <%= form_for @town do |f| %>
+                <div class="bg-gray-300 text-lg p-4">
+                    <%= f.text_field :name, placeholder: "town name", class: "m-4 p-2 rounded-lg" %>
+                    <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-teal-700 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+    </div>
+    <footer>
+        <%= render 'layouts/desktop_footer' %>
+    </footer>
 </div>

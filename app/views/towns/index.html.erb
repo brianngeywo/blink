@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-<%= render 'layouts/top_nav' %>
+<%= render 'layouts/mobile_nav' %>
   <div class="bg-gray-300 py-12 px-8 sticky top-0">
     <input type="text" class="text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4" placeholder="try a location or price">
     <button class="bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg">search</button>
@@ -23,5 +23,49 @@
     </div>
   <% end %>
   </div>
-<%= render 'layouts/bottom_nav' %>
+<%= render 'layouts/mobile_footer' %>
+</div>
+<div class="sm:hidden lg:block">
+    <div class="bg-white">
+        <%= render 'layouts/desktop_nav' %>
+    </div>
+    <div class="">
+        <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
+            <div>rentals in kenya</div>
+            <div>></div>
+        </div>
+        <div class="bg-cover bg-center pt-8 w-full" style="background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+            <div class="text-2xl text-gray-300 my-12 mx-20">
+                <div class="text-4xl text-teal-600 font-semibold capitalize py-4">all towns</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex space-x-4 mx-16 p-6">
+        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+            <div class="my-3 text-teal-700">offices:
+                <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                <div class="font-normal text-black">Woodvale Grove, Westlands</div>
+            </div>
+            <div class="my-3 text-teal-700">contacts:
+                <div class="font-normal text-black">0798767470</div>
+            </div>
+            <div class="my-3 text-teal-700">email:
+                <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+            </div>
+        </div>
+        <div class="w-full grid grid-cols-3 gap-4">
+          <% @towns.each do |town| %>
+            <div class="">
+            <%= link_to town_path(town) do %>
+              <div class="rounded-lg bg-white shadow-b shadow-r shadow-3xl">
+                <div class="text-lg uppercase font-semibold text-center py-4"><%= town.name %></div>
+              </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+    <footer>
+        <%= render 'layouts/desktop_footer' %>
+    </footer>
 </div>

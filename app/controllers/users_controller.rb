@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update!(user_params)
       flash[:success] = "successfully updated your account"
       redirect_to @user
     else
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :cover_photo, :profile_picture, town_ids: [] )
   end
 
   def require_same_user
-    if current_user != @user && !current_user.admin?
+    if current_user != @user and !current_user.admin?
       flash[:danger] = "you must be the owner to perform that action"
       redirect_to root_path
     end

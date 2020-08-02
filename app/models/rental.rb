@@ -7,5 +7,6 @@ class Rental < ActiveRecord::Base
   validates :price, presence: true
   validates :user_id, presence: true
   validates :town_id, presence: true
-  has_one_attached :photo
+  has_many_attached :photos
+  has_one_attached :cover_image
 end
