@@ -4,13 +4,17 @@
     <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
     <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
     <%= link_to 'jobs', bookings_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-
-    <% if logged_in? %>
-            <div class="px-2"><%= link_to 'logout', logout_path, method: :delete %></div>
-        <% else %>
-            <div class="px-2"><%= link_to 'login', login_path %></div>
-            <div class="">|</div>
-            <div class="px-2"><%= link_to 'signup', signup_path %></div>
-    <% end %>
+            <% if logged_in? %>
+                <div class="grid grid-cols-2 divide-x-2 divide-white">
+                    <div class="px-2"><%= link_to 'your account', user_path(current_user) %></div>
+                    <div class="px-2"><%= link_to 'logout', logout_path, method: :delete %></div>
+                </div>
+                <% else %>
+                <div class="grid grid-cols-2 divide-x-2 divide-gray-500">
+                    <div class="px-2"><%= link_to 'login', login_path %></div>
+                    <div class="px-2"><%= link_to 'signup', signup_path %></div>
+                </div>
+            <% end %>
+        </div>
     </div>
 </nav>

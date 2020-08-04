@@ -13,35 +13,25 @@
     <div class="">
         <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
         <div class="flex gap-4 mx-16 p-6">
-            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
+                <div class="border-b border-gray-700">
+                    <div class="flex space-x-2 justify-center items-center">
+                        <% if @rental.user.profile_picture.attached? %>
+                            <%= image_tag @rental.user.profile_picture, class:"h-24 w-24 rounded-full object-center border-white border-solid border-4 object-cover" %>
+                        <% end %>
+                    </div>
+                    <div class="text-teal-700 text-center my-2"><%= link_to @rental.user.username, user_path(@rental.user) %></div>
+                </div>
                 <div class="my-3 text-teal-700">offices:
-                    <div class="font-normal text-black">10th Floor Fortis Tower</div>
-                    <div class="font-normal text-black">Westlands</div>
+                    <div class="font-normal text-black"><%= @rental.user.location %></div>
                 </div>
                 <div class="my-3 text-teal-700">contacts:
-                    <div class="font-normal text-black">0798767470</div>
+                    <div class="font-normal text-black"><%= @rental.user.phone %></div>
                 </div>
                 <div class="my-3 text-teal-700">email:
-                    <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+                    <div class="font-normal normal-case text-black"><%= @rental.user.email %></div>
                 </div>
-                <div class="font-semibold normal-case text-teal-700">
-                    <% if logged_in? && (current_user == @user || current_user.admin?) %>
-                        <div class="">
-                            <%= link_to 'new rental', new_rental_path %>
-                        </div>
-                        <div class="">
-                            <%= link_to 'edit account', edit_user_path(current_user) %>
-                        </div>
-                    <% end %>
-                    <% if logged_in? && current_user.admin? %>
-                        <div>
-                            <%= link_to 'all bookings', bookings_path , class:""%>
-                        </div>
-                        <div>
-                            <%= link_to 'all users', users_path , class:""%>
-                        </div>
-                    <% end %>
-                </div>
+                    <div class="font-normal normal-case text-teal-700"><i class="fa fa-undo mx-2 text-lg"></i><%= link_to "back to #{@rental.name}", rental_path(@rental) %></div>
             </div>
             <div class="w-full">
                 <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">

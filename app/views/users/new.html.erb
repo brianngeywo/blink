@@ -1,7 +1,56 @@
 <div class="lg:hidden">
-<%= render "layouts/mobile_nav" %>
-<div class="capitalize font-bold text-6xl p-4">register as an agent and earn</div>
-<%= render 'form' %>
-<div class="capitalize text-3xl p-4">click <%= link_to 'here', login_path, class:"text-blue-700" %> to log into your account</div>
-<%= render 'layouts/mobile_footer' %>
+    <%= render "layouts/mobile_nav" %>
+        <div class="capitalize font-bold text-6xl p-4">register as an agent and earn</div>
+        <%= render 'form' %>
+            <div class="capitalize text-3xl p-4">click
+                <%= link_to 'here', login_path, class:"text-blue-700" %> to log into your account</div>
+            <%= render 'layouts/mobile_footer' %>
+</div>
+<div class="sm:hidden lg:block">
+    <div class="bg-white">
+        <%= render 'layouts/desktop_nav' %>
+    </div>
+    <div class="h-full bg-cover bg-center bg-no-repeat" style="background-color: rgba(19, 18, 18, 0.367);background-image: url(https://images.unsplash.com/photo-1568634143420-dc5368d74e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);background-blend-mode: multiply;">
+        <div class="p-12 flex justify-end items-center text-white">
+            <%= form_for @user do |f| %>
+                <div class="text-center font-bold text-2xl uppercase text-gray-200">find rentals in kenya</div>
+                <div class="flex my-6">
+                    <div class="mx-4 my-6">
+                        <div class="text-white font-medium py-4 capitalize text-center text-lg">username</div>
+                        <%= f.text_field :username, placeholder: "enter username", class: "bg-gray-300 text-lg p-2 rounded-lg text-black" %>
+                    </div>
+                    <div class="mx-4 my-6">
+                        <div class="text-white font-medium py-4 capitalize text-center text-lg">password</div>
+                        <%= f.password_field :password, placeholder: "enter password", class: "g-gray-300 text-lg p-2 rounded-lg text-black" %>
+                    </div>
+                </div><br>
+                    <div class="mx-4 my-6">
+                        <div class="text-white font-medium py-4 capitalize text-center text-lg">email address</div>
+                        <%= f.email_field :email, placeholder: "enter your email address", class: "g-gray-300 text-lg p-2 rounded-lg w-full text-black" %>
+                    </div>
+                    <div class="mx-4 my-6">
+                        <div class="text-white font-medium py-4 capitalize text-center text-lg">phone number</div>
+                        <%= f.text_field :phone, placeholder: "enter phone number", class: "bg-gray-300 text-lg p-2 rounded-lg w-full text-black" %>
+                    </div>
+                <div class="text-white font-medium">which towns do you operate in?</div>
+                <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
+                    <% cb.label(class: "text-white px-4"){cb.check_box(class: "bg-teal-700") + cb.text} %>
+                <% end %>
+                <br>
+                <div class="my-4">
+                    <div class="capitalize">cover photo</div>
+                    <%= f.file_field :cover_photo %>
+                </div>
+                <div class="my-4">
+                    <div class="capitalize">profile photo</div>
+                    <%= f.file_field :profile_picture %>
+                </div>
+                        <br>
+                <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "shadow-3xl p-2 bg-teal-700 text-white font-semibold text-center my-4 uppercase rounded-lg w-full" %>
+            <% end %>
+        </div>
+    <footer>
+        <%= render 'layouts/desktop_footer' %>
+    </footer>
+    </div>
 </div>

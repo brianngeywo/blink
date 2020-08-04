@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :require_admin, only: [:index, :destroy]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @users = User.all
     if !logged_in?
       redirect_to login_path
-    end    
+    end
   end
 
   def new
@@ -17,11 +16,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
-      flash[:success] = "welcome to salama houses please log in"
-      redirect_to login_path
+      session[:user_id] = @user.id
+
+      flash[:success] = "Welcome to the blink rentals #{@user.username}"
+
+      redirect_to user_path(@user)
     else
-      flash[:error] = "could not create your account"
       render "new"
     end
   end
@@ -42,16 +44,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    if @user.destroy
-      flash[:success] = "your account has been deleted"
-      redirect_to root_path
-    else
-      flash[:error] = "could not close your account"
-      redirect_to @user
-    end
-  end
-
   private
 
   def set_user
@@ -59,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :cover_photo, :profile_picture, town_ids: [] )
+    params.require(:user).permit(:username, :password, :cover_photo, :profile_picture, :location, :phone, :email, town_ids: [])
   end
 
   def require_same_user

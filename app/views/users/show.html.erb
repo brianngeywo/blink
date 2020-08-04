@@ -16,9 +16,6 @@
     <div class="font-bold text-5xl capitalize mx-4 my-3">
         <%= link_to 'edit your account', edit_user_path(current_user) %></div>
     <% end %>
-    <% if logged_in? && current_user.admin? %>
-    <button class="rounded-lg font-bold text-5xl bg-red-700 capitalize mx-4 text-white px-6"><%= link_to 'delete your account', user_path, method: :delete, data: { confirm: 'Are you sure you want to delete your account and remove all listings linked to this account?' } %></button>
-    <% end %>
     <div class="px-6 capitalize text-5xl mx-6">
         <div class="font-bold">all rentals by <%= @user.username %></div>
         <%= render 'rentals/rental', obj: @user.rentals %>
@@ -31,25 +28,23 @@
     </div>
     <div class="">
         <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
-        <div class="flex gap-5 bg-cover bg-center pt-8 items-center w-full"
-            style="background-image: url(https://images.unsplash.com/photo-1491955478222-69ae25414368?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+        <div class="flex gap-5 bg-cover bg-no-repeat bg-center pt-8 items-center w-full h-66"
+            style="background-image: url(<%= url_for(@user.cover_photo) if @user.cover_photo.attached? %>);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
                     <div>
                         <% if @user.profile_picture.attached? %>
-                            <%= image_tag @user.profile_picture, class:"h-32 border-white border-solid border-4 object-cover mx-16 mt-12 mb-6" %>
+                            <%= image_tag @user.profile_picture, class:"h-40 w-56 object-center border-white border-solid border-4 object-cover mx-16 mt-12 mb-6" %>
                         <% end %>
                     </div>
                 <div class="text-xl text-gray-300">
-                    <div class="text-4xl text-teal-600 font-semibold capitalize"><%= @user.username %> properties</div>
-                    <div class="">manla@blinkhomes.com</div>
-                    <div class="">0798767470</div>
+                    <div class="text-4xl text-teal-600 font-semibold capitalize subpixel-antialiased"><%= @user.username %></div>
+                    <div class="font-medium tracking-wider capitalize">patner</div>
                 </div>
         </div>
     </div>
     <div class="flex gap-4 mx-16 p-6">
-        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
             <div class="my-3 text-teal-700">offices:
-                <div class="font-normal text-black">10th Floor Fortis Tower</div>
-                <div class="font-normal text-black">Westlands</div>
+                <div class="font-normal text-black"><%= @user.location %></div>
             </div>
             <div class="my-3 text-teal-700">available in:
                 <% if @user.towns.any? %>
@@ -57,24 +52,23 @@
                 <% end %>
             </div>
             <div class="my-3 text-teal-700">contacts:
-                <div class="font-normal text-black">0798767470</div>
+                <div class="font-normal text-black"><%= @user.phone %></div>
             </div>
             <div class="my-3 text-teal-700">email:
-                <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+                <div class="font-normal normal-case text-black"><%= @user.email %></div>
             </div>
             <div class="font-semibold normal-case text-teal-700">
                 <% if logged_in? && (current_user == @user || current_user.admin?) %>
                     <div class=""><%= link_to 'new rental', new_rental_path %></div>
                     <div class=""><%= link_to 'edit account', edit_user_path(current_user) %></div>
                 <% end %>
-                <% if logged_in? && current_user.admin? %>
-                    <div><%= link_to 'all bookings', bookings_path , class:""%></div>
-                    <div><%= link_to 'all users', users_path , class:""%></div>        
-                <% end %>
             </div>
         </div>
         <div class="w-full">
-           <%= render 'rentals/estate_rentals', obj: @user.rentals %>
+            <div class="font-semibold text-gray-600 uppercase text-xl py-2">current listings</div>
+            <div class="mx-6">
+                <%= render 'rentals/estate_rentals', obj: @user.rentals %>
+           </div>
         </div>
     </div>
     <footer>
