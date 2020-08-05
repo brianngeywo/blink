@@ -107,11 +107,13 @@
                 </div>
                 <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400 bg-gray-200">
                     <div class="font-medium text-teal-700 capitalize my-3 text-2xl">description</div>
-                    <div> loremloremloremloremloremloremlorem </div>
-                    <div> loremloremloremloremloremloremlorem </div>
-                    <div> loremloremloremloremloremloremlorem </div>
-                    <div> loremloremloremloremloremloremlorem </div>
-                    <div> loremloremloremloremloremloremlorem </div>
+                    <div class="font-Arial text-md text-gray-700 hidden" id='text'><%= markdown(@rental.description) %> </div>
+                    <% if @rental.description.length > 250 %>
+                        <%= truncate(@rental.description, length:250) %>
+                        <button id='btn' class="p-2 border-2 border-teal-700 rounded-lg capitalize text-teal-700 hover:text-white hover:bg-teal-700  transform scale-200 duration-500 ease-in-out my-3 text-center" onclick='toggle()'>Show More</button>
+                    <% else %>
+                        <%= @rental.description %>
+                    <% end %>
                 </div>
                 <div class="my-4 mx-6 shadow-xl rounded-lg px-6 py-4 capitalize border-1 border-gray-400 bg-gray-200">
                     <div class="uppercase my-2 text-xl font-bold text-gray-600">property faqs</div>
@@ -132,4 +134,20 @@
     <footer>
         <%= render 'layouts/desktop_footer' %>
     </footer>
+    <script>
+        visible = false; //var that keeps track if the content is visible.
+        txt = document.getElementById("text");
+        btn = document.getElementById("btn");
+        function toggle() {
+            if(visible) {
+                visible = 0;
+                btn.innerHTML = 'Show more';
+                txt.style.display = 'none';
+            } else {
+                visible = 1;
+                btn.innerHTML = 'Show Less';
+                txt.style.display = 'block';
+            }
+        };
+    </script>
 </div>
