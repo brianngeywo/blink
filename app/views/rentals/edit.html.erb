@@ -78,7 +78,7 @@
                                 <div class="capitalize">rental photos</div>
                                 <%= f.file_field :photos, multiple: true %>
                                 <div class="capitalize">rental description</div>
-                                <%= f.text_area :description, :cols => 50, :rows => 30 %>
+                                <%= f.text_area :description, :cols => 70, :rows => 30, class:"p-4" %>
                                 <br>
                                 <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
                         </div>

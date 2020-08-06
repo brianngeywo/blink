@@ -43,19 +43,13 @@
     </div>
     <div class="flex gap-4 mx-16 p-6">
         <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
-            <div class="my-3 text-teal-700">offices:
+            <div class="my-2 text-teal-700">offices:
                 <div class="font-normal text-black"><%= @user.location %></div>
             </div>
-            <div class="my-3 text-teal-700">available in:
+            <div class="my-2 text-teal-700">available in:
                 <% if @user.towns.any? %>
                     <div class="font-normal text-black"><%= render @user.towns %> &nbsp;</div>
                 <% end %>
-            </div>
-            <div class="my-3 text-teal-700">contacts:
-                <div class="font-normal text-black"><%= @user.phone %></div>
-            </div>
-            <div class="my-3 text-teal-700">email:
-                <div class="font-normal normal-case text-black"><%= @user.email %></div>
             </div>
             <div class="font-semibold normal-case text-teal-700">
                 <% if logged_in? && (current_user == @user || current_user.admin?) %>

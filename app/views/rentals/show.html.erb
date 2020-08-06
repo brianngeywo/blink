@@ -80,21 +80,43 @@
                 <div class="my-3 text-teal-700">offices:
                     <div class="font-normal text-black"><%= @rental.user.location %></div>
                 </div>
-                <div class="my-3 text-teal-700">contacts:
-                    <div class="font-normal text-black"><%= @rental.user.phone %></div>
-                </div>
-                <div class="my-3 text-teal-700">email:
-                    <div class="font-normal normal-case text-black"><%= @rental.user.email %></div>
-                </div>
-                <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
+                <div id='call-trigger' class="my-6 font-semibold tracking-wider p-2 w-auto border-2 border-teal-700 bg-white text-teal-700 uppercase text-center" onclick='toggle()'>request a call</div>
+                <form id='call-form' class="hidden px-2 w-40 capitalize">
+                    <label class="my-2">phone number:</label>
+                    <input class="p-2 bg-white rounded-lg">
+                    <label class="my-2">name:</label>
+                    <input class="p-2 bg-white rounded-lg">
+                    <button class="font-semibold tracking-wider p-2 w-full my-3 border-2 border-teal-600 bg-teal-700 text-white uppercase text-center">send</button>
+                </form>
+                <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+                    <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
+                <% end %>
             </div>
             <div class="w-full">
-                <div class="my-4 mx-6 shadow-xl rounded-lg px-24 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                    <div class="font-medium text-teal-700 text-3xl uppercase">kes
-                        <%= @rental.price %> per month</div>
+                <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                    <div class="text-md my-3 text-gray-700">
+                        <span class="mx-2"><i class="fa fa-bed mx-1"></i><%= @rental.bedrooms %><span>
+                        <span class="mx-2"><i class="fa fa-bath mx-1"></i><%= @rental.bedrooms %><span>
+                        <span class="mx-2"><i class="fa fa-car mx-1"></i><%= @rental.bedrooms %><span>
+                        <span class="mx-2"><i class="fas fa-house-user mx-1"></i><%= @rental.units %><span>
+                    </div>
+                    <div class="text-teal-700 font-bold text-lg border-t-2 border-b-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
+                    <div class="text-xs font-Arial text-gray-500 text-center my-2">*please pay through the provided paybill number to avoid bieng conned</div>
                 </div>
                 <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                <div class="uppercase text-gray-500 font-semibold text-sm my-2">other photos </div>
+                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property features</div>
+                    <div class="grid grid-cols-3 px-6 text-gray-800 capitalize">
+                        <div class="my-1">Secure Parking</div>
+                        <div class="my-1">Air conditioning</div>
+                        <div class="my-1">Balcony / Deck</div>
+                        <div class="my-1">Built in wardrobes</div>
+                        <div class="my-1">Ensuite</div>
+                        <div class="my-1">Garden / Courtyard</div>
+                        <div class="my-1">Intercom</div>
+                    </div>
+                </div>
+                <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                <div class="uppercase text-gray-500 font-semibold text-sm my-2">property photos </div>
                     <% if @rental.photos.attached? %>
                         <div class="px-4 grid grid-cols-5">
                             <% (0...@rental.photos.count).each do |photo| %>
@@ -106,21 +128,15 @@
                     <% end %>
                 </div>
                 <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400 bg-gray-200">
-                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">description</div>
-                    <div class="font-Arial text-md text-gray-700 hidden" id='text'><%= markdown(@rental.description) %> </div>
-                    <% if @rental.description.length > 250 %>
-                        <%= truncate(@rental.description, length:250) %>
-                        <button id='btn' class="p-2 border-2 border-teal-700 rounded-lg capitalize text-teal-700 hover:text-white hover:bg-teal-700  transform scale-200 duration-500 ease-in-out my-3 text-center" onclick='toggle()'>Show More</button>
-                    <% else %>
-                        <%= @rental.description %>
-                    <% end %>
+                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property description</div>
+                    <div class="font-Arial text-md text-gray-700"><%= markdown(@rental.description) if @rental.description.present? %> </div>
                 </div>
                 <div class="my-4 mx-6 shadow-xl rounded-lg px-6 py-4 capitalize border-1 border-gray-400 bg-gray-200">
                     <div class="uppercase my-2 text-xl font-bold text-gray-600">property faqs</div>
                     <div class="mx-4">
                         <div class="my-2">
-                            <div class="text-lg">how many bedrooms does this property have?</div>
-                            <div class="text-md text-gray-800 mx-5 normal-case">the property has
+                            <div id='question' class="text-lg">how many bedrooms does this property have?</div>
+                            <div class="text-md text-gray-800 mx-5 normal-case hidden" id='answer'>the property has
                                 <%= @rental.bedrooms %> bedrooms</div>
                         </div>
                         <div class="my-2">does this property have a servants quoters(SQ)?</div>
@@ -136,16 +152,14 @@
     </footer>
     <script>
         visible = false; //var that keeps track if the content is visible.
-        txt = document.getElementById("text");
-        btn = document.getElementById("btn");
+        txt = document.getElementById("call-form");
+        btn = document.getElementById("call-trigger");
         function toggle() {
             if(visible) {
                 visible = 0;
-                btn.innerHTML = 'Show more';
                 txt.style.display = 'none';
             } else {
                 visible = 1;
-                btn.innerHTML = 'Show Less';
                 txt.style.display = 'block';
             }
         };
