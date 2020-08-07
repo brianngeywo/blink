@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :show, :destroy]
   before_action :require_user, only: [:index, :destory]
-  before_action :require_admin, only: [:index, :destory]
+  before_action :require_admin, only: [:destory]
 
   def index
     @bookings = Booking.all
@@ -18,10 +18,10 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.save
       flash[:success] = "we have recieved your booking, we'll communicate shortly"
-      redirect_to root_path
+      render 'new'
     else
       flash[:error] = "please fill all fields"
-      redirect_to new_booking_path
+      render 'new'
     end
   end
 

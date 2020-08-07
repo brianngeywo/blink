@@ -4,9 +4,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    if !logged_in?
-      redirect_to login_path
-    end
   end
 
   def new

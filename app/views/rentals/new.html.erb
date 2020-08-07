@@ -25,9 +25,6 @@
                 <div class="font-semibold normal-case text-teal-700">
                     <% if logged_in? && (current_user == @user || current_user.admin?) %>
                         <div class="">
-                            <%= link_to 'new rental', new_rental_path %>
-                        </div>
-                        <div class="">
                             <%= link_to 'edit account', edit_user_path(current_user) %>
                         </div>
                     <% end %>
@@ -86,7 +83,7 @@
                                 <div class="capitalize">rental photos</div>
                                 <%= f.file_field :photos, multiple: true %>
                                 <div class="capitalize">rental description</div>
-                                <%= f.text_area :description, :rows %>
+                                <%= f.text_area :description, :cols => 70, :rows => 30, class:"p-4"  %>
                                 <br>
                                 <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
                         </div>
