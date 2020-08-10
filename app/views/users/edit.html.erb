@@ -50,6 +50,16 @@
             <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">
              <div class="text-xl uppercase px-12 py4">account settings</div>
                 <%= form_for @user do |f| %>
+                <% if current_user.admin? %>
+                    |
+                    <% if @user.admin? %>
+                        <%= link_to "Remove Admin", remove_admin_path(@user), method: :delete,
+                                                    data: { confirm: "You sure?" } %>
+                        <% else %>
+                        <%= link_to "Make Admin", make_admin_path(@user), method: :post,
+                                                data: { confirm: "You sure?" } %>
+                    <% end %>
+                <% end %>
                     <div class="text-md p-4">
                         <div class="my-2">
                             <div class="my-2">change username:</div>

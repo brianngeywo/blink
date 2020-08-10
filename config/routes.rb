@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :rentals
   resources :estates, except: [:index]
   resources :towns
+  post   '/users/:id/make_admin', to: 'users#make_admin', as: :make_admin
+  delete '/users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin
   get "/signup", to: "users#new"
   resources :users, except: [:new]
   get "/login", to: "sessions#new"
