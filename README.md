@@ -1,25 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+this is a rails real estate property app
 
-Things you may want to cover:
+//first things first
+**ruby 2.5.7
+**rails 6.0.3.1
 
-* Ruby version
 
-* System dependencies
+#step one:  git clone...
 
-* Configuration
+#step two: bundle install
 
-* Database creation
+#step three: rake db:setup
 
-* Database initialization
 
-* How to run the test suite
+rails s
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
 
 * ...
 # blink
