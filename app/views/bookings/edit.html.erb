@@ -1,5 +1,18 @@
 <div class="lg:hidden">
-<%= render "layouts/top_nav" %>
+<%= render "layouts/mobile_nav" %>
+<div class="text-4xl my-4 btn">
+    <% if current_user.admin? %>
+        |
+        <% if @booking.status.nil? %>
+            <%= link_to "verify", verify_booking_path(@booking), method: :post,
+                                    data: { confirm: "You sure?" } %> 
+            
+            <% else %>
+            <%= link_to "unverify", unverify_booking_path(@booking), method: :delete,
+                                        data: { confirm: "You sure?" } %>
+        <% end %>
+    <% end %>
+</div>
 <%= render 'form' %>
-<%= render 'layouts/bottom_nav' %>
+<%= render 'layouts/mobile_footer' %>
 </div>

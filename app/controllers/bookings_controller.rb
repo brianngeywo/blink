@@ -18,7 +18,11 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     if @booking.save
       flash[:success] = "we have recieved your booking, we'll communicate shortly"
-      render 'new'
+      if logged_in?
+        redirect_to @booking
+      else
+        render 'new'
+      end
     else
       flash[:error] = "please fill all fields"
       render 'new'
@@ -47,7 +51,21 @@ class BookingsController < ApplicationController
       redirect_to @booking
     end
   end
+  def unverify
+    @booking = Booking.find(params[:id])
+    @booking.status = nil
+    @booking.save
+    flash[:success] = "#{@booking.name} is still unverified"
+    redirect_to bookings_url
+  end
 
+  def verify
+    @booking = Booking.find(params[:id])
+    @booking.status = 1
+    @booking.save
+    flash[:success] = "#{@booking.name} has been verified"
+    redirect_to bookings_url
+  end
   private
 
   def set_booking

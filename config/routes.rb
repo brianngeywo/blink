@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :towns
   post   '/users/:id/make_admin', to: 'users#make_admin', as: :make_admin
   delete '/users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin
+  post   '/bookings/:id/verify', to: 'bookings#verify', as: :verify_booking
+  delete '/bookings/:id/unverify', to: 'bookings#unverify', as: :unverify_booking
   get "/signup", to: "users#new"
   resources :users, except: [:new]
   get "/login", to: "sessions#new"
