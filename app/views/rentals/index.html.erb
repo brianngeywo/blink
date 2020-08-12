@@ -4,9 +4,35 @@
             <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4", placeholder: "try a town or estate" %>
                 <%= f.submit "search", class: "bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg" %>
         <% end %>
-                        <div class=" bg-gray-100 p-24 mb-12">
-                            <%= render "rental", obj: @rentals %>
-                            
+                        <div class=" bg-gray-100 ">
+                            <% @rentals.each do |rental| %>
+                                <div class="border-t border-b border-gray-600 my-1 py-2">
+                                    <div class="flex space-x-12 items-center my-4">
+                                        <div>
+                                            <% if rental.user.profile_picture.attached? %>
+                                                <%= image_tag rental.user.profile_picture, class:"rounded-full object-cover object-center h-56" %>
+                                            <% end %>
+                                        </div>
+                                        <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to rental.user.username, user_path(rental.user) %></div>
+                                    </div>
+                                    <div class="bg-white">
+                                        <%= link_to rental_path(rental) do %> 
+                                        <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
+                                            <% if rental.cover_image.attached? %>
+                                                <%= image_tag rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
+                                            <% end %>
+                                            <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= rental.name  %></div>
+                                            <div class="h-40">
+                                            <div class="text-4xl px-6 py-2 capitalize"><i class="fa fa-map-marker-alt text-teal-700"></i>
+                                                <%= rental.town.name if rental.town %>,<span><%= rental.estate.name if rental.estate %></span></div>
+                                                <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i><%= rental.bedrooms %> rooms</div>
+                                                <div class="text-4xl px-6 py-2 capitalize">kshs <%= rental.price %></div>
+                                            </div>
+                                        </div>  
+                                        <% end %>
+                                    </div>
+                                </div>
+                            <% end %>
                         </div>
                         <%= render "layouts/mobile_footer" %>
 </div>
