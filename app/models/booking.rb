@@ -4,7 +4,7 @@ class Booking < ActiveRecord::Base
   validates :rooms, presence: true
   before_create :set_initial_state
 
-  STATUS = {:unverified => nil, :verified => 1}
+  STATUS = {:unverified => nil, :verified => 1, :completed => 2}
 
   def unverified
     if status.nil?
@@ -15,6 +15,10 @@ class Booking < ActiveRecord::Base
   def verified
     return if !status.nil?
     self.status = STATUS[:verified]
+  end
+  def completed
+    return if !status.nil? && self.status = !STATUS[:verified]
+    self.status = STATUS[:completed]
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_183314) do
+ActiveRecord::Schema.define(version: 2020_08_12_122044) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 2020_08_10_183314) do
     t.integer "status"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone_number"
+    t.integer "status"
+  end
+
   create_table "dream_houses", force: :cascade do |t|
     t.string "name"
     t.integer "bedrooms"
@@ -63,6 +69,11 @@ ActiveRecord::Schema.define(version: 2020_08_10_183314) do
     t.integer "town_id"
   end
 
+  create_table "rental_features", force: :cascade do |t|
+    t.string "name"
+    t.integer "rental_id"
+  end
+
   create_table "rentals", force: :cascade do |t|
     t.string "name"
     t.integer "bedrooms"
@@ -75,6 +86,9 @@ ActiveRecord::Schema.define(version: 2020_08_10_183314) do
     t.integer "town_id"
     t.integer "estate_id"
     t.string "description"
+    t.string "wifi"
+    t.integer "bathrooms"
+    t.integer "parking"
   end
 
   create_table "town_users", force: :cascade do |t|

@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :show, :destroy]
   before_action :require_user, only: [:index, :destory]
-  before_action :require_admin, only: [:destory]
+  before_action :require_admin, only: [:edit, :update, :destory]
 
   def index
     @bookings = Booking.all
@@ -64,6 +64,14 @@ class BookingsController < ApplicationController
     @booking.status = 1
     @booking.save
     flash[:success] = "#{@booking.name} has been verified"
+    redirect_to bookings_url
+  end
+
+  def complete
+    @booking = Booking.find(params[:id])
+    @booking.status = 2
+    @booking.save
+    flash[:success] = "#{@booking.name} has been completed"
     redirect_to bookings_url
   end
   private

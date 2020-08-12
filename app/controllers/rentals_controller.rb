@@ -11,8 +11,10 @@ class RentalsController < ApplicationController
 
   def new
     @rental = Rental.new
+    5.times do
+       @rental.rental_features.build
+    end
   end
-
   def create
     @rental = Rental.new(rental_params)
     @rental.user = current_user
@@ -29,6 +31,9 @@ class RentalsController < ApplicationController
   end
 
   def edit
+    2.times do
+      @rental.rental_features.build
+    end
   end
 
   def update
@@ -58,7 +63,7 @@ class RentalsController < ApplicationController
   end
 
   def rental_params
-    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :cover_image, :description, photos: [] )
+    params.require(:rental).permit(:name, :units, :bedrooms, :contacts, :price, :town_id, :estate_id, :cover_image, :features, :wifi, :parking, :bathrooms ,photos: [])
   end
 
   def require_same_user

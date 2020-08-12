@@ -33,9 +33,9 @@
         
             <% Town.all.each do |town| %>
                 <%= link_to town_path(town) do %>
-                    <div class="shadow-3xl rounded-lg mx-4 my-8 h-48 w-full bg-cover bg-center" style="background-blend-mode: multiply;background-color:rgba(0, 0, 0, 0.489); background-image: url(https://images.unsplash.com/photo-1543245883-b631737145f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);">
-                        <div class="px-3 my-2 w-full">
-                            <div class="capitalize font-semibold text-2xl text-white text-left py-2 px-4"><%= town.name %></div>
+                    <div class="shadow-3xl rounded-full mx-4 bg-white">
+                        <div class="w-full">
+                            <div class="capitalize font-semibold text-2xl text-teal-700 text-center py-2 px-4"><%= town.name %></div>
                         </div>
                     </div>        
                 <% end %>
@@ -60,8 +60,8 @@
                             <div class="text-gray-600 font-bold"><%= rental.price %> kshs</div>
                             <div class="flex items-center justify-start text-base text-teal-700 pb-4">
                                 <span class="px-2"><i class="fa fa-bed"></i> <%= rental.bedrooms %></span>
-                                <span class="px-2"><i class="fa fa-bath"></i> 3</span>
-                                <span class="px-2"><i class="fa fa-wifi"></i> yes</span>
+                                <span class="px-2"><i class="fa fa-bath"></i> <%= rental.bathrooms %></span>
+                                <span class="px-2"><i class="fa fa-wifi"></i> <%= rental.wifi %></span>
                             </div>
                         </div>           
                     </div>

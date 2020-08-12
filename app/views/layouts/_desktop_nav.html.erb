@@ -2,14 +2,15 @@
     <div class="font-semibold text-4xl text-teal-700 flex-grow"><%= link_to 'BlinkHomes', root_path %></div>
     <div class="flex text-base text-teal-800 uppercase font-medium">
     <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-    <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-    
+    <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>    
     <% if logged_in? %>
     <%= link_to 'bookings', bookings_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>        
         <% else %>
     <%= link_to 'new booking', new_booking_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
     <% end %>
-    
+    <% if logged_in? && current_user.admin? %>
+        <%= link_to 'all customers', customers_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
+    <% end %>
             <% if logged_in? %>
                 <div class="grid grid-cols-2 divide-x-2 divide-white">
                     <div class="px-2"><%= link_to 'your account', user_path(current_user) %></div>
