@@ -2,6 +2,7 @@ class TownsController < ApplicationController
   before_action :set_town, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_admin, only: [:new, :edit, :update, :destroy]
+  before_action :search_ready
 
   def index
     @towns = Town.all

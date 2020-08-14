@@ -1,44 +1,40 @@
 <div class="lg:hidden">
-    <%= render "layouts/mobile_nav" %>
-        <%= search_form_for @q, html: { class: "bg-gray-300 py-12 px-8 sticky top-0" } do |f| %>
-            <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4", placeholder: "try a town or estate" %>
-                <%= f.submit "search", class: "bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg" %>
-        <% end %>
-                        <div class=" bg-gray-100 ">
-                            <% @rentals.each do |rental| %>
-                                <div class="border-t border-b border-gray-600 my-1 py-2">
-                                    <div class="flex space-x-12 items-center my-4">
-                                        <div>
-                                            <% if rental.user.profile_picture.attached? %>
-                                                <%= image_tag rental.user.profile_picture, class:"rounded-full object-cover object-center h-56" %>
-                                            <% end %>
-                                        </div>
-                                        <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to rental.user.username, user_path(rental.user) %></div>
-                                    </div>
-                                    <div class="bg-white">
-                                        <%= link_to rental_path(rental) do %> 
-                                        <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
-                                            <% if rental.cover_image.attached? %>
-                                                <%= image_tag rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
-                                            <% end %>
-                                            <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= rental.name  %></div>
-                                            <div class="h-40">
-                                            <div class="text-4xl px-6 py-2 capitalize"><i class="fa fa-map-marker-alt text-teal-700"></i>
-                                                <%= rental.town.name if rental.town %>,<span><%= rental.estate.name if rental.estate %></span></div>
-                                                <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i><%= rental.bedrooms %> rooms</div>
-                                                <div class="text-4xl px-6 py-2 capitalize">kshs <%= rental.price %></div>
-                                            </div>
-                                        </div>  
-                                        <% end %>
-                                    </div>
-                                </div>
+<%= render 'layouts/mobile_nav' %>
+    <div class="">
+        <% @rentals.each do |rental| %>
+            <div class="border-t border-b border-gray-600 my-1 py-2">
+                <div class="flex space-x-12 items-center my-4 px-12">
+                    <div>
+                        <% if rental.user.profile_picture.attached? %>
+                            <%= image_tag rental.user.profile_picture, class:"rounded-full object-cover object-center border-2 border-gray-900 h-24 w-24" %>
+                        <% end %>
+                    </div>
+                    <div>
+                        <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to rental.user.username, user_path(rental.user) %></div>
+                        <div class="text-2xl font-medium uppercase"><i class="fa fa-map-marker-alt text-teal-700 mx-2"></i><%= link_to rental.town.name, town_path(rental.town) if rental.town %>,<%= link_to rental.estate.name, estate_path(rental.estate) if rental.estate  %></div>
+                    </div>
+                </div>
+                <div class="bg-white">
+                    <%= link_to rental_path(rental) do %> 
+                        <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
+                            <% if rental.cover_image.attached? %>
+                                <%= image_tag rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
                             <% end %>
-                        </div>
-                        <%= render "layouts/mobile_footer" %>
+                            <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= rental.name  %></div>
+                            <div class="">
+                                <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i><%= rental.bedrooms %> rooms</div>
+                                <div class="text-4xl px-6 py-2 capitalize">kshs <%= rental.price %></div>
+                            </div>
+                        </div>  
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>
 <div class="sm:hidden lg:block">
-    <div class="bg-white">
-        <%= render 'layouts/desktop_nav' %>
+    <div class= "bg-white">
+        <%= render 'layouts/desktop_nav' %>#hides only this in mobile view#
     </div>
     <div class="bg-cover bg-center h-56"
         style="background-image: url(https://images.unsplash.com/photo-1531877264583-a58acd888a97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
@@ -47,16 +43,13 @@
         <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
             <%= search_form_for @q, html: { class: "flex justify-center w-full" } do |f| %>
                 <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg", placeholder: "try a town or estate" %>
-                    <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
+                <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
             <% end %>
         </div>
-
     </div>
     <div class="my-4">
         <div class="capitalize text-gray-600 text-2xl font-bold mx-8">all cities</div>
-
         <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6 gap-5 justify-center">
-        
             <% Town.all.each do |town| %>
                 <%= link_to town_path(town) do %>
                     <div class="shadow-3xl rounded-full mx-4 bg-white">
@@ -66,14 +59,11 @@
                     </div>        
                 <% end %>
             <% end %>
-    
         </div>
     </div>
     <div class="my-4">
         <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
-
         <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
-
             <% @rentals.each do |rental| %>
                 <%= link_to rental_path(rental) do %> 
                     <div class="shadow-3xl rounded-lg mx-4 my-8">

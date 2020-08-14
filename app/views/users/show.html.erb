@@ -1,26 +1,44 @@
 <div class="lg:hidden">
-    <%= render 'layouts/mobile_nav' %>
-    <div class="font-bold text-6xl capitalize mx-4">welcome</div>
-    <div>
-        <% if @user.profile_picture.attached? %>
-            <%= image_tag @user.profile_picture, class:"h-32 object-cover" %>
-        <% end %>
+    <div class="bg-teal-700 py-4 text-4xl text-white w-full">
+        <div class="px-6"><i class="fa fa-chevron-left mr-6"></i><%= link_to "#{@user.username}", root_path %></div>
+    </div>
+    <div class="flex gap-5 bg-cover bg-no-repeat bg-center pt-8 items-center w-full h-66"
+        style="background-image: url(<%= url_for(@user.cover_photo) if @user.cover_photo.attached? %>);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+                <div>
+                    <% if @user.profile_picture.attached? %>
+                        <%= image_tag @user.profile_picture, class:"h-40 w-56 object-center border-white border-solid border-4 object-cover mx-16 mt-12 mb-6" %>
+                    <% end %>
+                </div>
+            <div class="text-xl text-gray-300">
+                <div class="text-5xl text-teal-600 font-semibold capitalize"><%= @user.username %></div>
+                <div class="font-medium text-4xl capitalize">patner</div>
+            </div>
+    </div>
+    <div class="font-bold text-4xl capitalize mx-4 my-3">about <%= @user.username %></div>
+    <div class="text-3xl font-bold capitalize my-6 p-4 text-teal-700">offices:
+        <div class="font-normal text-black text-3xl"><%= @user.location %></div>
+    </div>
+    <div class="flex justify-center">
+    <% if logged_in? && (current_user == @user || current_user.admin?) %>
+        <div class="btn bg-teal-700 text-white text-4xl py-4 w-full text-center px-6 my-4 rounded-lg font-medium">
+        <%= link_to 'Edit your account', edit_user_path(@user) %></div>
+    <% end %>
     </div>
     <% if logged_in? && current_user.admin? %>
-    <%= link_to 'all bookings', bookings_path , class:"text-5xl font-bold capitalize my-6 p-4 text-teal-700"%>
-    <%= link_to 'all users', users_path , class:"text-5xl font-bold capitalize my-6 p-4 text-teal-700"%>
+    <div clas="">
+        <div class="font-semibold text-gray-600 uppercase text-4xl py-2">important links</div>
+        <%= link_to 'all bookings', bookings_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
+        <%= link_to 'all users', users_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
+    </div>
     <% end %>
     <br>
-        <% if logged_in? && (current_user == @user || current_user.admin?) %>
-    <div class="text-5xl font-bold capitalize mx-4"><%= link_to 'new rental', new_rental_path %></div>
-    <div class="font-bold text-5xl capitalize mx-4 my-3">
-        <%= link_to 'edit your account', edit_user_path(current_user) %></div>
+    <% if logged_in? && (current_user == @user || current_user.admin?) %>
+        <div><%= link_to 'post new rental', new_rental_path, class:"text-5xl bg-blue-700 text-white border-1 border-teal-700 rounded-lg px-8 py-3 text-center font-bold capitalize mx-4" %></div>
     <% end %>
-    <div class="px-6 capitalize text-5xl mx-6">
-        <div class="font-bold">all rentals by <%= @user.username %></div>
+        <div class="font-semibold text-gray-600 uppercase text-4xl py-2 px-6">current listings</div>
+    <div class="capitalize text-5xl">
         <%= render 'rentals/rental', obj: @user.rentals %>
     </div>
-    <%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
     <div class="bg-white">

@@ -2,6 +2,8 @@ class EstatesController < ApplicationController
   before_action :set_estate, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_admin, only: [:new, :edit, :update, :destroy]
+  before_action :search_ready
+
 
   def index
     @estates = Estate.all

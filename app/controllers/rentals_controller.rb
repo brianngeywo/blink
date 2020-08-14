@@ -2,11 +2,9 @@ class RentalsController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :search_ready
 
   def index
-    @rentals = Rental.all
-    @q = Rental.ransack(params[:q])
-    @rentals = @q.result(distinct: true)
   end
 
   def new

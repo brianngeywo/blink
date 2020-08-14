@@ -1,7 +1,50 @@
 <div class="lg:hidden">
     <%= render "layouts/mobile_nav" %>
-        <%= render 'form' %>
-            <%= render 'layouts/mobile_footer' %>
+        <%= form_for @booking do |f| %>
+            <div class="bg-gray-300 text-4xl p-4 mb-32 ">
+                <div class="capitalize font-bold text-6xl">find a property in eldoret</div>
+                <div class="text-4xl capitalize">an agent will contact you to confirm rental availability</div>
+                <br>
+
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">name: </div>
+                    <%= f.text_field :name, placeholder: "whats your name?", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="flex items-center">
+                 <div class="capitalize w-1/2">phone number: </div>
+                    <%= f.text_field :phone, placeholder: "your phone number", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">town: </div>
+                    <select name="booking[town_id]">
+                        <% Town.all.each do |town| %>
+                            <option value="<%= town.id %>"><%= town.name %></option>
+                        <% end %>
+                    </select>
+                </div>
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">location: </div>
+                    <%= f.text_field :location, placeholder: "estate or location", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">number of bedrooms: </div>
+                    <%= f.text_field :rooms, placeholder: "number of bedrooms", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">max rental price: </div>
+                    <%= f.text_field :rent, placeholder: "rent per month", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="flex items-center">
+                    <div class="capitalize w-1/2">car space</div>
+                    <%= f.text_field :car, placeholder: "e.g 5", class: "my-6 p-2 rounded-lg" %>
+                </div>
+                <div class="capitalize">additional information</div>
+                <%= f.text_area :infor, placeholder: "please add any infor that would be usefull", class: "my-6 p-2 rounded-lg w-full" %>
+                  
+                <br>
+                <%= f.submit "send", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg text-6xl mx-70" %>
+            </div>
+        <% end %>
 </div>
 <div class="sm:hidden lg:block">
     <div class="bg-white">

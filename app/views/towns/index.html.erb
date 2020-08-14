@@ -1,29 +1,15 @@
 <div class="lg:hidden">
-<%= render 'layouts/mobile_nav' %>
-  <div class="bg-gray-300 py-12 px-8 sticky top-0">
-    <input type="text" class="text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4" placeholder="try a location or price">
-    <button class="bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg">search</button>
-  </div>
-  
-  <% if logged_in? && current_user.admin? %>
-    <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'add new town', new_town_path %></div>    
-  <% end %>
-  
-  <div class=" bg-gray-100 p-24">
-  <% @towns.each do |town| %>
-    <div class="my-12">
-    <%= link_to town_path(town) do %>
-      <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
-        <div class="rounded-b rounded-lg bg-cover bg-center bg-no-repeat w-full h-74"
-          style="background-image: url('../assets/property-3.jpg');">
-        </div>
-        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= town.name %></div>
-      </div>
-      <% end %>
+  <%= render 'layouts/mobile_nav' %>
+  <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of towns with listings</div>
+    <div class="">
+        <% @towns.each do |town| %>
+          <div class="px-16 my-1 py-2">
+              <div class="flex space-x-12 items-center my-4 px-12">
+                  <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to town.name, town_path(town) %></div>
+              </div>
+          </div>
+        <% end %>
     </div>
-  <% end %>
-  </div>
-<%= render 'layouts/mobile_footer' %>
 </div>
 <div class="sm:hidden lg:block">
     <div class="bg-white">

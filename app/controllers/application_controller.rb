@@ -22,4 +22,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  def search_ready
+    @rentals = Rental.all
+    @q = Rental.ransack(params[:q])
+    @rentals = @q.result(distinct: true)
+  end
 end

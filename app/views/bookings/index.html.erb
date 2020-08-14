@@ -1,9 +1,5 @@
 <div class="lg:hidden">
 <%= render 'layouts/mobile_nav' %>
-  <div class="bg-gray-300 py-12 px-8 sticky top-0">
-    <input type="text" class="text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4" placeholder="try a location or price">
-    <button class="bg-gray-900 text-white capitalize font-semibold py-4 px-6 mx-16 text-4xl rounded-lg">search</button>
-  </div>
   <% if logged_in? && current_user.admin? %>
     <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'new booking', new_booking_path %></div>
   <% end %>      
@@ -47,7 +43,11 @@
                             <% if booking.status == 1 %>
                                 <%= link_to booking.name, booking_path(booking) %>
                                 <% else %>
-                                <%= booking.name %>
+                                    <% if current_user.admin? %>
+                                        <%= link_to booking.name, booking_path(booking) %>
+                                    <% else %>
+                                        <%= booking.name %>
+                                    <% end %>                                
                             <% end %>
                             </div>
                             <div class="w-48 text-left py-2">

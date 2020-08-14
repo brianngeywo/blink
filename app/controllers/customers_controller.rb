@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
   before_action :require_admin, only: [:index]
+  before_action :search_ready
+
 
   def index
     if !logged_in? && !current_user.admin

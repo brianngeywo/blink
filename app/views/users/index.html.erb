@@ -1,17 +1,25 @@
 <div class="lg:hidden">
   <%= render 'layouts/mobile_nav' %>
-  <div class="p-24">
-    <% @users.each do |user| %>
-    <div class="my-12">
-      <%= link_to user_path(user) do %>
-      <div class="rounded-lg pb-10 bg-white shadow-b shadow-r shadow-3xl">
-        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= user.username %></div>
+  <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of real estate agencies</div>
+  <% @users.each do |user| %>
+    <div class="px-16 my-1 py-2">
+      <div class="flex space-x-12 items-center my-4 px-8">
+        <div>
+            <% if user.profile_picture.attached? %>
+                <%= image_tag user.profile_picture, class:"rounded-full object-cover object-center h-32 w-32" %>
+            <% end %>
+        </div>
+        <div>
+          <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to user.username, user_path(user) %></div>
+          <div class="text-3xl text-teal-700 font-medium uppercase flex">
+            <% if user.towns.any? %>
+              <div class="font-normal text-black"><%= render user.towns %> &nbsp;</div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <% end %>
     </div>
-    <% end %>
-  </div>
-  <%= render 'layouts/mobile_footer' %>
+  <% end %>
 </div>
 <div class="sm:hidden lg:block">
   <div class="bg-white">

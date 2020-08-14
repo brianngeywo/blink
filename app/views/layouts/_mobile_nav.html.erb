@@ -1,6 +1,30 @@
-  <div class="flex top-0 bg-gray-900 py-4 text-7xl text-white w-full">
-    <%= link_to '/', class: "mx-12" do %>
-      <i class="fa fa-home"></i>
-    <% end %>
-    <div class="text-6xl py-4 text-right capitalize text-white font-bold">salama houses <%= "admin" if logged_in? && current_user.admin? %></div>
-  </div>
+    <div class="sticky top-0 bg-teal-700 py-4 px-8">
+        <div class="flex justify-center items-center space-x-4 py-2">
+            <% if logged_in? %>
+                <%= link_to user_path(current_user), class:"text-white text-6xl mx-6" do %>
+                    <i class="fa fa-user-circle"></i>
+                <% end %>
+                <% else %>
+                <%= link_to login_path, class:"text-white text-6xl mx-6" do %>
+                    <i class="fa fa-user-circle"></i>
+                <% end %>
+            <% end %>
+            <%= search_form_for @q, html: { class: "flex items-center space-x-8" } do |f| %>
+                <%= f.search_field :town_name_or_name_or_estate_name_or_user_username_cont, class: "text-5xl w-2/3 py-2 bg-white border-gray-500 border-1 rounded-lg px-4", placeholder: "try a town or estate" %>
+                <%= f.submit "search", class: "bg-white text-gray-900 capitalize font-semibold py-4 px-3 text-4xl rounded-lg mx-3" %>
+            <% end %>
+        </div>
+        <div class="flex text-4xl capitalize space-x-12 justify-center items-center text-white font-medium pt-2 my-2">
+            <%= link_to "rentals", rentals_path, class:"" %>
+            <%= link_to "agents", users_path, class:"" %>
+            <%= link_to "towns", towns_path, class:"" %>             
+            <% if logged_in? && current_user.admin %>
+                <%= link_to "bookings", bookings_path, class:"" %>
+            <% end %>           
+            <% if logged_in? %>
+                <%= link_to "logout", logout_path, method: :delete, class:"" %>
+                <% else %>
+                <%= link_to "login", login_path, class:"" %>
+            <% end %>
+        </div>
+    </div>

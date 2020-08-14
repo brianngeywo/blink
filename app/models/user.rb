@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :towns, through: :town_users
   has_one_attached :cover_photo
   has_one_attached :profile_picture
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :town_ids, presence: true
   validates :phone, presence: true, uniqueness: true
 

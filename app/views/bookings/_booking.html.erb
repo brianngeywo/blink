@@ -1,19 +1,46 @@
-  <% obj.each do |booking| %>
-    <div class="my-12">
-    <%= link_to booking_path(booking) do %>
-      <div class="rounded-lg pb-10 bg-teal-700 shadow-b shadow-r shadow-3xl">
-        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.name %></div>
-        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.phone %></div>
-        <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12"><%= booking.location %></div>
-        
-        <% if booking.status.nil? %>
-          <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12">unverified</div>
-          <% else %>
-          <div class="text-5xl text-white pt-4 uppercase font-seimbold px-12">verified</div>
-        <% end %>
-        
-      </div>
-    <% end %>
-    </div>
-  <% end %>
+
+                  <div class="">
+                  <div class="grid grid-cols-3 space-x-3 bg-gray-100 border-b-1 border-black px-12 text-2xl">
+                    <div class="font-bold uppercase my-3 text-left text-black">name</div>
+                    <div class="font-bold uppercase my-3 text-left text-black">status</div>
+                    <div class="font-bold uppercase my-3 text-left text-black">actions</div>
+                  </div>
+                    <% obj.each do |booking| %>
+                        <div class="grid grid-cols-3 space-x-3 bg-gray-100 border-b-1 border-black px-12 text-2xl">
+                            <div class="w-1/3 text-left py-2">
+                            <% if booking.status == 1 %>
+                                <%= link_to booking.name, booking_path(booking) %>
+                                <% else %>
+                                    <% if current_user.admin? %>
+                                        <%= link_to booking.name, booking_path(booking) %>
+                                    <% else %>
+                                        <%= booking.name %>
+                                    <% end %>                                
+                            <% end %>
+                            </div>
+                            <div class="w-1/3 text-left py-2">
+                                <% if booking.status.nil? %>
+                                    unverified
+                                    <% elsif booking.status == 1 %>
+                                    verified
+                                    <% else %>
+                                    completed
+                                <% end %>
+                            </div>
+                            <div class="w-1/3 text-teal-700 text-center py-2">
+                                <% if current_user.admin? %>
+                                    <% if booking.status.nil? %>
+                                        <%= link_to "verify", verify_booking_path(booking), method: :post,
+                                                                data: { confirm: "You sure?" } %> 
+                                        <% elsif booking.status == 1 %> 
+                                        <%= link_to "complete booking", complete_booking_path(booking), method: :post,
+                                                                data: { confirm: "You sure?" } %>
+                                        <% else %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <br>
+                    <% end %>
+                </div>
   

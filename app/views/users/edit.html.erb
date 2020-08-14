@@ -1,5 +1,4 @@
 <div class="lg:hidden">
-<%= render "layouts/mobile_nav" %>
 <div class="capitalize font-bold text-6xl p-4">edit your account</div>
 <%= render 'form' %>
 <%= render 'layouts/mobile_footer' %>
@@ -42,7 +41,7 @@
             <div class="font-semibold normal-case text-teal-700">
                 <% if logged_in? && (current_user == @user || current_user.admin?) %>
                     <div class=""><%= link_to 'new rental', new_rental_path %></div>
-                    <div class=""><%= link_to 'edit account', edit_user_path(current_user) %></div>
+                    <div class=""><%= link_to 'edit account', edit_user_path(@user) %></div>
                 <% end %>
             </div>
         </div>

@@ -22,6 +22,14 @@
             <% cb.label(class: "text-teal-700 px-4 text-4xl"){cb.check_box(class: "bg-teal-700 px-1") + cb.text} %>
         <% end %>
         <br>
+        <div>
+            <div class="loercase mt-4">change cover photo</div>
+            <%= f.file_field :cover_photo %>
+        </div>
+        <div>
+            <div class="lowercase">change profile photo</div>
+            <%= f.file_field :profile_picture %>
+        </div>
     <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
     </div>
 <% end %>

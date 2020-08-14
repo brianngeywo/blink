@@ -1,10 +1,11 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update, :show, :destroy]
-  before_action :require_user, only: [:index, :destory]
+  before_action :require_user, except: [:new]
   before_action :require_admin, only: [:edit, :update, :destory]
+  before_action :search_ready
 
   def index
-    @bookings = Booking.all
+    @bookings = Booking.where(status.nil?)
   end
 
   def show
@@ -81,6 +82,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:name, :phone, :town_id, :location, :rooms, :rent, :infor, :user_id)
+    params.require(:booking).permit(:name, :phone, :town_id, :location, :rooms, :rent, :infor, :car)
   end
 end
