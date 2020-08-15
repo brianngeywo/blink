@@ -27,8 +27,7 @@
     <% if logged_in? && current_user.admin? %>
     <div clas="">
         <div class="font-semibold text-gray-600 uppercase text-4xl py-2">important links</div>
-        <%= link_to 'all bookings', bookings_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
-        <%= link_to 'all users', users_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
+        <%= link_to 'all customer requests', customers_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
     </div>
     <% end %>
     <br>

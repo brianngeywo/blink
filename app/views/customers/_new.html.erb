@@ -1,7 +1,7 @@
 <%= form_for(:customer, :html => {class: "form-horizontal", role: "form"}, url: new_customer_path) do |f| %>
     <label class="my-2">name:</label>
-    <%= f.text_field :name, class:"p-2 bg-white rounded-lg" %>
+    <%= f.text_field :name, class:"p-2 bg-white rounded-lg border-2 border-teal-700" %>
     <label class="my-2">phone number:</label>
-    <%= f.text_field :phone_number, class:"p-2 bg-white rounded-lg" %>
+    <%= f.text_field :phone_number, class:"p-2 bg-white rounded-lg border-2 border-teal-700" %>
     <%= f.submit "Submit", disable_with: 'Submiting...', class:"font-semibold tracking-wider p-2 w-full my-3 border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %>
 <% end %>

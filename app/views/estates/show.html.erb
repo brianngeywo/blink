@@ -54,9 +54,7 @@
             </div>
             <div class="font-semibold normal-case text-teal-700">
                 <% if logged_in? && current_user.admin? %>
-                    <div><%= link_to 'edit estate', edit_estate_path , class:""%></div>
-                    <div><%= link_to 'all bookings', bookings_path , class:""%></div>
-                    <div><%= link_to 'all users', users_path , class:""%></div>        
+                    <div><%= link_to 'edit estate', edit_estate_path , class:""%></div>      
                 <% end %>
             </div>
         </div>

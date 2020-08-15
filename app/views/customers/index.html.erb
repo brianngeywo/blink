@@ -1,4 +1,33 @@
-<div class="sm:hidden lg:block">
+<div class="lg:hidden">
+            <div class="w-full text-2xl px-3">
+                <div class="">
+                    <% @customers.each do |customer| %>
+                        <div class="grid grid-cols-4 space-x-3 bg-gray-100 border-b-1 border-black px-12">
+                            <div class="w-48 text-left py-2"><%= customer.name %></div>
+                            <div class="w-48 text-left py-2"><%= customer.phone_number %></div>
+                            <div class="w-48 text-left py-2">
+                                <% if customer.status.nil? %>
+                                    waiting
+                                    <% else %>
+                                    completed
+                                <% end %>
+                            </div>
+                            <div class="text-teal-700 text-center py-2">
+                                <% if current_user.admin? %>
+                                    <% if customer.status.nil? %>
+                                        <%= link_to "complete request", complete_request_path(customer), method: :post,
+                                                                data: { confirm: "You sure?" } %> 
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                        <br>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="hidden lg:block">
     <div class="bg-white">
         <%= render 'layouts/desktop_nav' %>
     </div>

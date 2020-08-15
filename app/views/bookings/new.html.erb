@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex items-center">
                     <div class="capitalize w-1/2">town: </div>
-                    <select name="booking[town_id]">
+                    <select name="booking[town_id]" class="p-3 bg-teal-700 text-white">
                         <% Town.all.each do |town| %>
                             <option value="<%= town.id %>"><%= town.name %></option>
                         <% end %>
