@@ -1,0 +1,10 @@
+<div class="lg:hidden">
+    <%= render 'layouts/mobile_nav' %>
+    <% if logged_in? && current_user.admin? %>
+        <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= link_to 'new booking', new_booking_path %></div>
+    <% end %>      
+    <div class=" bg-gray-100 p-24">
+        <%= render 'booking', obj: @bookings %>
+    </div>
+    <%= render 'layouts/mobile_footer' %>
+</div>

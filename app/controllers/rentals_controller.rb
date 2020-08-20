@@ -3,6 +3,7 @@ class RentalsController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
   before_action :search_ready
+  before_action :get_browser
 
   def index
   end

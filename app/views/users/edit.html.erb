@@ -1,107 +1,107 @@
-<div class="lg:hidden">
-<div class="capitalize font-bold text-6xl p-4">edit your account</div>
-<%= render 'form' %>
-<%= render 'layouts/mobile_footer' %>
-</div>
-<div class="sm:hidden lg:block">
-    <div class="bg-white">
-      <%= render 'layouts/desktop_nav' %>
-    </div>
-    <div class="">
-        <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
-        <div class="flex gap-5 bg-cover bg-center pt-8 items-center w-full h-66"
-            style="background-image: url(<%= url_for(@user.cover_photo) if @user.cover_photo.attached? %>);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
-                    <div>
-                        <% if @user.profile_picture.attached? %>
-                            <%= image_tag @user.profile_picture, class:"h-32 border-white border-solid border-4 object-cover mx-16 mt-12 mb-6" %>
-                        <% end %>
-                    </div>
-                <div class="text-xl text-gray-300">
-                    <div class="text-4xl text-teal-600 font-semibold capitalize subpixel-antialiased"><%= @user.username %> properties</div>
-                    <div class="font-medium tracking-wider capitalize">patner</div>
-                </div>
+<% if browser.device.mobile? %>
+    <%= render 'mobile.user.edit' %>
+    <% else %>
+    <div class="sm:hidden lg:block">
+        <div class="bg-white">
+            <%= render 'layouts/desktop_nav' %>
         </div>
-    </div>
-    <div class="flex gap-4 mx-16 p-6">
-        <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
-            <div class="my-3 text-teal-700">offices:
-                <div class="font-normal text-black"><%= @user.location %></div>
-            </div>
-            <div class="my-3 text-teal-700">available in:
-                <% if @user.towns.any? %>
-                    <div class="font-normal text-black"><%= render @user.towns %> &nbsp;</div>
-                <% end %>
-            </div>
-            <div class="my-3 text-teal-700">contacts:
-                <div class="font-normal text-black"><%= @user.phone %></div>
-            </div>
-            <div class="my-3 text-teal-700">email:
-                <div class="font-normal normal-case text-black"><%= @user.email %></div>
-            </div>
-            <div class="font-semibold normal-case text-teal-700">
-                <% if logged_in? && (current_user == @user || current_user.admin?) %>
-                    <div class=""><%= link_to 'new rental', new_rental_path %></div>
-                    <div class=""><%= link_to 'edit account', edit_user_path(@user) %></div>
-                <% end %>
-            </div>
-        </div>
-        <div class="w-full">
-            <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">
-             <div class="text-xl uppercase px-12 py4">account settings</div>
-                <%= form_for @user do |f| %>
-                <% if current_user.admin? %>
-                    |
-                    <% if @user.admin? %>
-                        <%= link_to "Remove Admin", remove_admin_path(@user), method: :delete,
-                                                    data: { confirm: "You sure?" } %>
-                        <% else %>
-                        <%= link_to "Make Admin", make_admin_path(@user), method: :post,
-                                                data: { confirm: "You sure?" } %>
-                    <% end %>
-                <% end %>
-                    <div class="text-md p-4">
-                        <div class="my-2">
-                            <div class="my-2">change username:</div>
-                                <%= f.text_field :username, placeholder: "enter username", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
-                        </div>
-                        <br>
-                        <div class="my-2">
-                            <div class="my-2">change phone number:</div>
-                                <%= f.text_field :phone, placeholder: "enter phone", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
-                        </div>
-                        <br>
-                        <div class="my-2">
-                            <div class="my-2">change email address:</div>
-                                <%= f.text_field :email, placeholder: "enter email", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
-                        </div>
-                        <br>
-                        <div class="my-2">
-                            <div class="my-2">office address location:</div>
-                                <%= f.text_field :location, placeholder: "enter address", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
-                        </div>
-                        <br>
-                        <div class="">
-                            <div class="my-2">which towns do you operate?</div>
-                                <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
-                                <% cb.label(class: "text-teal-700 mx-2 uppercase"){cb.check_box(class: "check mx-1") + cb.text} %>
+        <div class="">
+            <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
+            <div class="flex gap-5 bg-cover bg-center pt-8 items-center w-full h-66"
+                style="background-image: url(<%= url_for(@user.cover_photo) if @user.cover_photo.attached? %>);background-color: rgba(14, 0, 0, 0.564);background-blend-mode:multiply;">
+                        <div>
+                            <% if @user.profile_picture.attached? %>
+                                <%= image_tag @user.profile_picture, class:"h-32 border-white border-solid border-4 object-cover mx-16 mt-12 mb-6" %>
                             <% end %>
                         </div>
-                        <br>
-                        <div>
-                            <div class="capitalize">change cover photo</div>
-                            <%= f.file_field :cover_photo %>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="capitalize">change profile photo</div>
-                            <%= f.file_field :profile_picture %>
-                        </div>
-                        <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+                    <div class="text-xl text-gray-300">
+                        <div class="text-4xl text-teal-600 font-semibold capitalize subpixel-antialiased"><%= @user.username %> properties</div>
+                        <div class="font-medium tracking-wider capitalize">patner</div>
                     </div>
-                <% end %>
             </div>
         </div>
+        <div class="flex gap-4 mx-16 p-6">
+            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
+                <div class="my-3 text-teal-700">offices:
+                    <div class="font-normal text-black"><%= @user.location %></div>
+                </div>
+                <div class="my-3 text-teal-700">available in:
+                    <% if @user.towns.any? %>
+                        <div class="font-normal text-black"><%= render @user.towns %> &nbsp;</div>
+                    <% end %>
+                </div>
+                <div class="my-3 text-teal-700">contacts:
+                    <div class="font-normal text-black"><%= @user.phone_number %></div>
+                </div>
+                <div class="my-3 text-teal-700">email:
+                    <div class="font-normal normal-case text-black"><%= @user.email %></div>
+                </div>
+                <div class="font-semibold normal-case text-teal-700">
+                    <% if logged_in? && (current_user == @user || current_user.admin?) %>
+                        <div class=""><%= link_to 'new rental', new_rental_path %></div>
+                        <div class=""><%= link_to 'edit account', edit_user_path(@user) %></div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="w-full">
+                <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">
+                <div class="text-xl uppercase px-12 py4">account settings</div>
+                    <%= form_for @user do |f| %>
+                    <% if current_user.admin? %>
+                        |
+                        <% if @user.admin? %>
+                            <%= link_to "Remove Admin", remove_admin_path(@user), method: :delete,
+                                                        data: { confirm: "You sure?" } %>
+                            <% else %>
+                            <%= link_to "Make Admin", make_admin_path(@user), method: :post,
+                                                    data: { confirm: "You sure?" } %>
+                        <% end %>
+                    <% end %>
+                        <div class="text-md p-4">
+                            <div class="my-2">
+                                <div class="my-2">change username:</div>
+                                    <%= f.text_field :username, placeholder: "enter username", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
+                            </div>
+                            <br>
+                            <div class="my-2">
+                                <div class="my-2">change phone number:</div>
+                                    <%= f.text_field :phone_number, placeholder: "enter phone", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
+                            </div>
+                            <br>
+                            <div class="my-2">
+                                <div class="my-2">change email address:</div>
+                                    <%= f.text_field :email, placeholder: "enter email", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
+                            </div>
+                            <br>
+                            <div class="my-2">
+                                <div class="my-2">office address location:</div>
+                                    <%= f.text_field :location, placeholder: "enter address", class: "mx-2 p-2 rounded-lg border-1 border-gray-400" %>
+                            </div>
+                            <br>
+                            <div class="">
+                                <div class="my-2">which towns do you operate?</div>
+                                    <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
+                                    <% cb.label(class: "text-teal-700 mx-2 uppercase"){cb.check_box(class: "check mx-1") + cb.text} %>
+                                <% end %>
+                            </div>
+                            <br>
+                            <div>
+                                <div class="capitalize">change cover photo</div>
+                                <%= f.file_field :cover_photo %>
+                            </div>
+                            <br>
+                            <div>
+                                <div class="capitalize">change profile photo</div>
+                                <%= f.file_field :profile_picture %>
+                            </div>
+                            <%= f.submit (@user.new_record? ? "signup" : "update your account"), disable_with: "processing...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <footer>
+        <%= render 'layouts/desktop_footer' %>
+    </footer>
     </div>
-    <%= render 'layouts/desktop_footer' %>
-  </footer>
-</div>
+<% end %>

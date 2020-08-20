@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_one_attached :profile_picture
   validates :email, presence: true, uniqueness: true
   validates :town_ids, presence: true
-  validates :phone, presence: true, uniqueness: true
+  validates :phone_number, presence: true, uniqueness: true
 
 
   private

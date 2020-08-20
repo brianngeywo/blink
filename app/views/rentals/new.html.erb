@@ -1,103 +1,100 @@
-<div class="lg:hidden">
-    <div class="bg-teal-700">
-        <%= render 'layouts/mobile_login' %>
-    </div>
-<div class="capitalize font-bold text-6xl p-4">add new rental</div>
-<%= render 'form' %>
-</div>
-<div class="sm:hidden lg:block">
-    <div class="bg-white">
-        <%= render 'layouts/desktop_nav' %>
-    </div>
-    <div class="">
-        <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
-        <div class="flex gap-4 mx-16 p-6">
-            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
-                <div class="my-3 text-teal-700">offices:
-                    <div class="font-normal text-black">10th Floor Fortis Tower</div>
-                    <div class="font-normal text-black">Westlands</div>
-                </div>
-                <div class="my-3 text-teal-700">contacts:
-                    <div class="font-normal text-black">0798767470</div>
-                </div>
-                <div class="my-3 text-teal-700">email:
-                    <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
-                </div>
-                <div class="font-semibold normal-case text-teal-700">
-                    <% if logged_in? && (current_user == @user || current_user.admin?) %>
-                        <div class="">
-                            <%= link_to 'edit account', edit_user_path(current_user) %>
-                        </div>
-                    <% end %>
-                    <% if logged_in? && current_user.admin? %>
-                        <div>
-                            <%= link_to 'all bookings', bookings_path , class:""%>
-                        </div>
-                        <div>
-                            <%= link_to 'all users', users_path , class:""%>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-            <div class="w-full">
-                <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">
-                    <div class="text-xl uppercase px-12 py-4 font-semibold">add listing</div>
-                    <%= form_for @rental do |f| %>
-
-                        <% if @rental.errors.any? %>
-                            <% @rental.errors.full_messages.each do |msg|%>%
-                                <div>
-                                    <%= msg %>
-                                </div>
-                            <% end %>
+<% if browser.device.mobile? %>
+    <%= render 'mobile.rental.new' %>
+    <% else %>
+    <div class="sm:hidden lg:block">
+        <div class="bg-white">
+            <%= render 'layouts/desktop_nav' %>
+        </div>
+        <div class="">
+            <div class="mx-12 font-semibold text-gray-600 uppercase text-lg py-2">rentals in kenya</div>
+            <div class="flex gap-4 mx-16 p-6">
+                <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto">
+                    <div class="my-3 text-teal-700">offices:
+                        <div class="font-normal text-black">10th Floor Fortis Tower</div>
+                        <div class="font-normal text-black">Westlands</div>
+                    </div>
+                    <div class="my-3 text-teal-700">contacts:
+                        <div class="font-normal text-black">0798767470</div>
+                    </div>
+                    <div class="my-3 text-teal-700">email:
+                        <div class="font-normal normal-case text-black">brianngeywo@gmail.com</div>
+                    </div>
+                    <div class="font-semibold normal-case text-teal-700">
+                        <% if logged_in? && (current_user == @user || current_user.admin?) %>
+                            <div class="">
+                                <%= link_to 'edit account', edit_user_path(current_user) %>
+                            </div>
                         <% end %>
+                        <% if logged_in? && current_user.admin? %>
+                            <div>
+                                <%= link_to 'all bookings', bookings_path , class:""%>
+                            </div>
+                            <div>
+                                <%= link_to 'all users', users_path , class:""%>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <div class="bg-gray-200 border-1 border-gray-400 rounded-lg p-4">
+                        <div class="text-xl uppercase px-12 py-4 font-semibold">add listing</div>
+                        <%= form_for @rental do |f| %>
 
-                        <div class="text-lg p-4">
-                            <div class="capitalize">property name</div>
-                            <%= f.text_field :name, placeholder: "property name", class: "m-4 p-2 rounded-lg" %>
-                                <div class="flex">
-                                    <div class="capitalize mr-6 my-4">town:</div>
-                                    <select name="rental[town_id]">
-                                        <% Town.all.each do |town| %>
-                                        <option value="<%= town.id %>"><%= town.name %></option>
-                                        <% end %>
-                                    </select>
-                                </div>
-                                <div class="flex">
-                                    <div class="capitalize mr-6 my-4">estate:</div>
-                                    <select name="rental[estate_id]">
-                                        <% Estate.all.each do |estate| %>
-                                        <option value="<%= estate.id %>"><%= estate.name %></option>
-                                        <% end %>
-                                    </select>
-                                </div>
-                                <div class="capitalize">monthly payment</div>
-                                <%= f.text_field :price, placeholder: "price per month", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">number units</div>
-                                <%= f.text_field :units, placeholder: "units", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">number of bedrooms</div>
-                                <%= f.text_field :bedrooms, placeholder: "bedrooms", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">number of bathrooms</div>
-                                <%= f.text_field :bathrooms, placeholder: "bathrooms", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">how much car space does the house have</div>
-                                <%= f.text_field :parking, placeholder: "E.g 2", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">is wi-fi available?</div>
-                                <%= f.text_field :wifi, placeholder: "yes or no", class: "m-4 p-2 rounded-lg" %>
-                                <div class="capitalize">cover photo</div>
-                                <%= f.file_field :cover_image %>
-                                <div class="capitalize">rental photos</div>
-                                <%= f.file_field :photos, multiple: true %>
-                                <div class="capitalize">rental description</div>
-                                <%= f.text_area :description, :cols => 70, :rows => 30, class:"p-4"  %>
-                                <br>
-                                <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
-                        </div>
-                    <% end %>
+                            <% if @rental.errors.any? %>
+                                <% @rental.errors.full_messages.each do |msg|%>%
+                                    <div>
+                                        <%= msg %>
+                                    </div>
+                                <% end %>
+                            <% end %>
+
+                            <div class="text-lg p-4">
+                                <div class="capitalize">property name</div>
+                                <%= f.text_field :name, placeholder: "property name", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="flex">
+                                        <div class="capitalize mr-6 my-4">town:</div>
+                                        <select name="rental[town_id]">
+                                            <% Town.all.each do |town| %>
+                                            <option value="<%= town.id %>"><%= town.name %></option>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="capitalize mr-6 my-4">estate:</div>
+                                        <select name="rental[estate_id]">
+                                            <% Estate.all.each do |estate| %>
+                                            <option value="<%= estate.id %>"><%= estate.name %></option>
+                                            <% end %>
+                                        </select>
+                                    </div>
+                                    <div class="capitalize">monthly payment</div>
+                                    <%= f.text_field :price, placeholder: "price per month", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">number units</div>
+                                    <%= f.text_field :units, placeholder: "units", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">number of bedrooms</div>
+                                    <%= f.text_field :bedrooms, placeholder: "bedrooms", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">number of bathrooms</div>
+                                    <%= f.text_field :bathrooms, placeholder: "bathrooms", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">how much car space does the house have</div>
+                                    <%= f.text_field :parking, placeholder: "E.g 2", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">is wi-fi available?</div>
+                                    <%= f.text_field :wifi, placeholder: "yes or no", class: "m-4 p-2 rounded-lg" %>
+                                    <div class="capitalize">cover photo</div>
+                                    <%= f.file_field :cover_image %>
+                                    <div class="capitalize">rental photos</div>
+                                    <%= f.file_field :photos, multiple: true %>
+                                    <div class="capitalize">rental description</div>
+                                    <%= f.text_area :description, :cols => 70, :rows => 30, class:"p-4"  %>
+                                    <br>
+                                    <%= f.submit "Submit", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg" %>
+                            </div>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <%= render 'layouts/desktop_footer' %>
+        </footer>
     </div>
-    <footer>
-        <%= render 'layouts/desktop_footer' %>
-    </footer>
-</div>
+<% end %>

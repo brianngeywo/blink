@@ -1,171 +1,111 @@
-<div class="lg:hidden bg-gray-200">
-    <div class="flex bg-teal-700 py-3 text-4xl text-white w-full">
-        <div class="px-6 flex flex-grow">
-            <div class="mx-6">
-            <%= link_to rentals_path do%>
-                <i class="fa fa-chevron-left mr-6"></i>
-            <% end %>
-            <%= @rental.town.name %>
-            </div>|
-            <div class="mx-6 flex-grow"><%= @rental.estate.name %></div>
-            <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
-                <div class="font-medium capitalize"><%= link_to 'edit rental', edit_rental_path %></div>
-            <% end %>
+<% if browser.device.mobile? %>
+    <%= render 'mobile.rental.show' %>
+    <% else %>
+    <div class="">
+        <div class="bg-white">
+            <%= render 'layouts/desktop_nav' %>
         </div>
-    </div>
-        <div>
-            <% if @rental.cover_image.attached? %>
-                <%= image_tag @rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
-            <% end %>
-        </div>
-        <div class="font-bold text-7xl capitalize mx-4">
-            <%= @rental.name %>
-        </div>
-        <div class="px-8 py-2 capitalize border-1 border-gray-400">
-            <div class="text-4xl my-3 text-gray-800">
-                <span class="mx-4"><i class="fa fa-bed mx-1"></i><%= @rental.bedrooms %><span>
-                <span class="mx-4"><i class="fa fa-bath mx-1"></i><%= @rental.bathrooms %><span>
-                <span class="mx-4"><i class="fa fa-car mx-1"></i><%= @rental.parking %><span>
-                <span class="mx-4"><i class="fa fa-wifi mx-1"></i><%= @rental.wifi %><span>
-                <span class="mx-4"><i class="fas fa-house-user mx-1"></i><%= @rental.units %><span>
-            </div>
-            <div class="text-teal-700 font-bold text-4xl border-t-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
-        </div>
-        <div class="px-8 py-2 capitalize border-1 border-gray-400 flex justify-center items-center">
-            <div class="text-teal-700 font-bold text-5xl py-4"><i class="fa fa-phone-volume mx-2"></i><i class="fa fa-sms mx-2"></i> 0798767470</div>
-        </div>    
-        <div class="text-xl font-Arial text-gray-700 text-center my-2">*please pay through blinkhomes to avoid bieng conned</div>
-        <div class="px-8 py-4 border-1 border-gray-400">
-            <div class="uppercase text-gray-500 font-semibold text-4xl my-3">property photos </div>
-            <% if @rental.photos.attached? %>
-                <div class="flex justify-center items-center">
-                    <div class="px-4 grid grid-cols-3 space-x-3 space-y-3">
-                        <% (0...@rental.photos.count).each do |photo| %>
-                            <div class="border-2 border-white">
-                                <%= image_tag(@rental.photos[photo], class:"object-cover object-center h-48 w-48") %>
-                            </div>
+        <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
+            <div>rentals in kenya</div>
+            <div>></div>
+            <div>
+                <%= link_to town_path(@rental.town) do %>
+                    <%= @rental.town.name %>
                         <% end %>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-        <div class="mx-2">
-            <div class="my-4 mx-2 text-4xl">
-                <div class="font-medium text-teal-700 capitalize my-3 text-5xl">features</div>
-                <div class="grid grid-cols-2 px-6 text-gray-800 capitalize">                
-                    <% @rental.rental_features.each do |rental_feature| %>
-                    <div class="my-1"><%= rental_feature.name %></div>             
-                    <% end %>                    
-                </div>
             </div>
-                <div class="">
-                    <div class="font-medium text-teal-700 capitalize my-3 text-5xl">property description</div>
-                    <div class="mx-3 font-Arial text-3xl text-black"><%= markdown(@rental.description) if @rental.description.present? %> </div>
-                </div>
-        <div>
-</div>
-<div class="sm:hidden lg:block">
-    <div class="bg-white">
-        <%= render 'layouts/desktop_nav' %>
-    </div>
-    <div class="flex text-base space-x-3 py-4 px-6 uppercase text-gray-700 font-medium">
-        <div>rentals in kenya</div>
-        <div>></div>
-        <div>
-            <%= link_to town_path(@rental.town) do %>
-                <%= @rental.town.name %>
-                    <% end %>
-        </div>
-        <div>></div>
-        <div>
-            <%= @rental.name %>
-        </div>
-    </div>
-    <div>
-        <div class="bg-cover bg-center h-66 items-baseline relative" style="background-image: url(<%= url_for(@rental.cover_image) if @rental.cover_image.attached? %>);background-color: rgba(0, 0, 0, 0.487);background-blend-mode: multiply;">
-            <div class="text-4xl font-semibold px-16 py-8 text-white uppercase bottom-0 absolute">
+            <div>></div>
+            <div>
                 <%= @rental.name %>
             </div>
         </div>
-        <div class="flex gap-4 mx-16 p-6">
-            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
-                <div class="border-b border-gray-700">
-                    <div class="flex space-x-2 justify-center items-center">
-                        <% if @rental.user.profile_picture.attached? %>
-                            <%= image_tag @rental.user.profile_picture, class:"h-24 w-24 rounded-full object-center border-white border-solid border-4 object-cover" %>
-                        <% end %>
-                    </div>
-                    <div class="text-teal-700 text-center my-2"><%= link_to @rental.user.username, user_path(@rental.user) %></div>
+        <div>
+            <div class="bg-cover bg-center h-66 items-baseline relative" style="background-image: url(<%= url_for(@rental.cover_image) if @rental.cover_image.attached? %>);background-color: rgba(0, 0, 0, 0.487);background-blend-mode: multiply;">
+                <div class="text-4xl font-semibold px-16 py-8 text-white uppercase bottom-0 absolute">
+                    <%= @rental.name %>
                 </div>
-                <div class="my-3 text-teal-700">offices:
-                    <div class="font-normal text-black"><%= @rental.user.location %></div>
-                </div>
-                <div id='call-trigger' class="my-6 font-semibold tracking-wider p-2 w-auto border-2 border-teal-700 bg-white text-teal-700 uppercase text-center" onclick='toggle()'>request a call</div>
-                <div id='call-form' class="hidden px-2 w-40 capitalize">
-                    <%= render 'customers/new' %>
-                </div>
-                <div class="my-3 text-teal-700 font-medium uppercase">here's our number:
-                    <div class="font-normal text-black">0798767470</div>
-                    <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
-                </div>
-                <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
-                    <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
-                <% end %>
             </div>
-            <div class="w-full">
-                <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                    <div class="text-md my-3 text-gray-700">
-                        <span class="mx-2"><i class="fa fa-bed mx-1"></i><%= @rental.bedrooms %><span>
-                        <span class="mx-2"><i class="fa fa-bath mx-1"></i><%= @rental.bathrooms %><span>
-                        <span class="mx-2"><i class="fa fa-car mx-1"></i><%= @rental.parking %><span>
-                        <span class="mx-2"><i class="fa fa-wifi mx-1"></i><%= @rental.wifi %><span>
-                        <span class="mx-2"><i class="fas fa-house-user mx-1"></i><%= @rental.units %><span>
-                    </div>
-                    <div class="text-teal-700 font-bold text-lg border-t-2 border-b-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
-                    <div class="text-xs font-Arial text-gray-500 text-center my-2">*please pay through blinkhomes to avoid bieng conned</div>
-                </div>
-                <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property features</div>
-                    <div class="grid grid-cols-3 px-6 text-gray-800 capitalize">                
-                        <% @rental.rental_features.each do |rental_feature| %>
-                        <div class="my-1"><%= rental_feature.name %></div>               
-                        <% end %>                    
-                    </div>
-                </div>
-                <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                <div class="uppercase text-gray-500 font-semibold text-sm my-2">property photos </div>
-                    <% if @rental.photos.attached? %>
-                        <div class="px-4 grid grid-cols-5">
-                            <% (0...@rental.photos.count).each do |photo| %>
-                                <div class="border-2 border-white w-32">
-                                    <%= image_tag(@rental.photos[photo], class:"object-cover h-24 w-32") %>
-                                </div>
+            <div class="flex gap-4 mx-16 p-6">
+                <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
+                    <div class="border-b border-gray-700">
+                        <div class="flex space-x-2 justify-center items-center">
+                            <% if @rental.user.profile_picture.attached? %>
+                                <%= image_tag @rental.user.profile_picture, class:"h-24 w-24 rounded-full object-center border-white border-solid border-4 object-cover" %>
                             <% end %>
                         </div>
+                        <div class="text-teal-700 text-center my-2"><%= link_to @rental.user.username, user_path(@rental.user) %></div>
+                    </div>
+                    <div class="my-3 text-teal-700">offices:
+                        <div class="font-normal text-black"><%= @rental.user.location %></div>
+                    </div>
+                    <div id='call-trigger' class="my-6 font-semibold tracking-wider p-2 w-auto border-2 border-teal-700 bg-white text-teal-700 uppercase text-center" onclick='toggle()'>request a call</div>
+                    <div id='call-form' class="hidden px-2 w-40 capitalize">
+                        <%= render 'customers/new' %>
+                    </div>
+                    <div class="my-3 text-teal-700 font-medium uppercase">here's our number:
+                        <div class="font-normal text-black">0798767470</div>
+                        <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
+                    </div>
+                    <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+                        <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
                     <% end %>
                 </div>
-                <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400 bg-gray-200">
-                    <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property description</div>
-                    <div class="font-Arial text-md text-gray-700"><%= markdown(@rental.description) if @rental.description.present? %> </div>
+                <div class="w-full">
+                    <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                        <div class="text-md my-3 text-gray-700">
+                            <span class="mx-2"><i class="fa fa-bed mx-1"></i><%= @rental.bedrooms %><span>
+                            <span class="mx-2"><i class="fa fa-bath mx-1"></i><%= @rental.bathrooms %><span>
+                            <span class="mx-2"><i class="fa fa-car mx-1"></i><%= @rental.parking %><span>
+                            <span class="mx-2"><i class="fa fa-wifi mx-1"></i><%= @rental.wifi %><span>
+                            <span class="mx-2"><i class="fas fa-house-user mx-1"></i><%= @rental.units %><span>
+                        </div>
+                        <div class="text-teal-700 font-bold text-lg border-t-2 border-b-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
+                        <div class="text-xs font-Arial text-gray-500 text-center my-2">*please pay through blinkhomes to avoid bieng conned</div>
+                    </div>
+                    <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                        <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property features</div>
+                        <div class="grid grid-cols-3 px-6 text-gray-800 capitalize">                
+                            <% @rental.rental_features.each do |rental_feature| %>
+                            <div class="my-1"><%= rental_feature.name %></div>               
+                            <% end %>                    
+                        </div>
+                    </div>
+                    <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                    <div class="uppercase text-gray-500 font-semibold text-sm my-2">property photos </div>
+                        <% if @rental.photos.attached? %>
+                            <div class="px-4 grid grid-cols-5">
+                                <% (0...@rental.photos.count).each do |photo| %>
+                                    <div class="border-2 border-white w-32">
+                                        <%= image_tag(@rental.photos[photo], class:"object-cover h-24 w-32") %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
+                    <div class="my-4 mx-6 shadow-xl rounded-lg py-4 px-8 border-1 border-gray-400 bg-gray-200">
+                        <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property description</div>
+                        <div class="font-Arial text-md text-gray-700"><%= markdown(@rental.description) if @rental.description.present? %> </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <%= render 'layouts/desktop_footer' %>
+        </footer>
+        <script>
+            visible = false; //var that keeps track if the content is visible.
+            txt = document.getElementById("call-form");
+            btn = document.getElementById("call-trigger");
+            function toggle() {
+                if(visible) {
+                    visible = 0;
+                    txt.style.display = 'none';
+                } else {
+                    visible = 1;
+                    txt.style.display = 'block';
+                }
+            };
+        </script>
     </div>
-    <footer>
-        <%= render 'layouts/desktop_footer' %>
-    </footer>
-    <script>
-        visible = false; //var that keeps track if the content is visible.
-        txt = document.getElementById("call-form");
-        btn = document.getElementById("call-trigger");
-        function toggle() {
-            if(visible) {
-                visible = 0;
-                txt.style.display = 'none';
-            } else {
-                visible = 1;
-                txt.style.display = 'block';
-            }
-        };
-    </script>
-</div>
+    
+<% end %>
+    

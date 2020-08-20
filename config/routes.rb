@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get "/request", to: "pages#finder"
   get "pages/contact"
   resources :rentals
-  resources :estates, except: [:index]
+  resources :estates
   resources :towns
   post   '/users/:id/make_admin', to: 'users#make_admin', as: :make_admin
   delete '/users/:id/remove_admin', to: 'users#remove_admin', as: :remove_admin

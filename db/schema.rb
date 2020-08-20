@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_124139) do
+ActiveRecord::Schema.define(version: 2020_08_18_094659) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,11 @@ ActiveRecord::Schema.define(version: 2020_08_13_124139) do
     t.string "phone"
     t.integer "status"
     t.string "car"
+  end
+
+  create_table "customer_bookings", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "rental_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -89,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_124139) do
     t.string "wifi"
     t.integer "bathrooms"
     t.integer "parking"
+    t.integer "status"
   end
 
   create_table "town_users", force: :cascade do |t|
@@ -108,7 +114,9 @@ ActiveRecord::Schema.define(version: 2020_08_13_124139) do
     t.boolean "admin", default: false
     t.string "email"
     t.string "location"
-    t.string "phone"
+    t.text "phone_number"
+    t.string "country_code"
+    t.boolean "verified", default: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

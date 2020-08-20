@@ -1,0 +1,13 @@
+<div class="lg:hidden">
+  <%= render 'layouts/mobile_nav' %>
+  <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of towns with listings</div>
+    <div class="">
+        <% @towns.each do |town| %>
+          <div class="px-16 my-1 py-2">
+              <div class="flex space-x-12 items-center my-4 px-12">
+                  <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to town.name, town_path(town) %></div>
+              </div>
+          </div>
+        <% end %>
+    </div>
+</div>

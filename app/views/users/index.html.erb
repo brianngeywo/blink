@@ -1,52 +1,33 @@
-<div class="lg:hidden">
-  <%= render 'layouts/mobile_nav' %>
-  <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of real estate agencies</div>
-  <% @users.each do |user| %>
-    <div class="px-16 my-1 py-2">
-      <div class="flex space-x-12 items-center my-4 px-8">
-        <div>
-            <% if user.profile_picture.attached? %>
-                <%= image_tag user.profile_picture, class:"rounded-full object-cover object-center h-32 w-32" %>
-            <% end %>
-        </div>
-        <div>
-          <div class="text-3xl text-teal-700 font-medium uppercase"><%= link_to user.username, user_path(user) %></div>
-          <div class="text-3xl text-teal-700 font-medium uppercase flex">
-            <% if user.towns.any? %>
-              <div class="font-normal text-black"><%= render user.towns %> &nbsp;</div>
-            <% end %>
-          </div>
-        </div>
+<% if browser.device.mobile? %>
+    <%= render 'mobile.user.index' %>
+    <% else %>
+  <div class="sm:hidden lg:block">
+    <div class="bg-white">
+      <%= render 'layouts/desktop_nav' %>
+    </div>
+    <div>
+      <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of real estate agencies</div>
+      <div class="mx-56">
+        <% @users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <div class="flex shadow-3xl my-8 rounded-lg bg-gray-200">
+                <div class="w-1/3 rounded-l-lg">
+                    <% if user.profile_picture.attached? %>
+                        <%= image_tag user.profile_picture, class:"h-40 w-66 object-center object-cover rounded-l-lg" %>
+                    <% end %>
+                </div>
+                <div class="w-2/3 p-5">
+                  <div class="text-3xl font-medium capitalize"><%= user.username %></div>
+                  <div class="text-teal-700 capitalize font-normal text-xl"><%= pluralize(user.rentals.count, "rental") if user.rentals %> properties</div>
+                  <div class="capitalize text-xl">nairobi</div>
+                </div>
+              </div>       
+            <% end %>  
+        <% end %>
       </div>
     </div>
-  <% end %>
-</div>
-<div class="sm:hidden lg:block">
-  <div class="bg-white">
-    <%= render 'layouts/desktop_nav' %>
+    <footer>
+      <%= render 'layouts/desktop_footer' %>
+    </footer>
   </div>
-  <div>
-    <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of real estate agencies</div>
-    <div class="mx-56">
-      <% @users.each do |user| %>
-          <%= link_to user_path(user) do %>
-            <div class="flex shadow-3xl my-8 rounded-lg bg-gray-200">
-              <div class="w-1/3 rounded-l-lg">
-                  <% if user.profile_picture.attached? %>
-                      <%= image_tag user.profile_picture, class:"h-40 w-66 object-center object-cover rounded-l-lg" %>
-                  <% end %>
-              </div>
-              <div class="w-2/3 p-5">
-                <div class="text-3xl font-medium capitalize"><%= user.username %></div>
-                <div class="text-teal-700 capitalize font-normal text-xl"><%= pluralize(user.rentals.count, "rental") if user.rentals %> properties</div>
-                <div class="capitalize text-xl">nairobi</div>
-              </div>
-            </div>       
-          <% end %>  
-      <% end %>
-    </div>
-  </div>
-  <footer>
-    <%= render 'layouts/desktop_footer' %>
-  </footer>
-</div>
+<% end %>
