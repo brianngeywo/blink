@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/admin/all_listing", to: "pages#listing"
   get "/request", to: "pages#finder"
   get "pages/contact"
+  resources :rentors
   resources :rentals
   resources :estates
   resources :towns

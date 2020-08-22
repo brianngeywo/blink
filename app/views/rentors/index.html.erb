@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+  <h1>Potential Buyers / Wishlist</h1>
+
+  <table class="table">
+
+    <thead>
+      <tr class="flex space-x-12">
+        <th>Rental</th>
+        <th>town</th>
+        <th>rent</th>
+        <th>rentor name</th>
+        <th>phone number</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @rentors.each do |rentor| %>
+        <tr class="flex space-x-3 justify-center">
+          <td><%= Rental.find(rentor.rental_id).name %></td>
+          <td><%= Rental.find(rentor.rental_id).town.name %></td>
+          <td><%= Rental.find(rentor.rental_id).price %></td>
+          <td><%= User.find(rentor.user_id).username %></td>
+          <td><%= User.find(rentor.user_id).phone_number %></td>
+          <td><%= link_to 'Show', rentor %></td>
+
+          <td><%= link_to 'Destroy', rentor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+   
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<br>
+</div>

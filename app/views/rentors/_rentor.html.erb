@@ -1,0 +1,26 @@
+<table class="table text-4xl">
+
+    <thead>
+      <tr>
+        <th>Rental name</th>
+        <th>town</th>
+        <th>rent</th>
+        <th>user name</th>
+        <th>phone number</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% obj.each do |rentor| %>
+        <tr>
+          <td><%= Rental.find(rentor.rental_id).name %></td>
+          <td><%= Rental.find(rentor.rental_id).town.name %></td>
+          <td><%= Rental.find(rentor.rental_id).price %></td>
+          <td><%= User.find(rentor.user_id).username %></td>
+          <td><%= User.find(rentor.user_id).phone_number %></td>
+          <td><%= link_to 'Show', rentor %></td>   
+        </tr>
+      <% end %>
+    </tbody>
+</table>

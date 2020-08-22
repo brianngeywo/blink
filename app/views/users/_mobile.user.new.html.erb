@@ -4,7 +4,7 @@
     </div>
     <div class="h-screen bg-cover bg-center bg-no-repeat" style="background-color: rgba(19, 18, 18, 0.367);background-image: url(https://images.unsplash.com/photo-1568634143420-dc5368d74e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);background-blend-mode: multiply;">
         <div class="flex justify-center items-center">
-            <%= form_for(:user, :html => {class: "mt-24 px-4 py-2 rounded-lg border-2 border-gray-700", style:"background-color: rgba(15, 44, 35, 0.619);"}, url: signup_path) do |f| %>
+            <%= form_for @user, :html => {class: "mt-24 px-4 py-2 rounded-lg border-2 border-gray-700", style:"background-color: rgba(15, 44, 35, 0.619);"} do |f| %>
                 <div class="text-center font-bold text-4xl uppercase text-gray-200">create account</div>
                     <div class="my-6">
                         <div class="mx-4 my-6">

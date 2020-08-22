@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :town_ids, presence: true
   validates :phone_number, presence: true, uniqueness: true
-
+  has_many :rentors
 
   private
 end

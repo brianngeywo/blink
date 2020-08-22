@@ -58,9 +58,13 @@
                     <% end %>                    
                 </div>
             </div>
-                <div class="">
-                    <div class="font-medium text-teal-700 capitalize my-3 text-5xl">property description</div>
-                    <div class="mx-3 font-Arial text-3xl text-black"><%= markdown(@rental.description) if @rental.description.present? %> </div>
-                </div>
-        <div>
+            <div class="">
+                <div class="font-medium text-teal-700 capitalize my-3 text-5xl">property description</div>
+                <div class="mx-3 font-Arial text-3xl text-black"><%= markdown(@rental.description) if @rental.description.present? %> </div>
+            </div>
+        </div>
+        <%= render 'rentors/rentor', obj: @rental.rentors %>
+<br>
+      <%= link_to 'Book this rental', rentors_path(rental_id: @rental.id), :method => 'post', :class=>"text-3xl font-bold" %>
+<br>
 </div>
