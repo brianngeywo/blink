@@ -1,6 +1,8 @@
 class RentorsController < ApplicationController
   before_action :set_potential_rentor, only: [:show, :edit, :update, :destroy]
   before_action :require_user
+  before_action :search_ready
+  before_action :get_browser
 
   # GET /rentors
   # GET /rentors.json
@@ -31,7 +33,7 @@ class RentorsController < ApplicationController
     })
     respond_to do |format|
       if @rentor.save
-        format.html { redirect_to @rentor, notice: 'we have recieved your booking application, please be patient while we work on your order.' }
+        format.html { redirect_to @rentor, notice: 'we have recieved your booking application, please be patient while we work on your order. feel free to browse more rentals' }
         format.json { render :show, status: :created, location: @rentor }
       else
         format.html { render :new }
@@ -45,7 +47,7 @@ class RentorsController < ApplicationController
   def update
     respond_to do |format|
       if @rentor.update(rentor_params)
-        format.html { redirect_to @rentor, notice: 'Potential buyer was successfully updated.' }
+        format.html { redirect_to @rentor, notice: 'rentor was successfully updated.' }
         format.json { render :show, status: :ok, location: @rentor }
       else
         format.html { render :edit }
@@ -59,7 +61,7 @@ class RentorsController < ApplicationController
   def destroy
     @rentor.destroy
     respond_to do |format|
-      format.html { redirect_to potential_buyers_url, notice: 'Potential buyer was successfully destroyed.' }
+      format.html { redirect_to potential_buyers_url, notice: 'rentor was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

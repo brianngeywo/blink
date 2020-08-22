@@ -1,4 +1,6 @@
 <% if browser.device.mobile? %>
     <%= render 'mobile.booking.edit.html.erb' %>
     <% else %>
+    <%= render 'layouts/mobile_nav' %>
+    <%= render 'form' %>
 <% end %>

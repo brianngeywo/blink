@@ -17,7 +17,6 @@
         <div class="flex text-4xl capitalize space-x-12 justify-center items-center text-white font-medium pt-2 my-2">
             <%= link_to "rentals", rentals_path, class:"" %>
             <%= link_to "agents", users_path, class:"" %>
-            <%= link_to "towns", towns_path, class:"" %> 
             <% if logged_in? %>
                 <%= link_to "bookings", bookings_path, class:"" %>
                 <%= link_to "logout", logout_path, method: :delete, class:"" %>

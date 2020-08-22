@@ -1,5 +1,5 @@
-<div class="bg-gray-200">
-    <div class="flex bg-teal-700 py-3 text-4xl text-white w-full">
+<div class="bg-gray-200 h-screen">
+    <div class="flex bg-teal-700 py-4 text-4xl text-white w-full sticky top-0">
         <div class="px-6 flex flex-grow">
             <div class="mx-6">
             <%= link_to rentals_path do%>
@@ -12,6 +12,7 @@
                 <div class="font-medium capitalize"><%= link_to 'edit rental', edit_rental_path %></div>
             <% end %>
         </div>
+      <%= link_to 'Book this rental', rentors_path(rental_id: @rental.id), :method => 'post', :class=>"text-3xl font-bold mx-5 self-center" %>
     </div>
         <div>
             <% if @rental.cover_image.attached? %>
@@ -63,8 +64,4 @@
                 <div class="mx-3 font-Arial text-3xl text-black"><%= markdown(@rental.description) if @rental.description.present? %> </div>
             </div>
         </div>
-        <%= render 'rentors/rentor', obj: @rental.rentors %>
-<br>
-      <%= link_to 'Book this rental', rentors_path(rental_id: @rental.id), :method => 'post', :class=>"text-3xl font-bold" %>
-<br>
 </div>

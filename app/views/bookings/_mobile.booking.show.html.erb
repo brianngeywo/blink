@@ -1,7 +1,7 @@
 <div class="lg:hidden">
     <%= render 'layouts/mobile_nav' %>
-    <div  class="px-6 font-bold text-7xl capitalize mx-4"><%= @booking.name %></div>
-    <div class="px-4 capitalize text-5xl mx-6">
+    <div  class="my-5 px-6 font-bold text-5xl capitalize mx-4 border-b-2 border-gray-500">booking summary</div>
+    <div class="px-4 capitalize text-4xl mx-6">
         <div class="my-3">booked by: <%= link_to @booking.name, bookings_path(@booking) if @booking.name %></div>
         <div class="my-3">phone number: <%= @booking.phone %></div>
         <div class="my-3">town: <%= link_to @booking.town.name, towns_path(@town) if @booking.town %> </div>
@@ -15,5 +15,4 @@
         <div  class="px-6 font-bold text-4xl capitalize mx-4 my-6"><%= link_to "edit booking", edit_booking_path %></div>
         <div  class="px-6 font-bold text-4xl text-red-700 capitalize mx-4 my-6"><%= link_to "cancel booking", booking_path, method: :delete, data: { confirm: 'Are you sure you want to cancel your booking?' } %></div>
     <% end %>
-    <%= render 'layouts/mobile_footer' %>
 </div>

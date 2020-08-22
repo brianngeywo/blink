@@ -1,5 +1,5 @@
 <% if browser.device.mobile? %>
-    <%= render 'mobile.booking.show.html.erb' %>
+    <%= render 'mobile.booking.show' %>
     <% else %>
     <%= render 'layouts/desktop_nav' %>
     <div class="px-4 capitalize mx-6">
@@ -20,3 +20,4 @@
             <%= link_to "complete booking", complete_booking_path(@booking), method: :post,
                                     data: { confirm: "You sure?" }, class:"font-semibold p-2 rounded-lg text-white bg-teal-700 uppercase text-center my-3" %>
     <% end %>
+<% end %>
