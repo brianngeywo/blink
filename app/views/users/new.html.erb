@@ -27,7 +27,7 @@
                             <div class="text-white font-medium py-4 capitalize text-center text-lg">phone number</div>
                             <%= f.text_field :phone_number, placeholder: "enter phone number", class: "bg-gray-300 text-lg p-2 rounded-lg w-full text-black" %>
                         </div>
-                    <div class="text-white font-medium">which towns do you operate in?</div>
+                    <div class="text-white font-medium">where do you live?</div>
                     <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
                         <% cb.label(class: "text-white px-4"){cb.check_box(class: "bg-teal-700") + cb.text} %>
                     <% end %>

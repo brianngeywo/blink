@@ -22,6 +22,7 @@
                 <%= link_to "bookings", bookings_path, class:"" %>
                 <%= link_to "logout", logout_path, method: :delete, class:"" %>
                 <% else %>
+                <%= link_to "book now", new_booking_path, class:"" %>
                 <%= link_to "login", login_path, class:"" %>
             <% end %>
         </div>

@@ -5,51 +5,49 @@
         <div class="bg-white">
             <%= render 'layouts/desktop_nav' %>
         </div>
-        <div class="h-full bg-cover bg-center bg-no-repeat" style="background-color: rgba(19, 18, 18, 0.367);background-image: url(https://images.unsplash.com/photo-1568634143420-dc5368d74e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);background-blend-mode: multiply;">
-            <div class="p-12 flex justify-center items-center">
-                <div class="px-6 py-5 rounded-lg border-2 border-gray-700 capitalize text-white" style="background-color: rgba(15, 44, 35, 0.950);">
-                    <div class="text-center text-2xl text-white uppercase font-semibold">rental booking form</div>
-                    <div class="my-6">
-                        <div class="my-3">hello, whats your name?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-800 mx-4" placeholder="whats your name?">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">please provide a number we can talk to you through?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="phone number">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">where do you want to look for a home?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="town">
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700" placeholder="estate or area">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">how many rooms should the house have?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="number of rooms">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">how many bathrooms should the house have?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="number of bathrooms">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">is it a must to have a servants quotas(SQ)?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="yes or no">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">how much car room should you have?</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" placeholder="e.g. two cars">
-                    </div>
-                    <div class="my-6">
-                        <div class="my-3">any other request or useful information we should know</div>
-                        <input class="bg-gray-300 p-2 rounded-lg my-2 text-gray-600 h-48 w-full" placeholder="just anything">
-                    </div>
-                    <div class="flex justify-center items-end">
-                        <button class="bg-teal-700 text-white font-semibold m-4 rounded-lg uppercase p-4 text-xl">submit</button>
+        <%= form_for @booking do |f| %>
+            <div class="h-full bg-cover bg-center bg-no-repeat" style="background-color: rgba(19, 18, 18, 0.367);background-image: url(https://images.unsplash.com/photo-1568634143420-dc5368d74e4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);background-blend-mode: multiply;">
+                <div class="p-12 flex justify-center items-center">
+                    <div class="px-6 py-5 rounded-lg border-2 border-gray-700 capitalize text-white" style="background-color: rgba(15, 44, 35, 0.950);">
+                        <div class="text-center text-2xl text-white uppercase font-semibold">rental booking form</div>
+                        <div class="my-6">
+                            <div class="my-3">hello, whats your name?</div>
+                            <%= f.text_field :name, placeholder: "whats your name?", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-800 mx-4" %>
+                        </div>
+                        <div class="my-6">
+                            <div class="my-3">please provide a number we can talk to you through?</div>
+                            <%= f.text_field :phone, placeholder: "whats your phone number?", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-800 mx-4" %>
+                        </div>
+                        <div class="my-6">
+                            <div class="my-3">where do you want to look for a home?</div>
+                            <select name="booking[town_id]" class="p-3 bg-teal-700 text-white rounded-lg mx-5">
+                                <% Town.all.each do |town| %>
+                                    <option value="<%= town.id %>"><%= town.name %></option>
+                                <% end %>
+                            </select>
+                        <%= f.text_field :location, placeholder: "estate or location", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-700" %>
+                        </div>
+                        <div class="my-6">
+                            <div class="my-3">how many rooms should the house have?</div>
+                            <%= f.text_field :rooms, placeholder: "number of rooms", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-800 mx-4" %>
+                        </div>
+                        <div class="my-6">
+                            <div class="my-3">how much car room should you have?</div>
+                            <%= f.text_field :car, placeholder: "e.g 5", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-700 mx-4" %>
+                        </div>
+                        <div class="my-6">
+                            <div class="my-3">any other request or useful information we should know</div>
+                            <%= f.text_area :infor, placeholder: "please add any infor that would be usefull", class: "bg-gray-300 p-2 rounded-lg my-2 text-gray-600 h-48 w-full" %>
+                        </div>
+                        <div class="flex justify-center items-end">
+                            <%= f.submit "send", disable_with: "Submiting...", class: "bg-teal-700 text-white font-semibold m-4 rounded-lg uppercase p-4 text-xl" %>
+                        </div>
                     </div>
                 </div>
+                <footer>
+                    <%= render 'layouts/desktop_footer' %>
+                </footer>
             </div>
-            <footer>
-                <%= render 'layouts/desktop_footer' %>
-            </footer>
-        </div>
+        <% end %>
     </div>
 <% end %>

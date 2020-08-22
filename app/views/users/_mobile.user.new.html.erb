@@ -25,7 +25,7 @@
                         </div>
                     </div>
                             <br>
-                    <div class="my-4 text-white font-medium py-4 capitalize text-center text-4xl">which towns do you operate in?</div>
+                    <div class="my-4 text-white font-medium py-4 capitalize text-center text-4xl">where do you live?</div>
                         <%= f.collection_check_boxes :town_ids, Town.all, :id, :name do |cb| %>
                             <% cb.label(class: "text-white px-4 text-4xl my-4"){cb.check_box(class: "bg-teal-700 px-1") + cb.text} %>
                         <% end %>

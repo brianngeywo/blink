@@ -1,7 +1,7 @@
-<div class="lg:hidden">
+<div class="lg:hidden bg-gray-300 h-screen">
     <%= render "layouts/mobile_nav" %>
         <%= form_for @booking do |f| %>
-            <div class="bg-gray-300 text-4xl p-4 mb-32 ">
+            <div class="text-4xl p-4 mb-32 ">
                 <div class="capitalize font-bold text-6xl">find a property in eldoret</div>
                 <div class="text-4xl capitalize">an agent will contact you to confirm rental availability</div>
                 <br>
@@ -39,8 +39,7 @@
                     <%= f.text_field :car, placeholder: "e.g 5", class: "my-6 p-2 rounded-lg" %>
                 </div>
                 <div class="capitalize">additional information</div>
-                <%= f.text_area :infor, placeholder: "please add any infor that would be usefull", class: "my-6 p-2 rounded-lg w-full" %>
-                  
+                <%= f.text_area :infor, placeholder: "please add any infor that would be usefull", class: "my-6 p-2 rounded-lg w-full" %>  
                 <br>
                 <%= f.submit "send", disable_with: "Submiting...", class: "bg-gray-900 text-white font-semibold p-4 my-4 capitalize rounded-lg text-6xl mx-70" %>
             </div>
