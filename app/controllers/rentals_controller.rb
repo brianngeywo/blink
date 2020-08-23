@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:bookings,:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_same_user, only: [:bookings, :edit, :update, :destroy]
   before_action :search_ready
   before_action :get_browser
 
@@ -53,6 +53,10 @@ class RentalsController < ApplicationController
       flash[:error] = "could not delete rental"
       redirect_to rentals_url
     end
+  end
+
+  def bookings
+    @rental = Rental.find(params[:id])
   end
 
   private

@@ -1,6 +1,7 @@
 class RentorsController < ApplicationController
   before_action :set_potential_rentor, only: [:show, :edit, :update, :destroy]
   before_action :require_user
+  before_action :require_admin, only: [:index, :edit, :update, :destroy]
   before_action :search_ready
   before_action :get_browser
 

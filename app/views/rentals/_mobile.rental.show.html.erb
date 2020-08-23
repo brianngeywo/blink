@@ -12,22 +12,24 @@
                 <div class="font-medium capitalize"><%= link_to 'edit rental', edit_rental_path %></div>
             <% end %>
         </div>
-      <%= link_to 'Book this rental', rentors_path(rental_id: @rental.id), :method => 'post', :class=>"text-3xl font-bold mx-5 self-center" %>
     </div>
         <div>
             <% if @rental.cover_image.attached? %>
                 <%= image_tag @rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
             <% end %>
         </div>
+        <div class="border-b-1 border-gray-500 py-4">
+            <%= link_to 'Book this rental', rentors_path(rental_id: @rental.id), :method => 'post', :class=>"capitalize text-4xl font-bold mx-5 bg-blue-700 p-4 text-white" %>
+        </div>
         <div class="font-bold text-7xl capitalize mx-4">
             <%= @rental.name %>
         </div>
         <div class="px-8 py-2 capitalize border-1 border-gray-400">
             <div class="text-4xl my-3 text-gray-800">
-                <span class="mx-4"><i class="fa fa-bed mx-1"></i><%= @rental.bedrooms %><span>
-                <span class="mx-4"><i class="fa fa-bath mx-1"></i><%= @rental.bathrooms %><span>
-                <span class="mx-4"><i class="fa fa-car mx-1"></i><%= @rental.parking %><span>
-                <span class="mx-4"><i class="fa fa-wifi mx-1"></i><%= @rental.wifi %><span>
+                <span class="mx-4"><i class="fa fa-bed mx-1"></i> <%= @rental.bedrooms %><span>
+                <span class="mx-4"><i class="fa fa-bath mx-1"></i> <%= @rental.bathrooms %><span>
+                <span class="mx-4"><i class="fa fa-car mx-1"></i> <%= @rental.parking %><span>
+                <span class="mx-4"><i class="fa fa-wifi mx-1"></i> <%= @rental.wifi %><span>
                 <span class="mx-4"><i class="fas fa-house-user mx-1"></i><%= @rental.units %><span>
             </div>
             <div class="text-teal-700 font-bold text-4xl border-t-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>

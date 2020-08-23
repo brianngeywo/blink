@@ -45,11 +45,11 @@
                         <div class="font-normal text-black">0798767470</div>
                         <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
                     </div>
+                    <div class="my-6"><%= link_to 'one click booking', rentors_path(rental_id: @rental.id), :method => 'post', class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
                     <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
                         <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
+                        <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
                     <% end %>
-                    <div class="my-6"><%= link_to 'one click booking', rentors_path(rental_id: @rental.id), :method => 'post', class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
-
                 </div>
                 <div class="w-full">
                     <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">

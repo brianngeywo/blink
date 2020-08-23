@@ -18,8 +18,12 @@
                 </div>
                 <div class="w-2/3 p-5">
                   <div class="text-3xl font-medium capitalize"><%= user.username %></div>
-                  <div class="text-teal-700 capitalize font-normal text-xl"><%= pluralize(user.rentals.count, "rental") if user.rentals %> properties</div>
-                  <div class="capitalize text-xl">nairobi</div>
+                  <div class="text-teal-700 capitalize font-normal text-xl"><%= pluralize(user.rentals.count, "rental property") if user.rentals %></div>
+                  <div class="capitalize text-xl">
+                    <% if user.towns.any? %>
+                        <div class="font-normal text-black"><%= render user.towns %> &nbsp;</div>
+                    <% end %>
+                  </div>
                 </div>
               </div>       
             <% end %>  

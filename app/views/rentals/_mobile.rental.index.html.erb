@@ -22,7 +22,7 @@
                             <% end %>
                             <div class="text-5xl pt-4 uppercase font-seimbold px-12"><%= rental.name  %></div>
                             <div class="">
-                                <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i><%= rental.bedrooms %> rooms</div>
+                                <div class="text-4xl px-6"><i class="fa fa-bed text-teal-700 mx-2"></i> <%= pluralize(rental.bedrooms, "room") %></div>
                                 <div class="text-4xl px-6 py-2 capitalize">kshs <%= rental.price %></div>
                             </div>
                         </div>  

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:make_admin, :remove_admin, :verify, :edit, :update, :show, :destroy]
   before_action :require_same_user, only: [:edit, :update]
   before_action :search_ready
 
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   end
 
   def make_admin
-    @user = User.find(params[:id])
     @user.admin = true
     @user.save
     flash[:success] = "#{@user.username} is now an Admin"
@@ -51,11 +50,17 @@ class UsersController < ApplicationController
   end
 
   def remove_admin
-    @user = User.find(params[:id])
     @user.admin = false
     @user.save
     flash[:success] = "#{@user.username} is no longer an Admin"
     redirect_to users_url
+  end
+
+  def verify
+    @user.status = 1
+    @user.save
+    flash[:success] = "#{@user.username} has been verified"
+    redirect_to @user
   end
 
   private

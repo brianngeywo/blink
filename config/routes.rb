@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/admin/all_listing", to: "pages#listing"
   get "/request", to: "pages#finder"
   get "pages/contact"
+  get "/rentals/:id/bookings", to: 'rentals#bookings', as: :rental_bookings
   resources :rentors
   resources :rentals
   resources :estates
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   post   '/bookings/:id/complete', to: 'bookings#complete', as: :complete_booking
   delete '/bookings/:id/unverify', to: 'bookings#unverify', as: :unverify_booking
   get "/signup", to: "users#new"
+  post   '/users/:id/verify', to: 'users#verify', as: :verify_user
   resources :users, except: [:new]
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
