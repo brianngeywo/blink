@@ -46,7 +46,7 @@
                         <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
                     </div>
                     <div class="my-6"><%= link_to 'one click booking', rentors_path(rental_id: @rental.id), :method => 'post', class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
-                    <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+                    <% if logged_in? && (current_user == @rental.user || current_user.admin?) && @rental.user.status == 1 %>
                         <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
                         <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
                     <% end %>
