@@ -31,5 +31,4 @@ class User < ActiveRecord::Base
   def set_initial_state
     self.status = STATUS[:unverified] if status.nil?
   end
-  private
 end

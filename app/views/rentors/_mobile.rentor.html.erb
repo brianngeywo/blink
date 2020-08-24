@@ -1,24 +1,21 @@
 <table class="flex justify-center items-center w-full">
     <tbody>
-        <tr class="grid grid-cols-4 space-x-3 text-left">
+        <tr class="grid grid-cols-3 space-x-3 text-left">
           <th class="my-4">user name</th>
-          <th  class="my-4">phone number</th>
           <th  class="my-4">status</th>
           <th colspan="3"></th>
         </tr>
       <div>
         <% obj.each do |rentor| %>
-          <tr class="grid grid-cols-4 space-x-3 text-left border-b-2 border-teal-900">
-            <td class="my-4"><%= User.find(rentor.user_id).username %></td>
-            <td class="my-4"><%= User.find(rentor.user_id).phone_number %></td>
-            
+          <tr class="grid grid-cols-3 space-x-3 text-left border-b-2 border-teal-900">
+            <td class="my-4"><%= User.find(rentor.user_id).username %></td>            
             <% if rentor.status.nil? %>
                 <td class="my-4">needs completion</td>
               <% else %>
                 <td class="my-4">completed</td>
             <% end %>
             
-            <td class="my-4 text-blue-700 lowercase"><%= link_to 'click here for more details', rentor %></td>   
+            <td class="my-4 text-blue-700 lowercase"><%= link_to 'more details', rentor %></td>   
           </tr>
         <% end %>
       </div>      

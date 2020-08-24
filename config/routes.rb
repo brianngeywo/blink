@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "pages/contact"
   get "/rentals/:id/bookings", to: 'rentals#bookings', as: :rental_bookings
   resources :rentors
+  post '/rentors/:id/completed', to: 'rentors#completed', as: :complete_rentor
   resources :rentals
   resources :estates
   resources :towns

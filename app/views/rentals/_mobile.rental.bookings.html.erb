@@ -1,0 +1,29 @@
+<div class="bg-gray-200 h-screen">
+    <div class="flex bg-teal-700 py-4 text-4xl text-white w-full sticky top-0">
+        <div class="px-6 flex flex-grow">
+            <div class="mx-6">
+            <%= link_to rentals_path do%>
+                <i class="fa fa-chevron-left mr-6"></i>
+            <% end %>
+            <%= @rental.town.name %>
+            </div>|
+            <div class="mx-6 flex-grow"><%= @rental.estate.name %></div>
+            <% if logged_in? && (current_user == @rental.user || current_user.admin?) %>
+                <div class="font-medium capitalize"><%= link_to 'edit rental', edit_rental_path %></div>
+            <% end %>
+        </div>
+    </div>
+        <div>
+            <% if @rental.cover_image.attached? %>
+                <%= image_tag @rental.cover_image, class:"rounded-b rounded-lg object-cover bg-no-repeat w-full h-74" %>
+            <% end %>
+        </div>
+        <div class="font-bold text-7xl capitalize mx-4">
+            <%= @rental.name %> bookings
+        </div>
+        <div class="px-3 py-2 border-1 border-gray-400 text-3xl">
+            <div class="rounded-lg px-8 py-4 capitalize bg-gray-200">
+                <%= render 'rentors/mobile.rentor', obj: @rental.rentors %>
+            </div>
+        </div>
+</div>

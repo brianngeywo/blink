@@ -49,7 +49,7 @@
                     <%= form_for @user do |f| %>
                     <% if current_user.admin? %>
                         |
-                        <% if @user.admin? %>
+                        <% if current_user.admin? %>
                             <%= link_to "Remove Admin", remove_admin_path(@user), method: :delete,
                                                         data: { confirm: "You sure?" } %>
                             <% else %>

@@ -1,5 +1,5 @@
 class RentorsController < ApplicationController
-  before_action :set_potential_rentor, only: [:show, :edit, :update, :destroy]
+  before_action :set_potential_rentor, only: [:completed, :show, :edit, :update, :destroy]
   before_action :require_user
   before_action :require_admin, only: [:index, :edit, :update, :destroy]
   before_action :search_ready
@@ -65,6 +65,13 @@ class RentorsController < ApplicationController
       format.html { redirect_to potential_buyers_url, notice: 'rentor was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def completed
+    @rentor.status = 1
+    @rentor.save
+    flash[:success] = "#{User.find(@rentor.user_id).username} is now marked as completed"
+    redirect_to current_user
   end
 
   private

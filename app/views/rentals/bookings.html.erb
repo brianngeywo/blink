@@ -1,5 +1,5 @@
 <% if browser.device.mobile? %>
-    <%= render 'mobile.rental.show' %>
+    <%= render 'mobile.rental.bookings' %>
     <% else %>
     <div class="">
         <div class="bg-white">
@@ -43,7 +43,7 @@
                     <div class="my-6"><i class="fa fa-chevron-left mx-1"></i><%= link_to "go back to #{@rental.name}", rental_path, class:"font-semibold text-center" %></div>
                 </div>
                 <div class="w-full">
-                    <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
+                    <div class="my-4 mx-6 shadow-xl rounded-lg px-6 py-4 capitalize border-1 border-gray-400 bg-gray-200">
                         <%= render 'rentors/rentor', obj: @rental.rentors %>
                     </div>
                 </div>
