@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/admin/all_listing", to: "pages#listing"
   get "/request", to: "pages#finder"
   get "pages/contact"
+  get "pages/property"
   get "/rentals/:id/bookings", to: 'rentals#bookings', as: :rental_bookings
   resources :rentors
   post '/rentors/:id/completed', to: 'rentors#completed', as: :complete_rentor
