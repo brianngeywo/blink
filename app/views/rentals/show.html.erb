@@ -45,6 +45,9 @@
                     <% if logged_in? && (current_user == @rental.user || current_user.admin?) && @rental.user.status == 1 %>
                         <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
                         <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
+                    <% elsif current_user.admin %>
+                        <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
+                        <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
                     <% end %>
                 </div>
                 <div class="w-full">

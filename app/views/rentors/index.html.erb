@@ -9,20 +9,26 @@
       <tbody>
           <tr class="grid grid-cols-6 space-x-2 text-left uppercase border-b-2 border-gray-700">
             <th class="my-2">Rental</th>
-            <th class="my-2">town</th>
             <th class="my-2">rent</th>
             <th class="my-2">user name</th>
             <th class="my-2">phone number</th>
+            <th class="my-2">status</th>
             <th colspan="3"></th>
           </tr>
         <div class="">
           <% @rentors.each do |rentor| %>
             <tr class="grid grid-cols-6 text-left border-b-2 border-teal-900 bg-gray-300">
               <td class="px-2 self-center"><%= Rental.find(rentor.rental_id).name %></td>
-              <td class="px-2 self-center"><%= Rental.find(rentor.rental_id).town.name %></td>
               <td class="px-2 self-center"><%= Rental.find(rentor.rental_id).price %></td>
               <td class="px-2 self-center"><%= User.find(rentor.user_id).username %></td>
               <td class="px-2 self-center"><%= User.find(rentor.user_id).phone_number %></td>
+              <% Rental.find(rentor.rental_id) do %>
+                <% if rentor.status.nil? %>
+                    <td class="px-2 self-center">needs completion</td>
+                  <% else %>
+                    <td class="px-2 self-center">completed</td>
+                <% end %>
+              <% end %>
               <td class="px-2 self-center text-blue-700 lowercase"><%= link_to 'click here for more details', rentor %></td>   
             </tr>
           <% end %>
