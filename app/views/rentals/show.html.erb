@@ -37,12 +37,8 @@
                     <div class="my-3 text-teal-700">offices:
                         <div class="font-normal text-black"><%= @rental.user.location %></div>
                     </div>
-                    <div id='call-trigger' class="my-6 font-semibold tracking-wider p-2 w-auto border-2 border-teal-700 bg-white text-teal-700 uppercase text-center" onclick='toggle()'>request a call</div>
-                    <div id='call-form' class="hidden px-2 w-40 capitalize">
-                        <%= render 'customers/new' %>
-                    </div>
                     <div class="my-3 text-teal-700 font-medium uppercase">here's our number:
-                        <div class="font-normal text-black">0798767470</div>
+                        <div class="font-normal text-black"><%= @rental.user.phone_number %></div>
                         <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
                     </div>
                     <div class="my-6"><%= link_to 'one click booking', rentors_path(rental_id: @rental.id), :method => 'post', class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
@@ -93,20 +89,6 @@
         <footer>
             <%= render 'layouts/desktop_footer' %>
         </footer>
-        <script>
-            visible = false; //var that keeps track if the content is visible.
-            txt = document.getElementById("call-form");
-            btn = document.getElementById("call-trigger");
-            function toggle() {
-                if(visible) {
-                    visible = 0;
-                    txt.style.display = 'none';
-                } else {
-                    visible = 1;
-                    txt.style.display = 'block';
-                }
-            };
-        </script>
     </div>
     
 <% end %>

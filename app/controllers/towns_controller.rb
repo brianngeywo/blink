@@ -1,7 +1,7 @@
 class TownsController < ApplicationController
   before_action :set_town, only: [:edit, :update, :show, :destroy]
-  before_action :require_user, except: [:index, :show]
-  before_action :require_admin, only: [:new, :edit, :update, :destroy]
+  before_action :require_user, except: [:show]
+  before_action :require_admin, except: [:show]
   before_action :search_ready
 
   def index
@@ -23,6 +23,7 @@ class TownsController < ApplicationController
   end
 
   def show
+    redirect_to root_path
   end
 
   def create

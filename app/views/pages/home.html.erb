@@ -1,72 +1,65 @@
-<div class="lg:hidden">
-    <div class="bg-cover bg-no-repeat w-full h-screen" style="background-image: url(https://images.unsplash.com/photo-1597280683887-67a86091fd7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1530&q=80);">
-        <div class="text-8xl font-bold text-white text-center px-8 py-4 leading-loose tracking-wider uppercase mx-32 rounded-lg"
-            style="background-blend-mode: multiply; background: rgba(19, 52, 95, 0.388); ">let us <br>
-            <button
-                class="bg-gray-200 p-2 m-2 text-teal-900 font-medium capitalize rounded-lg"><%= link_to "find a home", new_booking_path %></button>for
-            you in eldoret town
-        </div>
-    </div>
-    <%= render "layouts/mobile_footer" %>
-</div>
-<div class="sm:hidden lg:block">
-    <nav class="bg-white flex flex-row-reverse py-2 px-24 text-sm text-gray-700 font-semibold">
-        <div class="px-4">0798767470</div>
-        <div class="uppercase">call us:</div>
-    </nav>
-    <div class="bg-cover bg-center h-66"
-        style="background-image: url(https://images.unsplash.com/photo-1531877264583-a58acd888a97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
-        <nav class="flex items-center px-24 py-4">
-            <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
-            <div class="flex text-base text-white uppercase font-medium">
-            <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-            <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
-
-            <% if logged_in? %>
-                    <div class="px-2"><%= link_to 'logout', logout_path, method: :delete %></div>
-                <% else %>
-                    <div class="px-2"><%= link_to 'login', login_path %></div>
-                    <div class="">|</div>
-                    <div class="px-2"><%= link_to 'signup', signup_path %></div>
-            <% end %>
-            </div>
+<% if browser.device.mobile? %>
+    <%= render 'mobile.home' %>
+    <% else %>
+    <div class="sm:hidden lg:block">
+        <nav class="bg-white flex flex-row-reverse py-2 px-24 text-sm text-gray-700 font-semibold">
+            <div class="px-4">0798767470</div>
+            <div class="uppercase">call us:</div>
         </nav>
-        <div class="text-3xl font-semibold capitalize text-white pb-6 font-sans text-center py-6">search eldoret's biggest
-            collection of rentals</div>
-        <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
-            <%= search_form_for @q, html: { class: "flex justify-center w-full" } do |f| %>
-                <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg", placeholder: "try a town or estate" %>
-                    <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
-            <% end %>
-        </div>
-    </div>
-    <div class="my-4">
-        <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
-        
-        <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
+        <div class="bg-cover bg-center h-66"
+            style="background-image: url(https://images.unsplash.com/photo-1531877264583-a58acd888a97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);">
+            <nav class="flex items-center px-24 py-4">
+                <div class="font-semibold text-4xl text-teal-700 flex-grow">BlinkHomes</div>
+                <div class="flex text-base text-white uppercase font-medium">
+                <%= link_to 'rentals', rentals_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
+                <%= link_to 'agents', users_path, class:"mx-4 border-solid border-b-4 border-transparent hover:border-teal-700 transform scale-100 duration-500 ease-in-out" %>
 
-            <% Rental.all.each do |rental| %>
-                <%= link_to rental_path(rental) do %> 
-                    <div class="shadow-3xl rounded-lg mx-4 my-8">
-                        <% if rental.cover_image.attached? %>
-                            <%= image_tag rental.cover_image, class:"h-48 w-full rounded-t-lg object-cover object-center" %>
-                        <% end %>
-                        <div class="px-3 my-2">
-                            <div class="capitalize font-semibold text-lg"><%= rental.name %></div>
-                            <div class="capitalize text-gray-900 text-base"><%= rental.town.name %>, <%= rental.estate.name %></div>
-                            <div class="text-gray-600 font-bold"><%= rental.price %> kshs</div>
-                            <div class="flex items-center justify-start text-base text-teal-700 pb-4">
-                                <span class="px-2"><i class="fa fa-bed"></i> <%= rental.bedrooms %></span>
-                                <span class="px-2"><i class="fa fa-bath"></i> <%= rental.bathrooms %></span>
-                                <span class="px-2"><i class="fa fa-wifi"></i> <%= rental.wifi %></span>
-                            </div>
-                        </div>           
-                    </div>
+                <% if logged_in? %>
+                        <div class="px-2"><%= link_to 'logout', logout_path, method: :delete %></div>
+                    <% else %>
+                        <div class="px-2"><%= link_to 'login', login_path %></div>
+                        <div class="">|</div>
+                        <div class="px-2"><%= link_to 'signup', signup_path %></div>
                 <% end %>
-            <% end %>
+                </div>
+            </nav>
+            <div class="text-3xl font-semibold capitalize text-white pb-6 font-sans text-center py-6">search eldoret's biggest
+                collection of rentals</div>
+            <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
+                <%= search_form_for @q, html: { class: "flex justify-center w-full" } do |f| %>
+                    <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg", placeholder: "try a town or estate" %>
+                        <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
+                <% end %>
+            </div>
         </div>
+        <div class="my-4">
+            <div class="capitalize text-gray-600 text-2xl font-bold mx-8">latest rentals</div>
+            
+            <div class="text-2xl pt-4 grid grid-cols-4 px-8 mx-6">
+
+                <% Rental.all.each do |rental| %>
+                    <%= link_to rental_path(rental) do %> 
+                        <div class="shadow-3xl rounded-lg mx-4 my-8">
+                            <% if rental.cover_image.attached? %>
+                                <%= image_tag rental.cover_image, class:"h-48 w-full rounded-t-lg object-cover object-center" %>
+                            <% end %>
+                            <div class="px-3 my-2">
+                                <div class="capitalize font-semibold text-lg"><%= rental.name %></div>
+                                <div class="capitalize text-gray-900 text-base"><%= rental.town.name %>, <%= rental.estate.name %></div>
+                                <div class="text-gray-600 font-bold"><%= rental.price %> kshs</div>
+                                <div class="flex items-center justify-start text-base text-teal-700 pb-4">
+                                    <span class="px-2"><i class="fa fa-bed"></i> <%= rental.bedrooms %></span>
+                                    <span class="px-2"><i class="fa fa-bath"></i> <%= rental.bathrooms %></span>
+                                    <span class="px-2"><i class="fa fa-wifi"></i> <%= rental.wifi %></span>
+                                </div>
+                            </div>           
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <footer>
+        <%= render 'layouts/desktop_footer' %>
+        </footer>
     </div>
-    <footer>
-       <%= render 'layouts/desktop_footer' %>
-    </footer>
-</div>
+<% end %>

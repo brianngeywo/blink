@@ -35,7 +35,7 @@
             <div class="text-teal-700 font-bold text-4xl border-t-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
         </div>
         <div class="px-8 py-2 capitalize border-1 border-gray-400 flex justify-center items-center">
-            <div class="text-teal-700 font-bold text-5xl py-4"><i class="fa fa-phone-volume mx-2"></i><i class="fa fa-sms mx-2"></i> 0798767470</div>
+            <div class="text-teal-700 font-bold text-5xl py-4"><i class="fa fa-phone-volume mx-2"></i><i class="fa fa-sms mx-2"></i> <%= @rental.user.phone_number %></div>
         </div>    
         <div class="text-xl font-Arial text-gray-700 text-center my-2">*please pay through blinkhomes to avoid bieng conned</div>
         <div class="px-8 py-4 border-1 border-gray-400">
