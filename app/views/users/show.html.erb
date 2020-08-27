@@ -17,13 +17,13 @@
                     <div class="text-xl text-gray-300">
                         <div class="text-4xl text-teal-600 font-semibold capitalize subpixel-antialiased"><%= @user.username %></div>
                         <% if @user.status == 1  %>
-                                <div class="font-medium tracking-wider capitalize">patner</div>
+                                <div class="font-medium tracking-wider uppercase">agent</div>
                         <% end %>
                     </div>
             </div>
         </div>
-        <div class="flex gap-4 mx-16 p-6">
-            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-74">
+        <div class="flex gap-4 mx-8 p-6">
+            <div class="mx-2 shadow-3xl px-6 py-4 font-semibold capitalize rounded-lg h-auto w-full">
                 <div class="text-teal-700 my-3">offices:
                     <div class="font-normal text-black"><%= @user.location %></div>
                 </div>
@@ -44,7 +44,7 @@
                                 <div class="normal-case"><%= link_to 'new rental', new_rental_path %></div>
                         <% end %>
                         <% if logged_in? && current_user.status.nil? %>
-                            <div class="text-md text-gray-700 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">
+                            <div class="text-sm text-gray-700 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">
                             To add new rentals, call/whatsapp us on 0798767470 and request agent account approval.</div>
                         <% end %>
                         <div class="normal-case"><%= link_to 'edit account', edit_user_path(@user) %></div>
