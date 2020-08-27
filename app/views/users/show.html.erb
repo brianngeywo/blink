@@ -43,8 +43,9 @@
                             <% elsif @user.status == 1  %>
                                 <div class="normal-case"><%= link_to 'new rental', new_rental_path %></div>
                         <% end %>
-                        <% if @user.status.nil? && current_user %>
-                            <div class="text-md text-gray-700 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">To add new rentals, call/whatsapp us on 0798767470 and request agent account approval.</div>
+                        <% if logged_in? && current_user.status.nil? %>
+                            <div class="text-md text-gray-700 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">
+                            To add new rentals, call/whatsapp us on 0798767470 and request agent account approval.</div>
                         <% end %>
                         <div class="normal-case"><%= link_to 'edit account', edit_user_path(@user) %></div>
                         <div class="font-semibold p-2 rounded-lg text-white bg-teal-700 uppercase text-center my-3"><%= link_to "find a home", new_booking_path %></div>

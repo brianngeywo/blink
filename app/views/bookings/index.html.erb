@@ -23,52 +23,59 @@
                     <div class="my-3 text-teal-700">offices:
                         <div class="font-normal text-black"><%= @current_user.location %></div>
                     </div>
-                    <div id='call-trigger' class="my-6 font-semibold tracking-wider p-2 w-auto border-2 border-teal-700 bg-white text-teal-700 uppercase text-center" onclick='toggle()'>request a call</div>
-                    <div id='call-form' class="hidden px-2 w-40 capitalize">
-                        <%= render 'customers/new' %>
-                    </div>
                 </div>
                 <div class="w-full">
+                    <div class="grid grid-cols-3 space-x-3 border-b-1 border-black px-12 font-bold uppercase">
+                        <div class="text-left">name</div>
+                        <div class="text-left">status</div>
+                        <div class=" text-left">actions</div>
+                    </div>
                     <div class="">
-                        <% if current_user.status == 1  %>
-                            <% @bookings.each do |booking| %>
-                                <div class="grid grid-cols-3 space-x-3 bg-gray-300 border-b-1 border-black px-12">
-                                    <div class="w-48 text-left py-2">
-                                        <% if booking.status == 1 %>
-                                            <%= link_to booking.name, booking_path(booking) %>
-                                            <% else %>
-                                                <% if current_user.admin? %>
-                                                    <%= link_to booking.name, booking_path(booking) %>
+                        <% if logged_in? && current_user.status == 1  %>
+                            <% @bookings.each do |booking| %>             
+                                <% if  booking.status == 1 && (current_user.status == 1 && !current_user.admin?) %>
+                                    <div class="grid grid-cols-3 space-x-3 bg-gray-100 border-b-1 border-black px-12 text-base">
+                                        <div class="text-left py-2">
+                                            <%= booking.name %>
+                                        </div>
+                                        <div class="text-left py-2">
+                                            <% if booking.status.nil? %>
+                                                unverified
+                                                <% elsif booking.status == 1 %>
+                                                verified
                                                 <% else %>
-                                                    <%= booking.name %>
-                                                <% end %>                                
-                                        <% end %>
+                                                completed
+                                            <% end %>
+                                        </div>
+                                        <div class="py-2">
+                                            <% if booking.status == 1 && current_user.status == 1 %>
+                                                <%= link_to "show", booking, class:"text-blue-700 text-left" %>
+                                            <% end %>
+                                        </div>
                                     </div>
-                                    <div class="w-48 text-left py-2">
-                                        <% if booking.status.nil? %>
-                                            unverified
-                                            <% elsif booking.status == 1 %>
-                                            verified
-                                            <% else %>
-                                            completed
-                                        <% end %>
-                                    </div>
-                                    <div class="text-teal-700 text-center py-2">
-                                        <% if current_user.admin? %>
+                                <% elsif current_user.admin? && (booking.status == 1 || booking.status.nil?)%>
+                                    <div class="grid grid-cols-3 space-x-3 bg-gray-300 border-b-1 border-black px-12">
+                                        <div class="w-48 text-left py-2">
+                                                <%= link_to booking.name, booking_path(booking) %>
+                                        </div>
+                                        <div class="w-48 text-left py-2">
+                                            <% if booking.status.nil? %>
+                                                unverified
+                                                <% elsif booking.status == 1 %>
+                                                verified
+                                            <% end %>
+                                        </div>
+                                        <div class="w-48 text-teal-700 text-left py-2">
                                             <% if booking.status.nil? %>
                                                     <%= link_to "verify", verify_booking_path(booking), method: :post,
                                                                         data: { confirm: "You sure?" } %> 
                                                 <% elsif booking.status == 1 %> 
                                                     <%= link_to "complete booking", complete_booking_path(booking), method: :post,
                                                                         data: { confirm: "You sure?" } %>
-                                                <% else %>
-                                            <% end %>
-                                        <% end %>
-                                        <% if booking.status == 1 && !current_user.admin? %>
-                                            <%= link_to "show", booking, class:"text-blue-700 text-center" %>
-                                        <% end %>
+                                            <% end %>                                            
+                                        </div>
                                     </div>
-                                </div>
+                                <% end %>                                  
                                 <br>
                             <% end %>
                         <% end %>
@@ -79,20 +86,6 @@
         <footer>
             <%= render 'layouts/desktop_footer' %>
         </footer>
-        <script>
-            visible = false; //var that keeps track if the content is visible.
-            txt = document.getElementById("call-form");
-            btn = document.getElementById("call-trigger");
-            function toggle() {
-                if(visible) {
-                    visible = 0;
-                    txt.style.display = 'none';
-                } else {
-                    visible = 1;
-                    txt.style.display = 'block';
-                }
-            };
-        </script>
     </div>
 <% end %>
 

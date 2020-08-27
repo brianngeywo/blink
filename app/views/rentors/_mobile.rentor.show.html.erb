@@ -44,5 +44,9 @@
       <div class="my-6">
         <%= link_to 'Back to rentals', rentals_path, :class=>"text-4xl font-semibold p-4 w-auto bg-teal-700 text-white uppercase text-center" %>
       </div>
+        <% if (current_user.admin? || @rentor.user) && @rentor.status.nil? %>
+            <%= link_to "mark as booked", complete_rentor_path(@rentor), method: :post,
+                                        data: { confirm: "You sure?" }, class:"p-3 rounded-lg" %>
+        <% end %>
     </div>
   </div>

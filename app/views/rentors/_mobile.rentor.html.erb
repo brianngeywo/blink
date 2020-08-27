@@ -7,16 +7,18 @@
         </tr>
       <div>
         <% obj.each do |rentor| %>
-          <tr class="grid grid-cols-3 space-x-3 text-left border-b-2 border-teal-900">
-            <td class="my-4"><%= User.find(rentor.user_id).username %></td>            
-            <% if rentor.status.nil? %>
-                <td class="my-4">needs completion</td>
-              <% else %>
-                <td class="my-4">completed</td>
-            <% end %>
-            
-            <td class="my-4 text-blue-700 lowercase"><%= link_to 'more details', rentor %></td>   
-          </tr>
+          <% if rentor.status.nil? %>
+            <tr class="grid grid-cols-3 space-x-3 text-left border-b-2 border-teal-900">
+              <td class="my-4"><%= User.find(rentor.user_id).username %></td>            
+              <% if rentor.status.nil? %>
+                  <td class="my-4">awaiting booking</td>
+                <% else %>
+                  <td class="my-4">completed</td>
+              <% end %>
+              
+              <td class="my-4 text-blue-700 lowercase"><%= link_to 'more details', rentor %></td>   
+            </tr>
+          <% end %>
         <% end %>
       </div>      
     </tbody>

@@ -71,7 +71,7 @@ class RentorsController < ApplicationController
     @rentor.status = 1
     @rentor.save
     flash[:success] = "#{User.find(@rentor.user_id).username} is now marked as completed"
-    redirect_to current_user
+    redirect_to @rentor.rental
   end
 
   private

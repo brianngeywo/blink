@@ -42,10 +42,7 @@
                         <div class="text-xs font-normal lowercase text-black">we'll be waiting for your call*</div>
                     </div>
                     <div class="my-6"><%= link_to 'one click booking', rentors_path(rental_id: @rental.id), :method => 'post', class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
-                    <% if logged_in? && (current_user == @rental.user || current_user.admin?) && @rental.user.status == 1 %>
-                        <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
-                        <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
-                    <% elsif current_user.admin %>
+                    <% if logged_in? && (@rental.user || current_user.admin) && (@rental.user.status == 1 || current_user.admin) %>
                         <div class="my-6"><%= link_to "edit rental", edit_rental_path, class:"font-semibold tracking-wider p-3 w-auto border-2 border-teal-600 bg-teal-700 text-white uppercase text-center" %></div>
                         <div class="my-6"><%= link_to 'all bookings', rental_bookings_path(@rental), class:"font-semibold text-center" %></div>
                     <% end %>
@@ -61,14 +58,6 @@
                         </div>
                         <div class="text-teal-700 font-bold text-lg border-t-2 border-b-2 border-gray-500 py-4"><i class="fa fa-calculator mx-2"></i>rental charges is kshs <%= @rental.price %></div>
                         <div class="text-xs font-Arial text-gray-500 text-center my-2">*please pay through blinkhomes to avoid bieng conned</div>
-                    </div>
-                    <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                        <div class="font-medium text-teal-700 capitalize my-3 text-2xl">property features</div>
-                        <div class="grid grid-cols-3 px-6 text-gray-800 capitalize">                
-                            <% @rental.rental_features.each do |rental_feature| %>
-                            <div class="my-1"><%= rental_feature.name %></div>               
-                            <% end %>                    
-                        </div>
                     </div>
                     <div class="my-4 mx-6 shadow-xl rounded-lg px-8 py-4 capitalize border-1 border-gray-400 bg-gray-200">
                     <div class="uppercase text-gray-500 font-semibold text-sm my-2">property photos </div>

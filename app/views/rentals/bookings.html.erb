@@ -44,7 +44,7 @@
                 </div>
                 <div class="w-full">
                     <div class="my-4 mx-6 shadow-xl rounded-lg px-6 py-4 capitalize border-1 border-gray-400 bg-gray-200">
-                        <div class=" capitalize my-3">you have <%= pluralize(@rental.rentors.all.count, "booking")  %> </div>
+                        <div class=" capitalize my-3">you have <%= pluralize(@rental.rentors.all.count, "booking") %> in total for <%= @rental.name %> </div>
                         <%= render 'rentors/rentor', obj: @rental.rentors %>
                     </div>
                 </div>

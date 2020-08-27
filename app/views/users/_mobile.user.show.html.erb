@@ -12,9 +12,24 @@
             <div class="text-xl text-gray-300">
                 <div class="text-5xl text-teal-600 font-semibold capitalize"><%= @user.username %></div>
                 <% if @user.status == 1  %>
-                    <div class="font-medium capitalize text-3xl">patner</div>
+                    <div class="font-medium uppercase text-3xl">agent</div>
                 <% end %>
             </div>
+    </div>
+    <div class="my-4">
+        <% if logged_in? && (current_user == @user || current_user.admin?) %>
+            <% if @user.status.nil? && current_user.admin? %> 
+                    <%= link_to "verify this account", verify_user_path(@user), method: :post,
+                            data: { confirm: "You sure verify #{@user.username}?" }, class:"font-semibold p-4 rounded-lg text-white bg-teal-700 uppercase text-center text-4xl mx-4" %> 
+                <% elsif @user.status == 1  %>
+                    <%= link_to 'add new rental', new_rental_path, class:"font-semibold p-4 rounded-lg text-white bg-teal-700 uppercase text-center text-4xl mx-4" %>
+            <% end %>
+            <% if logged_in? && current_user.status.nil? %>
+                <div class="text-4xl px-3 text-gray-700 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">
+                To add new rentals, call/whatsapp us on 0798767470 and request agent account approval or click below to request for a rental.</div>
+                <%= link_to "request a rental", new_booking_path, class:"font-semibold p-4 rounded-lg text-white bg-teal-700 uppercase text-center text-4xl mx-4" %>
+            <% end %>
+        <% end %>
     </div>
     <div class="font-bold text-4xl capitalize mx-4 my-3">about <%= @user.username %></div>
     <div class="text-3xl font-bold capitalize my-6 p-4 text-teal-700">offices:
@@ -26,24 +41,7 @@
         <%= link_to 'Edit your account', edit_user_path(@user) %></div>
     <% end %>
     </div>
-    <% if logged_in? && current_user.admin? %>
-    <div clas="">
-        <div class="font-semibold text-gray-600 uppercase text-4xl py-2">important links</div>
-        <%= link_to 'all customer requests', customers_path , class:"mx-12 text-3xl font-bold capitalize text-teal-700 my-6 p-4"%>
-    </div>
-    <% end %>
     <br>
-    <% if logged_in? && (current_user == @user || current_user.admin?) %>
-        <% if @user.status.nil? && current_user.admin? %> 
-                <%= link_to "verify this account", verify_user_path(@user), method: :post,
-                        data: { confirm: "You sure verify #{@user.username}?" }, class:"text-4xl px-6 bg-blue-700 py-2 text-white mx-12" %> 
-            <% elsif @user.status == 1  %>
-            <div><%= link_to 'post new rental', new_rental_path, class:"text-5xl bg-blue-700 text-white border-1 border-teal-700 rounded-lg px-8 py-3 text-center font-bold capitalize mx-4" %></div>
-        <% end %>
-        <% if @user.status.nil? && (current_user == @user || !current_user.admin?) %>
-            <div class="px-12 text-4xl text-gray-800 border-b-1 border-t-1 py-2 mb-2 normal-case font-normal">To add new rentals, call/whatsapp us on 0798767470 and request agent account approval.</div>
-        <% end %>
-    <% end %>
         <div class="font-semibold text-gray-600 uppercase text-4xl py-2 px-6">current listings</div>
     <div class="capitalize text-5xl">
         <%= render 'rentals/rental', obj: @user.rentals %>
