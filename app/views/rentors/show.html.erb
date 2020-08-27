@@ -8,8 +8,8 @@
     <div class="text-teal-700" style="width: 64rem;">
       <div class="border-b-2 border-gray-900 uppercase text-xl text-gray-800 font-semibold my-6">rental booking summary</div>
       <div class="space-y-3">
-        <% if (current_user.admin? || (current_user = @rentor.user.status == 1)) && @rentor.status.nil? %>
-            <%= link_to "mark as completed", complete_rentor_path(@rentor), method: :post,
+        <% if current_user.admin? || @current_user.status == 1 %>
+            <%= link_to "mark as booked", complete_rentor_path(@rentor), method: :post,
                                         data: { confirm: "You sure?" }, class:"bg-white p-3 rounded-lg" %>
         <% end %>
         <p class="capitalize">
