@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   STATUS = {:unverified => nil, :verified => 1}
 
-  def unverified
+  def zunverified
     if status.nil?
       self.status = STATUS[:unverified]
     end

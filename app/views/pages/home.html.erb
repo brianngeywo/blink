@@ -23,12 +23,12 @@
                 <% end %>
                 </div>
             </nav>
-            <div class="text-3xl font-semibold capitalize text-white pb-6 font-sans text-center py-6">search eldoret's biggest
+            <div class="text-3xl font-semibold capitalize text-white font-times text-center py-8">search eldoret's biggest
                 collection of rentals</div>
-            <div class="py-8 px-8 bg-white mx-64 border-solid border-2 border-gray-400">
+            <div class="py-8 px-8 bg-white mx-56 border-solid border-2 border-gray-400">
                 <%= search_form_for @q, html: { class: "flex justify-center w-full" } do |f| %>
                     <%= f.search_field :town_name_or_name_or_estate_name_cont, class: "px-2 border-t-4 border-b-4 border-l-4 border-gray-400 w-full text-lg", placeholder: "try a town or estate" %>
-                        <%= f.submit "search", class: "uppercase text-white p-4 text-3xl font-semibold shadow-inner bg-teal-700" %>
+                        <%= f.submit "search", class: "uppercase text-white p-4 text-2xl font-semibold shadow-inner bg-teal-700" %>
                 <% end %>
             </div>
         </div>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user, :logged_in?, :require_admin
+  helper_method :current_user, :logged_in?, :require_admin, :admin, :unverified_user, :verified_user
 
   def get_browser
     @browser = Browser.new(request.env["HTTP_USER_AGENT"])
@@ -32,6 +32,17 @@ class ApplicationController < ActionController::Base
     @rentals = Rental.all
     @q = Rental.ransack(params[:q])
     @rentals = @q.result(distinct: true)
+  end
+  def admin
+    current_user.admin?
+  end
+
+  def unverified_user
+    user.status.nil?
+  end
+
+  def verified_user
+    user.status == 1
   end
 
 end

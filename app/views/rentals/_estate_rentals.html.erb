@@ -9,7 +9,8 @@
             <div class="w-70 p-5">
                 <div class="capitalize text-2xl font-normal"><%= rental.name  %></div>
                 <div class="capitalize text-xl text-gray-800">
-                <%= rental.town.name if rental.town %>,<%= rental.estate.name if rental.estate %></div>
+                    <%= rental.town.name if rental.town %>,<%= rental.estate.name if rental.estate %>
+                </div>
                 <div class="text-gray-600 font-bold">kshs <%= rental.price %></div>
                 <div class="flex items-center justify-start text-base text-teal-700 space-x-3">
                     <span class=""><i class="fa fa-bed"></i> <%= rental.bedrooms %></span>

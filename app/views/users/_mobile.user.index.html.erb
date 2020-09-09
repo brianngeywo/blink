@@ -1,5 +1,5 @@
 <div class="lg:hidden">
-  <%= render 'layouts/mobile_nav' %>
+  <%= render "layouts/mobile_nav" %>
   <div class="font-semibold text-gray-600 uppercase text-2xl mx-12 mt-4">list of real estate agencies</div>
     <% @users.each do |user| %>
       <% if user.status == 1 || (logged_in? && current_user.admin?) %>
